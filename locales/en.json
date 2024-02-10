@@ -1,0 +1,32 @@
+{
+    "nav": {
+        "lang": "AR",
+        "home": "home",
+        "services": "services",
+        "aboutuUs": "about us",
+        "contactUs": "Contact us"
+    },
+    "footer": {
+        "main": "This text is an example of text that can be replaced in the same space. This text was generated from the Arabic text generator",
+        "doYouHaveQuestions": "do you have questions",
+        "QuickAccess": "Quick access",
+        "OurServices": "Our services",
+        "RequestAservice": "Request a service",
+        "AboutOurSite": "About our site",
+        "aboutuUs": "About us",
+        "contactUs": "Contact us",
+        "termsCndConditions": "Terms and Conditions",
+        "privacyPolicy": "Privacy policy",
+        "end": "All rights reserved - leak detection website"
+    },
+
+    "main": {
+        "welcomeToOurWebsite": "Welcome to our website for insulation and water leak detection services",
+        "WeCareAboutMeeting": "We care about meeting your needs. Whether you need to repair or install water or sewer pipes.",
+        "ourServices": "Our services",
+        "chooseTheService": "Choose the service that suits your request and leave it to our experts",
+        "tellUs": "Choose the service and tell us about your problem and we will send you the appropriate technician as soon as possible",
+        "leakDetection": "Leak detection",
+        "insulationInspection": "Insulation inspection"
+    }
+}
