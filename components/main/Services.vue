@@ -7,12 +7,12 @@
                 <p class="text-light">{{ $t("main.tellUs") }}</p>
             </div>
             <div>
-                <NuxtLink class="mb-6 flex flex-col items-center gap-4 shadow-lg p-4 rounded-md">
-                    <img class="bg-white p-4 flex justify-center items-center rounded-3xl" src="/assets/images/main/service1.png" alt="" />
+                <NuxtLink to="/services/1" class="mb-6 flex flex-col items-center gap-4">
+                    <img class="bg-white p-4 flex justify-center items-center rounded-3xl shadow-lg" src="/assets/images/main/service1.png" alt="" />
                     <p class="text-main font-bold">{{ $t("main.leakDetection") }}</p>
                 </NuxtLink>
-                <NuxtLink class="mb-6 flex flex-col items-center gap-4 shadow-lg p-4 rounded-md">
-                    <img class="bg-white p-4 flex justify-center items-center rounded-3xl" src="/assets/images/main/service2.png" alt="" />
+                <NuxtLink to="/services/1" class="mb-6 flex flex-col items-center gap-4">
+                    <img class="bg-white p-4 flex justify-center items-center rounded-3xl shadow-lg" src="/assets/images/main/service2.png" alt="" />
                     <p class="text-main font-bold">{{ $t("main.insulationInspection") }}</p>
                 </NuxtLink>
             </div>

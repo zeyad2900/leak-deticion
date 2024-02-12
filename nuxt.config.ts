@@ -4,6 +4,7 @@ import { acceptHMRUpdate, defineStore } from "pinia";
 export default defineNuxtConfig({
     devtools: { enabled: true },
     modules: [
+        "nuxt-swiper",
         "nuxt-icons",
         "nuxt-icon",
         [
