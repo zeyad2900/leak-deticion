@@ -1,7 +1,51 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+    --main-color: #3162da;
+    scroll-behavior: smooth;
+}
 
 a {
     cursor: pointer;
+}
+.test {
+    width: 50px;
+}
+.mainbtn {
+    padding: 16px 24px;
+    background-color: var(--main-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    background-color: var(--main-color);
+    color: #fff;
+    border-radius: 50%; /* Makes it circular */
+    width: 30px;
+    padding: 10px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px !important;
+    position: absolute;
+}
+.swiper-button-next::after {
+    left: 150px;
+    /*Closertotheleftedge*/
+    bottom: 200px;
+    /*Centersvertically*/
+}
+.swiper-button-prev::after {
+    right: 1000px;
+    /*Closertotheleftedge*/
+    bottom: 200px;
 }

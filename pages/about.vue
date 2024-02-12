@@ -1,12 +1,8 @@
 <template>
-    <Main />
-    <MainServices />
+    <About />
     <MainAbout />
     <MainServeice />
-    <MainOurExperts />
-    <MainSider />
     <MainTestimonials />
-    <MainOurMission />
 </template>
 
 <script setup></script>

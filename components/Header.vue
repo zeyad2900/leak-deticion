@@ -6,10 +6,10 @@
             </NuxtLink>
             <div>
                 <ul class="flex items-center justify-center gap-5">
-                    <NuxtLink href="">{{ $t("nav.home") }}</NuxtLink>
-                    <NuxtLink href="">{{ $t("nav.services") }}</NuxtLink>
-                    <NuxtLink href="">{{ $t("nav.aboutuUs") }}</NuxtLink>
-                    <NuxtLink href="">{{ $t("nav.contactUs") }}</NuxtLink>
+                    <NuxtLink to="/#main">{{ $t("nav.home") }}</NuxtLink>
+                    <NuxtLink to="/#services">{{ $t("nav.services") }}</NuxtLink>
+                    <NuxtLink to="/about">{{ $t("nav.aboutuUs") }}</NuxtLink>
+                    <NuxtLink to="/contact">{{ $t("nav.contactUs") }}</NuxtLink>
                 </ul>
             </div>
             <div class="flex items-center gap-7">

@@ -1,7 +1,18 @@
+import { acceptHMRUpdate, defineStore } from "pinia";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: { enabled: true },
     modules: [
+        "nuxt-icons",
+        "nuxt-icon",
+        [
+            "@pinia/nuxt",
+            {
+                autoImports: [defineStore, acceptHMRUpdate],
+            },
+        ],
+        "@nuxtjs/tailwindcss",
         [
             "@nuxtjs/i18n",
             {
@@ -29,6 +40,9 @@ export default defineNuxtConfig({
             },
         ],
     ],
+    imports: {
+        dirs: ["stores"],
+    },
     plugins: ["~/plugins/i18n.client.ts"],
     css: ["~/assets/main.css"],
     postcss: {

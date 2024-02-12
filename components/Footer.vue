@@ -3,7 +3,7 @@
         <div class="container py-14">
             <div class="flex flex-wrap justify-between gap-6">
                 <div class="space-y-6 w-[30%]">
-                    <NuxtLink to="/about"><img width="108" height="56" src="/logos.svg" alt="" /></NuxtLink>
+                    <NuxtLink to="/#main"><img width="108" height="56" src="/logos.svg" alt="" /></NuxtLink>
                     <p class="max-w-[500px]">{{ $t("footer.main") }}</p>
                     <div class="social flex justify-start items-center">
                         <a href="" class="ml-3"><img src="/assets/images/social/Facebook.png" alt="" /></a>
@@ -29,10 +29,10 @@
                             <h2 class="font-medium leading-7 text-lg mb-5">{{ $t("footer.QuickAccess") }}</h2>
                             <ul>
                                 <li class="mb-3">
-                                    <NuxtLink>{{ $t("footer.OurServices") }}</NuxtLink>
+                                    <NuxtLink to="/#services">{{ $t("footer.OurServices") }}</NuxtLink>
                                 </li>
                                 <li class="mb-3">
-                                    <NuxtLink>{{ $t("footer.RequestAservice") }}</NuxtLink>
+                                    <NuxtLink to="/#services">{{ $t("footer.RequestAservice") }}</NuxtLink>
                                 </li>
                             </ul>
                         </div>
@@ -40,16 +40,16 @@
                             <h2 class="font-medium leading-7 text-lg mb-5">{{ $t("footer.AboutOurSite") }}</h2>
                             <ul>
                                 <li class="mb-3">
-                                    <NuxtLink>{{ $t("footer.aboutuUs") }}</NuxtLink>
+                                    <NuxtLink to="/about">{{ $t("footer.aboutuUs") }}</NuxtLink>
                                 </li>
                                 <li class="mb-3">
-                                    <NuxtLink>{{ $t("footer.contactUs") }}</NuxtLink>
+                                    <NuxtLink to="/contact">{{ $t("footer.contactUs") }}</NuxtLink>
                                 </li>
                                 <li class="mb-3">
-                                    <NuxtLink>{{ $t("footer.termsCndConditions") }}</NuxtLink>
+                                    <NuxtLink to="/terms">{{ $t("footer.termsCndConditions") }}</NuxtLink>
                                 </li>
                                 <li class="mb-3">
-                                    <NuxtLink>{{ $t("footer.privacyPolicy") }}</NuxtLink>
+                                    <NuxtLink to="/policy">{{ $t("footer.privacyPolicy") }}</NuxtLink>
                                 </li>
                             </ul>
                         </div>

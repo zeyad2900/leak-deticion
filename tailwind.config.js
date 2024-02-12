@@ -2,15 +2,22 @@
 const colors = require("tailwindcss/colors");
 
 export default {
+    devtools: { enabled: true },
+    postcss: {
+        plugins: {
+            tailwindcss: {},
+            autoprefixer: {},
+        },
+    },
     content: ["./components//*.{js,vue,ts}", "./layouts//*.vue", "./pages//*.vue", "./plugins//*.{js,ts}", "./nuxt.config.{js,ts}", "./app.vue"],
     theme: {
         colors: {
             dark: "#003773",
-            main : "#3162DA",
+            main: "#3162DA",
             white: colors.white,
-            text:colors.black,
-            light:"#ADB3DA",
-            stroke: "#F7F7FC"
+            text: colors.black,
+            light: "#ADB3DA",
+            stroke: "#F7F7FC",
         },
         screens: {
             xs: "475px",
@@ -34,12 +41,6 @@ export default {
             poppins: ["Poppins", "sans-serif"],
             montserrat: ["Montserrat", "sans-serif"],
             din: ["Din", "sans-serif"],
-        },
-        minHeight: {
-            "3/4": "75%",
-        },
-        maxWidth: {
-            "3/4": "75%",
         },
         extend: {},
         container: {

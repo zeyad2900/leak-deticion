@@ -1,9 +1,10 @@
 <template>
-    <button class="px-16 py-3 rounded-full text-white bg-main">
+    <button class="mainbtn">
         <slot></slot>
     </button>
 </template>
 
-<script setup></script>
+<script setup>
+</script>
 
-<style scoped></style>
+<style></style>
