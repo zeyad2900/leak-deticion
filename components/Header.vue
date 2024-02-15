@@ -1,18 +1,23 @@
 <template>
     <header class="fixed top-0 flex items-center justify-center start-0 w-full z-[1000] h-[85px] bg-dark text-white">
         <div class="container flex items-center justify-between">
+            <!-- logo -->
             <NuxtLink href="">
                 <img src="/logo.png" alt="" width="71" height="37" />
             </NuxtLink>
-            <div>
-                <ul class="flex items-center justify-center gap-5">
+            <!-- llinks -->
+
+            <div class="">
+                <ul class="hidden xl:flex items-center justify-center gap-5">
                     <NuxtLink to="/#main">{{ $t("nav.home") }}</NuxtLink>
                     <NuxtLink to="/#services">{{ $t("nav.services") }}</NuxtLink>
                     <NuxtLink to="/about">{{ $t("nav.aboutuUs") }}</NuxtLink>
                     <NuxtLink to="/contact">{{ $t("nav.contactUs") }}</NuxtLink>
                 </ul>
             </div>
-            <div class="flex items-center gap-7">
+            <!-- buttons -->
+
+            <div class="flex items-center gap-2 xl:gap-7">
                 <ul class="flex items-center gap-2">
                     <li>
                         <button class="relative w-11 h-11 flex justify-center items-center rounded-lg bg-[#FFFFFF0D]">
@@ -26,7 +31,10 @@
                         </button>
                     </li>
                 </ul>
-                <button @click="changeLang" type="button" class="flex items-center gap-1">
+                <button class="xl:hidden relative w-11 h-11 flex justify-center items-center rounded-lg bg-[#FFFFFF0D]">
+                    <Icon name="nimbus:menu" />
+                </button>
+                <button @click="changeLang" type="button" class="hidden xl:flex items-center gap-1">
                     <img width="16" height="16" src="/assets/images/icons/earth.png" alt="" />
                     {{ $t("nav.lang") }}
                 </button>

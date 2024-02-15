@@ -28,5 +28,10 @@
         "tellUs": "Choose the service and tell us about your problem and we will send you the appropriate technician as soon as possible",
         "leakDetection": "Leak detection",
         "insulationInspection": "Insulation inspection"
+    },
+
+    "ERRORS": {
+        "emailRequired": "Email is required",
+        "emailInValid": "Email is invalid"
     }
 }

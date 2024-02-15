@@ -1,10 +1,10 @@
 <template>
-    <article id="about" class="container py-24">
-        <div class="flex justify-between items-center">
-            <div>
+    <article id="about" class="container py-20">
+        <div class="grid grid-cols-3 gap-5">
+            <div class="col-span-3 space-y-5 lg:col-span-2 order-2 lg:order-1">
                 <UIBage>من نحن</UIBage>
-                <h1 class="text-5xl max-w-[650px] font-medium text-text mb-10">افضل الفنيين الخبراء لخدمتك</h1>
-                <div class="flex mb-6">
+                <h1 class="text-2xl md:text-3xl lg:text-5xl max-w-[650px] font-medium mb-2 lg:leading-[3.5rem] text-text leading-[2.5rem]">افضل الفنيين الخبراء لخدمتك</h1>
+                <div class="grid sm:grid-cols-2 gap-4">
                     <div class="">
                         <div class="flex justify-start items-start gap-6">
                             <img class="p-5 bg-stroke rounded-full" src="/assets/images/icons/car.png" alt="" />
@@ -21,6 +21,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="">
                         <div class="flex justify-start items-start gap-6">
                             <img class="p-5 bg-stroke rounded-full" src="/assets/images/icons/offer.png" alt="" />
@@ -40,7 +41,9 @@
                 </div>
                 <UIButton>اعرف المزيد</UIButton>
             </div>
-            <img src="/assets/images/main/video2.png" alt="" />
+            <div class="col-span-3 lg:col-span-1 order-1 lg:order-2 w-[280px] h-[280px] md:w-[400px] md:h-[400px] mx-auto mb-11 lg:mb-0">
+                <img src="/assets/images/main/video2.png" alt="" />
+            </div>
         </div>
     </article>
 </template>

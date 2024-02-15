@@ -1,36 +1,63 @@
 <template>
     <article class="container mt-40 mb-24">
-        <div class="grid grid-cols-4">
-            <div class="col-span-2">
-                <swiper
-                    :style="{
-                        '--swiper-navigation-color': '#fff',
-                        '--swiper-pagination-color': '#fff',
-                    }"
-                    :spaceBetween="10"
-                    :navigation="false"
-                    :thumbs="{ swiper: thumbsSwiper }"
-                    :modules="modules"
-                    class="mySwiper2"
-                >
-                    <swiper-slide><img class="rounded-xl" src="/assets/images/about/about.png" /></swiper-slide>
-                    <swiper-slide><img class="rounded-xl" src="/assets/images/about/about.png" /></swiper-slide>
-                    <swiper-slide><img class="rounded-xl" src="/assets/images/about/about.png" /></swiper-slide>
-                    <swiper-slide><img class="rounded-xl" src="/assets/images/about/about.png" /></swiper-slide>
-                </swiper>
-                <swiper @swiper="setThumbsSwiper" :spaceBetween="10" :slidesPerView="4" :freeMode="true" :watchSlidesProgress="true" :modules="modules" class="mySwiper">
-                    <swiper-slide><img class="rounded-xl" src="/assets/images/about/about.png" /></swiper-slide>
-                    <swiper-slide><img class="rounded-xl" src="/assets/images/about/about.png" /></swiper-slide>
-                    <swiper-slide><img class="rounded-xl" src="/assets/images/about/about.png" /></swiper-slide>
-                    <swiper-slide><img class="rounded-xl" src="/assets/images/about/about.png" /></swiper-slide>
-                </swiper>
+        <div class="">
+            <div class="">
+                <ClientOnly>
+                    <swiper
+                        :style="{
+                            '--swiper-navigation-color': '#fff',
+                            '--swiper-pagination-color': '#fff',
+                        }"
+                        :spaceBetween="10"
+                        :navigation="false"
+                        :thumbs="{ swiper: thumbsSwiper }"
+                        :modules="modules"
+                        class="mySwiper2"
+                    >
+                        <swiper-slide v-for="i in 4" :key="i"><img class="rounded-xl" src="/assets/images/about/about.png" /></swiper-slide>
+                    </swiper>
+
+                    <swiper @swiper="setThumbsSwiper" :spaceBetween="10" :slidesPerView="4" :freeMode="true" :watchSlidesProgress="true" :modules="modules" class="mySwiper">
+                        <swiper-slide v-for="i in 4" :key="i"><img class="rounded-xl" src="/assets/images/about/about.png" /></swiper-slide>
+                    </swiper>
+                </ClientOnly>
             </div>
+
             <div class="col-span-2"></div>
+
+            <UIBaseCard>
+                <button class="text-2xl block ms-auto">
+                    <Icon name="mi:close"></Icon>
+                </button>
+                <h3 class="text-center font-bold mb-7 text-text text-xl">تسجيل دخول</h3>
+
+                <form action="">
+                    <div class="flex flex-col mb-3">
+                        <label class="text-light font-bold mb-1">رقم الهاتف</label>
+                        <div class="flex justify-center items-center">
+                            <div class="h-12">
+                                <UIHeadlessButton />
+                            </div>
+                            <input placeholder="رقم الهاتف" class="py-3 ps-5 text-sm w-full h-12 font-bold border border-light rounded-xl" type="text" />
+                        </div>
+                    </div>
+                    <div class="flex flex-col mb-2">
+                        <label class="text-light font-bold mb-1">كلمة المرور</label>
+                        <input placeholder="كلمه المرور" class="py-3 ps-5 text-sm w-full h-12 font-bold border border-light rounded-xl" type="password" />
+                    </div>
+                </form>
+                <button class="font-bold block mb-7">نسيت كلمه المرور؟</button>
+                <UIButton class="w-full mb-1">تسجيل الدخول</UIButton>
+                <div class="flex text-center items-center justify-center">
+                    <p>ليس لديك حساب ؟</p>
+                    <button class="font-bold">انشاء حساب جديد</button>
+                </div>
+            </UIBaseCard>
         </div>
     </article>
 </template>
 
-<script>
+<script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
 
 // Import Swiper styles
@@ -43,24 +70,10 @@ import "swiper/css/thumbs";
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
-export default {
-    components: {
-        Swiper,
-        SwiperSlide,
-    },
-    setup() {
-        const thumbsSwiper = ref(null);
+const thumbsSwiper = ref(null);
 
-        const setThumbsSwiper = (swiper) => {
-            thumbsSwiper.value = swiper;
-        };
-
-        return {
-            thumbsSwiper,
-            setThumbsSwiper,
-            modules: [FreeMode, Navigation, Thumbs],
-        };
-    },
+const setThumbsSwiper = (swiper) => {
+    thumbsSwiper.value = swiper;
 };
 </script>
 

@@ -14,6 +14,7 @@ export default {
         colors: {
             dark: "#003773",
             main: "#3162DA",
+            danger: "#ef4444",
             white: colors.white,
             text: colors.black,
             light: "#ADB3DA",

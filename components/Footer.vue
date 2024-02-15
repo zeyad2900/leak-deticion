@@ -1,8 +1,8 @@
 <template>
     <footer class="mt-auto bg-[#FAFDFF]">
         <div class="container py-14">
-            <div class="flex flex-wrap justify-between gap-6">
-                <div class="space-y-6 w-[30%]">
+            <div class="flex flex-wrap flex-col lg:flex-row justify-center items-center lg:items-start lg:justify-between gap-6">
+                <div class="space-y-6 w-full lg:w-[30%]">
                     <NuxtLink to="/#main"><img width="108" height="56" src="/logos.svg" alt="" /></NuxtLink>
                     <p class="max-w-[500px]">{{ $t("footer.main") }}</p>
                     <div class="social flex justify-start items-center">
@@ -12,7 +12,7 @@
                         <a href="" class="ml-3"><img src="/assets/images/social/youtube.png" alt="" /></a>
                     </div>
                 </div>
-                <div class="w-[30%]">
+                <div class="w-full lg:w-[30%]">
                     <h2 class="font-medium leading-7 text-lg mb-5">{{ $t("footer.doYouHaveQuestions") }}</h2>
                     <div class="flex items-end gap-2">
                         <img src="/assets/images/icons/mail.png" alt="" />
@@ -23,8 +23,8 @@
                         <a href="">(414) 687 - 5892</a>
                     </div>
                 </div>
-                <div class="flex flex-col w-[27%]">
-                    <div class="flex justify-between mb-10">
+                <div class="flex flex-col w-full lg:w-[30%]">
+                    <div class="flex lg:flex-row flex-col justify-between mb-10">
                         <div>
                             <h2 class="font-medium leading-7 text-lg mb-5">{{ $t("footer.QuickAccess") }}</h2>
                             <ul>
@@ -54,7 +54,7 @@
                             </ul>
                         </div>
                     </div>
-                    <ul class="flex items-center justify-end gap-5">
+                    <ul class="flex items-center justify-center lg:justify-end gap-5">
                         <li>
                             <a href="#"><img src="/assets/images/social/AppStore.png" alt="" /></a>
                         </li>

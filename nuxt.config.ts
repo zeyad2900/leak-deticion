@@ -4,6 +4,21 @@ import { acceptHMRUpdate, defineStore } from "pinia";
 export default defineNuxtConfig({
     devtools: { enabled: true },
     modules: [
+        "nuxt-headlessui",
+        [
+            "@vee-validate/nuxt",
+            {
+                // disable or enable auto imports
+                autoImports: true,
+                // Use different names for components
+                componentNames: {
+                    Form: "VeeForm",
+                    Field: "VeeField",
+                    FieldArray: "VeeFieldArray",
+                    ErrorMessage: "VeeErrorMessage",
+                },
+            },
+        ],
         "nuxt-swiper",
         "nuxt-icons",
         "nuxt-icon",
