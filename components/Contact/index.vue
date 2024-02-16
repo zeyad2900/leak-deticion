@@ -38,7 +38,7 @@
                         <vee-field name="name" v-slot="{ field, meta }">
                             <input
                                 placeholder="الاسم بالكامل"
-                                class="p-3 text-sm w-full h-12 font-bold border border-light rounded-xl"
+                                class="p-3 text-sm w-full h-12 font-bold border border-stroke rounded-xl"
                                 id="fullName"
                                 v-bind="field"
                                 type="text"
@@ -49,7 +49,7 @@
                         <vee-field name="email" v-slot="{ field, meta }">
                             <input
                                 placeholder="بريدك الاكتروني"
-                                class="p-3 text-sm w-full h-12 font-bold border border-light rounded-xl"
+                                class="p-3 text-sm w-full h-12 font-bold border border-stroke rounded-xl"
                                 id="fullName"
                                 v-bind="field"
                                 type="email"
@@ -64,7 +64,7 @@
                                 </div>
                                 <input
                                     placeholder="رقم الهاتف"
-                                    class="p-3 text-sm w-full h-12 font-bold border border-light rounded-xl"
+                                    class="p-3 text-sm w-full h-12 font-bold border border-stroke rounded-xl"
                                     id="fullName"
                                     v-bind="field"
                                     type="text"
@@ -76,7 +76,7 @@
                         <vee-field name="subject" v-slot="{ field, meta }">
                             <input
                                 placeholder="الموضوع"
-                                class="p-3 text-sm w-full h-12 font-bold border border-light rounded-xl"
+                                class="p-3 text-sm w-full h-12 font-bold border border-stroke rounded-xl"
                                 id="fullName"
                                 v-bind="field"
                                 type="text"
@@ -87,7 +87,7 @@
                         <vee-field name="message" v-slot="{ field, meta }">
                             <textarea
                                 placeholder="ادخل رسالتك هنا"
-                                class="p-3 text-sm w-full h-28 font-bold border-light border rounded-xl"
+                                class="p-3 text-sm w-full h-28 font-bold border-stroke border rounded-xl"
                                 id="fullName"
                                 v-bind="field"
                                 type="text"
@@ -95,7 +95,7 @@
                             />
                             <vee-error-message v-if="meta.touched && !meta.valid" name="message" as="span" class="!text-danger" />
                         </vee-field>
-                        <UIButton><img src="/assets/images/contact/send-2.png" alt="" /> ارسال</UIButton>
+                        <button class="mainbtn"><img src="/assets/images/contact/send-2.png" alt="" /> ارسال</button>
                     </form>
                 </VeeForm>
             </div>

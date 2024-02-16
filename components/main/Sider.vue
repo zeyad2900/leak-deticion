@@ -20,7 +20,7 @@
             >
                 <swiper-slide v-for="i in 4" :key="i">
                     <div class="max-w-[600px] bg-stroke p-4 rounded-md">
-                        <img src="/assets/images/icons/quote.png" alt="" />
+                        <img src="/assets/images/imgicons/quote.png" alt="" />
                         <p class="text-text text-sm py-3 min-h-[150px] max-h-[150px] overflow-y-auto leading-6">
                             "لقد استدعيت فريق تسريب المياه الخاص بكم لإصلاح تسريب في منزلي، وأنا سعيد جدًا بالخدمة التي تلقيتها. كان الفريق محترفًا وودودًا، وأصلحوا المشكلة بسرعة وبأعلى جودة. أوصي
                             بشدة بخدماتكم."

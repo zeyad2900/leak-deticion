@@ -15,11 +15,11 @@
                 <div class="w-full lg:w-[30%]">
                     <h2 class="font-medium leading-7 text-lg mb-5">{{ $t("footer.doYouHaveQuestions") }}</h2>
                     <div class="flex items-end gap-2">
-                        <img src="/assets/images/icons/mail.png" alt="" />
+                        <img src="/assets/images/imgicons/mail.png" alt="" />
                         <a href="">contact@company.com</a>
                     </div>
                     <div class="flex items-end gap-2">
-                        <img src="/assets/images/icons/phone.png" alt="" />
+                        <img src="/assets/images/imgicons/phone.png" alt="" />
                         <a href="">(414) 687 - 5892</a>
                     </div>
                 </div>

@@ -1,0 +1,100 @@
+<template>
+    <div class="bg-[#0000007b] h-screen w-screen fixed top-0 left-0 z-[999] flex items-center justify-center">
+        <UIBaseCard>
+            <button type="" @click="myShowAndHideStore.closeSignup()" class="text-2xl block ms-auto">
+                <Icon class="text-light" name="ep:close-bold"></Icon>
+            </button>
+            <h3 class="text-center font-bold mb-7 text-text text-xl">انشاء حساب جديد</h3>
+
+            <!-- form -->
+            <VeeForm :validation-schema="schema" as="div">
+                <form @submit.prevent="">
+                    <div class="flex flex-col mb-2">
+                        <VeeField name="name" v-slot="{ field, meta }">
+                            <label class="text-text font-bold mb-1">الاسم</label>
+                            <input
+                                v-bind="field"
+                                placeholder="الاسم"
+                                :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''"
+                                class="py-3 ps-5 text-sm w-full h-12 font-bold border border-stroke rounded-xl focus:border-opacity-10"
+                                type="text"
+                            />
+                            <VeeErrorMessage v-if="meta.touched && !meta.valid" name="name" as="span" class="!text-danger" />
+                        </VeeField>
+                    </div>
+                    <div class="flex flex-col mb-3">
+                        <VeeField name="phone" v-slot="{ field, meta }">
+                            <label class="text-text font-bold mb-1">رقم الهاتف</label>
+                            <div class="flex justify-center items-center">
+                                <div class="h-12">
+                                    <UIHeadlessButton />
+                                </div>
+                                <input
+                                    v-bind="field"
+                                    placeholder="رقم الهاتف"
+                                    :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''"
+                                    class="py-3 ps-5 text-sm w-full h-12 font-bold border border-stroke rounded-xl focus:border-opacity-10"
+                                    type="text"
+                                />
+                            </div>
+                            <VeeErrorMessage v-if="meta.touched && !meta.valid" name="phone" as="span" class="!text-danger" />
+                        </VeeField>
+                    </div>
+                    <div class="flex flex-col mb-2">
+                        <VeeField name="password" v-slot="{ field, meta }">
+                            <label class="text-text font-bold mb-1">كلمة المرور</label>
+                            <input
+                                v-bind="field"
+                                placeholder="كلمه المرور"
+                                :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''"
+                                class="py-3 ps-5 text-sm w-full h-12 font-bold border border-stroke rounded-xl focus:border-opacity-10"
+                                type="password"
+                            />
+                            <VeeErrorMessage v-if="meta.touched && !meta.valid" name="password" as="span" class="!text-danger" />
+                        </VeeField>
+                    </div>
+                    <div class="flex flex-col mb-10">
+                        <VeeField name="passwordconfirm" v-slot="{ field, meta }">
+                            <label class="text-text font-bold mb-1">تاكيد كلمه المرور</label>
+                            <input
+                                v-bind="field"
+                                placeholder="كلمه المرور"
+                                :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''"
+                                class="py-3 ps-5 text-sm w-full h-12 font-bold border border-stroke rounded-xl focus:border-opacity-10"
+                                type="password"
+                            />
+                            <VeeErrorMessage v-if="meta.touched && !meta.valid" name="passwordconfirm" as="span" class="!text-danger" />
+                        </VeeField>
+                    </div>
+
+                    <button type="button" class="mainbtn w-full mb-1">انشاء حساب جديد</button>
+                </form>
+            </VeeForm>
+            <div class="flex text-center items-center justify-center">
+                <p class="text-sm">ليس لديك حساب ؟</p>
+                <button @click="myShowAndHideStore.backToLogin()" class="font-bold">تسجيل الدخول</button>
+            </div>
+        </UIBaseCard>
+    </div>
+</template>
+
+<script setup>
+const myShowAndHideStore = useMyShowAndHideStore();
+import { configure } from "vee-validate";
+import * as yup from "yup";
+
+configure({
+    validateOnBlur: true,
+    validateOnChange: true,
+    validateOnModelUpdate: true,
+    validateOnInput: true,
+});
+const schema = yup.object().shape({
+    phone: yup.string().required().min(9, "Phone min length"),
+    name: yup.string().required(),
+    password: yup.string().required().min(9, "Password to weak"),
+    passwordconfirm: yup.string().required(),
+});
+</script>
+
+<style></style>

@@ -31,7 +31,7 @@
                 :class="position"
                 class="hidden arrow-button bg-[#0A4088] w-20 h-20 z-20 rounded-full justify-center items-center lg:flex absolute bottom-11 btn-move"
             >
-                <img src="/assets/images/icons/arrow-down.png" alt="" />
+                <img src="/assets/images/imgicons/arrow-down.png" alt="" />
             </NuxtLink>
         </div>
     </main>

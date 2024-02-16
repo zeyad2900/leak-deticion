@@ -7,14 +7,14 @@
                 <div class="grid sm:grid-cols-2 gap-4">
                     <div class="">
                         <div class="flex justify-start items-start gap-6">
-                            <img class="p-5 bg-stroke rounded-full" src="/assets/images/icons/car.png" alt="" />
+                            <img class="p-5 bg-stroke rounded-full" src="/assets/images/imgicons/car.png" alt="" />
                             <div>
                                 <h3 class="font-medium">خدمة سريعة</h3>
                                 <p class="text-light text-sm">نحرص علي توفير الوصول السريع لخدمتك</p>
                             </div>
                         </div>
                         <div class="flex justify-start items-start gap-6">
-                            <img class="p-5 bg-stroke rounded-full" src="/assets/images/icons/medal.png" alt="" />
+                            <img class="p-5 bg-stroke rounded-full" src="/assets/images/imgicons/medal.png" alt="" />
                             <div>
                                 <h3 class="font-medium">فريق مؤهل</h3>
                                 <p class="text-light text-sm">فريق متدرب و مؤهل</p>
@@ -24,14 +24,14 @@
 
                     <div class="">
                         <div class="flex justify-start items-start gap-6">
-                            <img class="p-5 bg-stroke rounded-full" src="/assets/images/icons/offer.png" alt="" />
+                            <img class="p-5 bg-stroke rounded-full" src="/assets/images/imgicons/offer.png" alt="" />
                             <div>
                                 <h3 class="font-medium">عروض حصرية</h3>
                                 <p class="text-light text-sm">عروض متوفرة دائما و نحرص علي اقل التكاليف</p>
                             </div>
                         </div>
                         <div class="flex justify-start items-start gap-6">
-                            <img class="p-5 bg-stroke rounded-full" src="/assets/images/icons/star.png" alt="" />
+                            <img class="p-5 bg-stroke rounded-full" src="/assets/images/imgicons/star.png" alt="" />
                             <div>
                                 <h3 class="font-medium">تقييمات عالية</h3>
                                 <p class="text-light text-sm">تتميز حدماتنا و خبرائنا بأفضل تقييمات رضا العملاء</p>
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <UIButton>اعرف المزيد</UIButton>
+                <button class="mainbtn">اعرف المزيد</button>
             </div>
             <div class="col-span-3 lg:col-span-1 order-1 lg:order-2 w-[280px] h-[280px] md:w-[400px] md:h-[400px] mx-auto mb-11 lg:mb-0">
                 <img src="/assets/images/main/video2.png" alt="" />

@@ -11,8 +11,8 @@
                     <p class="text-light">استمتع بالطلب السريع للفني و الخدمة في اي وقت</p>
                 </div>
                 <div class="flex gap-4">
-                    <img src="/assets/images/icons/AppStore.png" alt="" />
-                    <img src="/assets/images/icons/GooglePlay.png" alt="" />
+                    <img src="/assets/images/imgicons/AppStore.png" alt="" />
+                    <img src="/assets/images/imgicons/GooglePlay.png" alt="" />
                 </div>
             </div>
         </div>
