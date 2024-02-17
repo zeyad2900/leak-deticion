@@ -26,10 +26,14 @@
 
             <div class="">
                 <ul class="hidden xl:flex items-center justify-center gap-5">
-                    <NuxtLink to="/">{{ $t("nav.home") }}</NuxtLink>
-                    <NuxtLink to="/#services">{{ $t("nav.services") }}</NuxtLink>
-                    <NuxtLink to="/about">{{ $t("nav.aboutuUs") }}</NuxtLink>
-                    <NuxtLink to="/contact">{{ $t("nav.contactUs") }}</NuxtLink>
+                    <NuxtLink
+                        v-for="(link, index) in links"
+                        :key="index"
+                        :to="link.path"
+                        @click="active(index)"
+                        :class="index === activeLinkIndex && white ? 'text-main font-bold' : index === activeLinkIndex && !white ? 'font-bold' : ''"
+                        >{{ $t("nav." + link.Name) }}</NuxtLink
+                    >
                 </ul>
             </div>
             <!-- buttons -->
@@ -81,6 +85,18 @@ const myShowAndHideStore = useMyShowAndHideStore();
 const { login, signup, fogertPass, verify, change, notification } = storeToRefs(myShowAndHideStore);
 const white = ref(true);
 const showSmallMenu = ref(false);
+const activeLinkIndex = ref(null);
+
+const links = ref([
+    { Name: "home", path: "/" },
+    { Name: "services", path: "/#services" },
+    { Name: "aboutuUs", path: "/about" },
+    { Name: "contactUs", path: "/contact" },
+]);
+
+const active = (index) => {
+    activeLinkIndex.value = index;
+};
 
 // change lang logic
 const changeLang = () => {
@@ -90,7 +106,9 @@ const changeLang = () => {
 // change color of header
 const handleScroll = () => {
     const scrollY = window.scrollY;
-    if (route.fullPath === "/" && scrollY < 50) {
+    if (route.fullPath == "/" && scrollY < 50) {
+        white.value = false;
+    } else if (route.fullPath == "/#services" && scrollY < 50) {
         white.value = false;
     } else {
         white.value = true;

@@ -23,6 +23,50 @@ a {
     -ms-border-radius: 30px;
     -o-border-radius: 30px;
 }
+.secondbtn {
+    padding: 16px 24px;
+    background-color: white;
+    color: #adb3da;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #adb3da;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
+.dangerbtn {
+    padding: 16px 24px;
+    background-color: white;
+    color: #fe4340;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #fe4340;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
+.secondbtn:hover {
+    padding: 16px 24px;
+    background-color: var(--main-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
 
 .swiper-button-prev::after,
 .swiper-button-next::after {
@@ -77,4 +121,3 @@ a {
         bottom: 140px;
     }
 }
-

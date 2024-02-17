@@ -21,7 +21,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="">
                         <div class="flex justify-start items-start gap-6">
                             <img class="p-5 bg-stroke rounded-full" src="/assets/images/imgicons/offer.png" alt="" />
