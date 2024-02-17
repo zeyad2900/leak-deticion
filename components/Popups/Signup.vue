@@ -67,7 +67,7 @@
                         </VeeField>
                     </div>
 
-                    <button type="button" class="mainbtn w-full mb-1">انشاء حساب جديد</button>
+                    <button @click="myShowAndHideStore.backToLogin()" type="button" class="mainbtn w-full mb-1">انشاء حساب جديد</button>
                 </form>
             </VeeForm>
             <div class="flex text-center items-center justify-center">

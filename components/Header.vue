@@ -36,18 +36,21 @@
 
             <div class="flex items-center gap-2 xl:gap-7">
                 <ul class="flex items-center gap-2">
+                    <!-- login -->
                     <li>
                         <button @click="myShowAndHideStore.openLogin()" class="relative w-11 h-11 flex justify-center items-center rounded-lg bg-[#FFFFFF0D]">
                             <img v-if="!white" src="/assets/images/imgicons/user.png" alt="" />
                             <img v-if="white" src="/assets/images/imgicons/userb.png" alt="" />
                         </button>
                     </li>
+                    <!-- notifiction -->
                     <li>
-                        <button class="relative w-11 h-11 flex justify-center items-center rounded-lg bg-[#FFFFFF0D]">
+                        <button @click="myShowAndHideStore.switchNotify()" class="relative w-11 h-11 flex justify-center items-center rounded-lg bg-[#FFFFFF0D]">
                             <img v-if="!white" src="/assets/images/imgicons/bell.png" alt="" />
                             <img v-if="white" src="/assets/images/imgicons/bellb.png" alt="" />
                             <img class="absolute bottom-8 left-8" width="16" height="16" src="/assets/images/imgicons/red.png" alt="" />
                         </button>
+                        <PopupsNotifications v-if="notification" />
                     </li>
                 </ul>
                 <button @click="handelSmallMenu" class="xl:hidden relative w-11 h-11 flex justify-center items-center rounded-lg bg-[#FFFFFF0D]">
@@ -64,7 +67,7 @@
     </header>
     <!-- login popups -->
     <PopupsLogin v-if="login" />
-    <PopupsSignin v-if="signup" />
+    <PopupsSignup v-if="signup" />
     <PopupsForgetPass v-if="fogertPass" />
     <PopupsVerfy v-if="verify" />
     <PopupsChangePass v-if="change" />
@@ -75,7 +78,7 @@ const { locale, setLocale } = useI18n();
 const route = useRoute();
 const myShowAndHideStore = useMyShowAndHideStore();
 
-const { login, signup, fogertPass, verify, change } = storeToRefs(myShowAndHideStore);
+const { login, signup, fogertPass, verify, change, notification } = storeToRefs(myShowAndHideStore);
 const white = ref(true);
 const showSmallMenu = ref(false);
 

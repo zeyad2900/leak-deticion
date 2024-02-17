@@ -6,10 +6,12 @@ export const useMyShowAndHideStore = defineStore("myShowAndHideStore", {
         signup: false,
         fogertPass: false,
         verify: false,
-        change : false
+        change: false,
+        notification: false,
     }),
 
     actions: {
+        // login
         openLogin() {
             this.login = true;
             this.signup = false;
@@ -20,6 +22,7 @@ export const useMyShowAndHideStore = defineStore("myShowAndHideStore", {
         closeLogin() {
             this.login = false;
         },
+        // signup
         openSignup() {
             this.signup = true;
             this.login = false;
@@ -31,6 +34,7 @@ export const useMyShowAndHideStore = defineStore("myShowAndHideStore", {
             this.signup = false;
             this.login = true;
         },
+        // forgetpass
         openForgetPass() {
             this.fogertPass = true;
             this.login = false;
@@ -38,6 +42,7 @@ export const useMyShowAndHideStore = defineStore("myShowAndHideStore", {
         closeForgetPass() {
             this.fogertPass = false;
         },
+        // verfiy
         openVerify() {
             this.verify = true;
             this.fogertPass = false;
@@ -49,12 +54,17 @@ export const useMyShowAndHideStore = defineStore("myShowAndHideStore", {
             this.verify = false;
             this.fogertPass = true;
         },
+        // changepass
         openChange() {
             this.change = true;
             this.verify = false;
         },
         closeChange() {
             this.change = false;
+        },
+        // notification
+        switchNotify() {
+            this.notification = !this.notification;
         },
     },
 });

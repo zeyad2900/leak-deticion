@@ -18,7 +18,7 @@ export default {
             white: colors.white,
             text: colors.black,
             light: "#ADB3DA",
-            stroke: "#F7F7FC",
+            stroke: "#f7f7fc",
         },
         screens: {
             xs: "475px",
