@@ -1,7 +1,7 @@
 <template>
     <div class="bg-[#0000007b] h-screen w-screen fixed top-0 left-0 z-[999] flex items-center justify-center pt-[27px]">
         <UIBaseCard>
-            <button type="" @click="myShowAndHideStore.closeChange()" class="text-2xl block ms-auto">
+            <button type="" class="text-2xl block ms-auto">
                 <Icon class="text-light" name="ep:close-bold"></Icon>
             </button>
             <h3 class="text-center font-bold mb-7 text-text text-xl">تغيير كلمة المرور</h3>
@@ -9,10 +9,22 @@
             <!-- form -->
             <VeeForm :validation-schema="schema" as="div">
                 <form @submit.prevent="">
-                    
                     <div class="flex flex-col mb-2">
                         <VeeField name="password" v-slot="{ field, meta }">
-                            <label class="text-text font-bold mb-1">كلمة المرور</label>
+                            <label class="text-text font-bold mb-1">كلمة المرور الحالية</label>
+                            <input
+                                v-bind="field"
+                                placeholder="كلمه المرور"
+                                :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''"
+                                class="py-3 ps-5 text-sm w-full h-12 font-bold border border-stroke rounded-xl focus:border-opacity-10"
+                                type="password"
+                            />
+                            <VeeErrorMessage v-if="meta.touched && !meta.valid" name="password" as="span" class="!text-danger" />
+                        </VeeField>
+                    </div>
+                    <div class="flex flex-col mb-2">
+                        <VeeField name="password" v-slot="{ field, meta }">
+                            <label class="text-text font-bold mb-1">كلمة المرور الجديدة</label>
                             <input
                                 v-bind="field"
                                 placeholder="كلمه المرور"
@@ -25,7 +37,7 @@
                     </div>
                     <div class="flex flex-col mb-10">
                         <VeeField name="passwordconfirm" v-slot="{ field, meta }">
-                            <label class="text-text font-bold mb-1">تاكيد كلمه المرور</label>
+                            <label class="text-text font-bold mb-1">تاكيد كلمة المرور</label>
                             <input
                                 v-bind="field"
                                 placeholder="كلمه المرور"

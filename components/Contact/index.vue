@@ -7,21 +7,21 @@
 
             <div class="grid grid-cols-3 gap-8">
                 <div class="col-span-3 md:col-span-1 flex flex-col items-start gap-4 p-6 rounded-2xl shadow-lg">
-                    <img src="/assets/images/contact/phone.png" alt="" />
+                    <img src="/assets/images/contact/phone.webp" alt="" />
                     <div>
                         <p class="text-light">رقم الجوال</p>
                         <h3 class="text-lg">+966 1111 22222 3</h3>
                     </div>
                 </div>
                 <div class="col-span-3 md:col-span-1 flex flex-col items-start gap-4 p-6 rounded-2xl shadow-lg">
-                    <img src="/assets/images/contact/mail.png" alt="" />
+                    <img src="/assets/images/contact/mail.webp" alt="" />
                     <div>
                         <p class="text-light">البريد الإلكتروني</p>
                         <h3 class="text-lg">emailperson@exaple.com</h3>
                     </div>
                 </div>
                 <div class="col-span-3 md:col-span-1 flex flex-col items-start gap-4 p-6 rounded-2xl shadow-lg">
-                    <img src="/assets/images/contact/location.png" alt="" />
+                    <img src="/assets/images/contact/location.webp" alt="" />
                     <div>
                         <p class="text-light">عنوان</p>
                         <h3 class="text-lg">المملكة العربية السعودية ، جدة</h3>
@@ -101,7 +101,7 @@
             </div>
 
             <div class="flex items-end justify-center col-span-2 lg:col-span-1">
-                <img width="400" height="400" src="/assets/images/contact/contantheros.png" alt="" />
+                <img width="400" height="400" src="/assets/images/contact/contantheros.webp" alt="" />
             </div>
         </div>
     </article>

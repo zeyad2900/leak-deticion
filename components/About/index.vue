@@ -1,5 +1,5 @@
 <template>
-    <div class="relative mt-[45px] flex items-center min-h-[100vh] bg-[url('/assets/images/about/about.png')] bg-no-repeat bg-cover">
+    <div class="relative mt-[45px] flex items-center min-h-[100vh] bg-[url('/assets/images/about/about.webp')] bg-no-repeat bg-cover">
         <div class="container relative z-10">
             <div class="max-w-[600px] space-y-5">
                 <h1 class="text-white text-start font-bold text-3xl lg:text-5xl">أهمية الصيانة للأنابيب المنزلية</h1>

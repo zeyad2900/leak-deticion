@@ -10,17 +10,16 @@
             <NuxtLink to="/contact">{{ $t("nav.contactUs") }}</NuxtLink>
         </ul>
         <button @click="changeLang" type="button" class="flex items-center gap-1">
-            <img width="16" height="16" src="/assets/images/imgicons/earth.png" alt="" />
+            <nuxt-icon :class="white ? 'text-text' : 'text-white'" class="text-[25px] mt-1 p-0" name="earth" />
             {{ $t("nav.lang") }}
         </button>
     </div>
     <!-- header -->
-    <header :class="white ? 'text-text bg-white border-b' : 'text-white bg-dark'" class="fixed top-0 flex items-center justify-center start-0 w-full z-[1000] h-[85px] border-stroke">
+    <header :class="white ? 'text-text bg-white border-b' : 'text-white bg-dark'" class="fixed top-0 flex items-center justify-center start-0 w-full z-[1000] h-[85px] border-light border-opacity-35">
         <div class="container flex items-center justify-between">
             <!-- logo -->
-            <NuxtLink href="">
-                <img v-if="!white" src="/logo.png" alt="" width="71" height="37" />
-                <img v-if="white" src="/logob.png" alt="" width="71" height="37" />
+            <NuxtLink to="/">
+                <nuxt-icon :class="white ? 'text-main' : 'text-white'" class="text-[70px] m-0" name="logo" />
             </NuxtLink>
             <!-- llinks -->
 
@@ -43,15 +42,13 @@
                     <!-- login -->
                     <li>
                         <button @click="myShowAndHideStore.openLogin()" class="relative w-11 h-11 flex justify-center items-center rounded-lg bg-[#FFFFFF0D]">
-                            <img v-if="!white" src="/assets/images/imgicons/user.png" alt="" />
-                            <img v-if="white" src="/assets/images/imgicons/userb.png" alt="" />
+                            <nuxt-icon :class="white ? 'text-text' : 'text-white'" class="text-[25px] mt-1 p-0" name="vector" />
                         </button>
                     </li>
                     <!-- notifiction -->
                     <li>
                         <button @click="myShowAndHideStore.switchNotify()" class="relative w-11 h-11 flex justify-center items-center rounded-lg bg-[#FFFFFF0D]">
-                            <img v-if="!white" src="/assets/images/imgicons/bell.png" alt="" />
-                            <img v-if="white" src="/assets/images/imgicons/bellb.png" alt="" />
+                            <nuxt-icon :class="white ? 'text-text' : 'text-white'" class="text-[25px] mt-1 p-0" name="notification" />
                             <img class="absolute bottom-8 left-8" width="16" height="16" src="/assets/images/imgicons/red.png" alt="" />
                         </button>
                         <PopupsNotifications v-if="notification" />
@@ -62,8 +59,7 @@
                 </button>
 
                 <button @click="changeLang" type="button" class="hidden xl:flex items-center gap-1">
-                    <img v-if="!white" width="16" height="16" src="/assets/images/imgicons/earth.png" alt="" />
-                    <img v-if="white" width="16" height="16" src="/assets/images/imgicons/earthb.png" alt="" />
+                    <nuxt-icon :class="white ? 'text-text' : 'text-white'" class="text-[25px] mt-1 p-0" name="earth" />
                     {{ $t("nav.lang") }}
                 </button>
             </div>
@@ -75,6 +71,14 @@
     <PopupsForgetPass v-if="fogertPass" />
     <PopupsVerfy v-if="verify" />
     <PopupsChangePass v-if="change" />
+    <!-- pay and rate popups -->
+    <!-- <PopupsPay /> -->
+    <!-- <PopupsRate /> -->
+    <!-- <PopupsRespiteResone /> -->
+    <!-- <PopupsCancelResone/> -->
+    <!-- <PopupsDelete /> -->
+    <!-- <PopupsChangePassProfile/> -->
+    <!-- <PopupsChoseNewDate/> -->
 </template>
 
 <script setup>
@@ -109,6 +113,8 @@ const handleScroll = () => {
     if (route.fullPath == "/" && scrollY < 50) {
         white.value = false;
     } else if (route.fullPath == "/#services" && scrollY < 50) {
+        white.value = false;
+    } else if (route.fullPath == "/en" && scrollY < 50) {
         white.value = false;
     } else {
         white.value = true;

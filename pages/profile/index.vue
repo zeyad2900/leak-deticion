@@ -1,7 +1,10 @@
 <template>
     <div class="container w-full">
         <div class="flex flex-col items-center justify-cente">
-            <div>
+            <div class="relative">
+                <button class="rounded-full bottom-0 start-5 p-2 bg-main m-0 absolute">
+                    <nuxt-icon class="text-[30px] text-white" name="edit" />
+                </button>
                 <img src="/assets/images/profile/profilebig.png" alt="" />
             </div>
             <button class="flex gap-2 mt-5">

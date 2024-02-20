@@ -9,11 +9,11 @@
 
             <div class="col-span-3 lg:col-span-1 justify-center items-center lg:flex-col flex gap-4">
                 <NuxtLink to="/services/1" class="mb-6 flex flex-col items-center gap-4">
-                    <img class="bg-white p-4 flex justify-center items-center rounded-3xl shadow-lg" src="/assets/images/main/service1.png" alt="" />
+                    <img class="bg-white p-4 flex justify-center items-center rounded-3xl shadow-lg" src="/assets/images/main/service1.webp" alt="" />
                     <p class="text-main font-bold">{{ $t("main.leakDetection") }}</p>
                 </NuxtLink>
                 <NuxtLink to="/services/1" class="mb-6 flex flex-col items-center gap-4">
-                    <img class="bg-white p-4 flex justify-center items-center rounded-3xl shadow-lg" src="/assets/images/main/service2.png" alt="" />
+                    <img class="bg-white p-4 flex justify-center items-center rounded-3xl shadow-lg" src="/assets/images/main/service2.webp" alt="" />
                     <p class="text-main font-bold">{{ $t("main.insulationInspection") }}</p>
                 </NuxtLink>
             </div>

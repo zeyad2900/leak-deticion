@@ -1,12 +1,12 @@
 <template>
-    <div class="mb-5">
-        <swiper :spaceBetween="10" :navigation="false" :thumbs="{ swiper: thumbsSwiper.value }" :modules="modules" class="mySwiper2">
-            <swiper-slide><img src="/assets/images/servicesdetails/main.png" /></swiper-slide>
-            <swiper-slide><img src="/assets/images/servicesdetails/main.png" /></swiper-slide>
+    <div class="flex w-full gap-5 mb-5">
+        <swiper :spaceBetween="10" :navigation="false" :thumbs="{ swiper: thumbsSwiper }" :modules="modules" class="mySwiper2 basis-8/12">
+            <swiper-slide><img src="/assets/images/servicesdetails/main.webp" /></swiper-slide>
+            <swiper-slide><img src="/assets/images/servicesdetails/main.webp" /></swiper-slide>
         </swiper>
-        <swiper @swiper="setThumbsSwiper" :spaceBetween="10" :slidesPerView="4" :freeMode="true" :watchSlidesProgress="true" :modules="modules" class="mySwiper wrap">
-            <swiper-slide><img src="/assets/images/servicesdetails/main.png" /></swiper-slide>
-            <swiper-slide><img src="/assets/images/servicesdetails/main.png" /></swiper-slide>
+        <swiper @swiper="setThumbsSwiper" :spaceBetween="10" :slidesPerView="4" :freeMode="true" :watchSlidesProgress="true" :modules="modules" class="mySwiper basis-4/12">
+            <swiper-slide><img src="/assets/images/servicesdetails/main.webp" /></swiper-slide>
+            <swiper-slide><img src="/assets/images/servicesdetails/main.webp" /></swiper-slide>
         </swiper>
     </div>
 </template>
@@ -22,7 +22,7 @@ import "swiper/css/thumbs";
 
 // import required modules
 
-const thumbsSwiper = ref("");
+const thumbsSwiper = ref(null);
 
 const setThumbsSwiper = (swiper) => {
     thumbsSwiper.value = swiper;

@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#0000007b] h-screen w-screen fixed top-0 left-0 z-[999] flex items-center justify-center">
+    <div class="bg-[#0000007b] h-screen w-screen fixed top-0 left-0 z-[999] flex items-center justify-center pt-[27px]">
         <UIBaseCard>
             <button type="" @click="myShowAndHideStore.closeSignup()" class="text-2xl block ms-auto">
                 <Icon class="text-light" name="ep:close-bold"></Icon>

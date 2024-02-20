@@ -1,5 +1,5 @@
 <template>
-    <article class="mt-52 pb-24">
+    <article class="mt-40 pb-24">
         <div class="container">
             <div class="grid grid-cols-12">
                 <div class="lg:col-span-8 col-span-12">
@@ -11,7 +11,7 @@
                     </div>
                     <VeeForm :validation-schema="schema" as="div">
                         <form>
-                            <VeeField name="proplem" v-slot="{field , meta}">
+                            <VeeField name="proplem" v-slot="{ field, meta }">
                                 <div class="mb-5">
                                     <label class="md:text-2xl text-xl mb-3 block">تفاصيل المشكلة</label>
                                     <textarea
@@ -28,7 +28,7 @@
                                 </div>
                             </VeeField>
 
-                            <VeeField name="location" v-slot="{field , meta}">
+                            <VeeField name="location" v-slot="{ field, meta }">
                                 <div class="mb-5">
                                     <label class="md:text-2xl text-xl mb-3 block">تفاصيل العنوان</label>
                                     <textarea

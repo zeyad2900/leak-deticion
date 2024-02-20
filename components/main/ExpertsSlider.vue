@@ -9,7 +9,7 @@
     >
         <swiper-slide>
             <div class="flex flex-col items-center gap-8 justify-center">
-                <img src="/assets/images/main/member3.png" alt="" />
+                <img src="/assets/images/main/member3.webp" alt="" />
                 <div class="flex flex-col items-center gap-2">
                     <h3 class="text-text font-medium text-lg">ندي علي</h3>
                     <p class="text-light">خبير تسريب المياه</p>
@@ -18,7 +18,7 @@
         </swiper-slide>
         <swiper-slide>
             <div class="flex flex-col items-center gap-8 justify-center">
-                <img src="/assets/images/main/member2.png" alt="" />
+                <img src="/assets/images/main/member2.webp" alt="" />
                 <div class="flex flex-col items-center gap-2">
                     <h3 class="text-text font-medium text-lg">ندي علي</h3>
                     <p class="text-light">خبير تسريب المياه</p>
@@ -27,7 +27,7 @@
         </swiper-slide>
         <swiper-slide>
             <div class="flex flex-col items-center gap-8 justify-center">
-                <img src="/assets/images/main/member1.png" alt="" />
+                <img src="/assets/images/main/member1.webp" alt="" />
                 <div class="flex flex-col items-center gap-2">
                     <h3 class="text-text font-medium text-lg">ندي علي</h3>
                     <p class="text-light">خبير تسريب المياه</p>
@@ -36,7 +36,7 @@
         </swiper-slide>
         <swiper-slide>
             <div class="flex flex-col items-center gap-8 justify-center">
-                <img src="/assets/images/main/member3.png" alt="" />
+                <img src="/assets/images/main/member3.webp" alt="" />
                 <div class="flex flex-col items-center gap-2">
                     <h3 class="text-text font-medium text-lg">ندي علي</h3>
                     <p class="text-light">خبير تسريب المياه</p>

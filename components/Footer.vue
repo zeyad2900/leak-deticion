@@ -56,10 +56,10 @@
                     </div>
                     <ul class="flex items-center justify-center lg:justify-end gap-5">
                         <li>
-                            <a href="#"><img src="/assets/images/social/AppStore.png" alt="" /></a>
+                            <a href="#"><img src="/assets/images/imgicons/AppStore.png" alt="" /></a>
                         </li>
                         <li>
-                            <a href="#"><img src="/assets/images/social/GooglePlay.png" alt="" /></a>
+                            <a href="#"><img src="/assets/images/imgicons/GooglePlay.png" alt="" /></a>
                         </li>
                     </ul>
                 </div>

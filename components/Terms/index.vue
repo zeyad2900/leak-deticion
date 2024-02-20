@@ -7,8 +7,8 @@
             <div>
                 <h1 class="font-bold text-2xl mb-5">اهميه الشروط والاحكام لموقعنا</h1>
                 <div class="grid gap-10 mb-5 grid-cols-2">
-                    <img width="1500" src="/assets/images/terms/1.png" alt="" />
-                    <img width="1500" src="/assets/images/terms/2.png" alt="" />
+                    <img width="1500" src="/assets/images/terms/1.webp" alt="" />
+                    <img width="1500" src="/assets/images/terms/2.webp" alt="" />
                 </div>
                 <P class="text-light"
                     >في هذا المقال، يمكنك استعراض بعض الأعطال الشائعة في السباكة المنزلية مثل تسريبات المياه، والحنفيات المعطلة، والتواليت المسدودة. يمكنك تقديم نصائح حول كيفية التعامل مع هذه المشاكل
@@ -20,7 +20,7 @@
             <div>
                 <h1 class="font-bold text-2xl mb-5">اهميه الشروط والاحكام لموقعنا</h1>
                 <div class="grid gap-10 mb-5 grid-cols-1">
-                    <img class="w-full rounded-lg" src="/assets/images/terms/3.png" alt="" />
+                    <img class="w-full rounded-lg" src="/assets/images/terms/3.webp" alt="" />
                 </div>
                 <P class="text-light"
                     >في هذا المقال، يمكنك استعراض بعض الأعطال الشائعة في السباكة المنزلية مثل تسريبات المياه، والحنفيات المعطلة، والتواليت المسدودة. يمكنك تقديم نصائح حول كيفية التعامل مع هذه المشاكل

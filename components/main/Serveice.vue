@@ -2,7 +2,7 @@
     <article id="service" class="container py-20">
         <div class="grid md:grid-cols-2 gap-5">
             <div class="flex items-center justify-center lg:justify-start col-span-2 lg:col-span-1">
-                <img class="" src="/assets/images/main/main2.png" alt="" />
+                <img class="" src="/assets/images/main/main2.webp" alt="" />
             </div>
             <div class="col-span-2 lg:col-span-1 flex flex-col justify-center gap-5 items-start">
                 <UIBage>خدمه تسريب المياه </UIBage>

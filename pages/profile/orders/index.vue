@@ -1,7 +1,9 @@
 <template>
     <div class="flex flex-col items-center lg:block">
         <div class="grid grid-cols-4 gap-1 md:gap-2 lg:gap-4 mb-12">
-            <button v-for="(button, index) in buttons" :key="index" @click="activeHandel(index)" :class="index === activeIndex ? 'mainbtn' : 'secondbtn'">{{ button.title }}</button>
+            <button v-for="(button, index) in buttons" :key="index" @click="activeHandel(index)" :class="index === activeIndex ? 'mainbtn' : 'secondbtn'">
+                <p class="text-sm">{{ button.title }}</p>
+            </button>
         </div>
         <div class="flex flex-col gap-5">
             <NuxtLink to="/profile/orders/1" class="block shadow-sm p-6 rounded-[40px]">
