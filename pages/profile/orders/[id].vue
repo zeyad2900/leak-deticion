@@ -61,6 +61,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="flex items-start justify-center gap-5 col-span-2 lg:col-span-1">
                     <button class="mainbtn">تاجيل الطلب</button>
                     <button class="secondbtn !border-danger !text-danger">الغاء الطلب</button>

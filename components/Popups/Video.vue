@@ -1,11 +1,11 @@
 <template>
-    <div class="bg-[#000000c8] h-screen w-screen fixed z-[2000] flex flex-col gap-2 items-center justify-center text-white">
+    <div class="bg-[#000000c8] h-screen w-screen fixed top-0 left-0 z-[2000] flex flex-col gap-2 items-center justify-center text-white">
         <div class="rounded-xl relative">
-            <button class="text-2xl absolute top-[-20px] start-[-10px] bg-white flex p-1 rounded-full">
+            <button @click="myShowAndHideStore.videoHandler()" class="text-2xl absolute top-[-20px] start-[-10px] bg-white flex p-1 rounded-full">
                 <Icon class="text-light" name="ep:close-bold"></Icon>
             </button>
             <video ref="video" class="rounded-xl" autoplay>
-                <source src="https://leak-detection.phpv8.aait-d.com/storage/files/home_slider/1699881840___file_test_video.mp4" type="video/mp4" />
+                <source :src="item" />
             </video>
             <button @click="togglePlayPause()" class="absolute top-[45%] start-[48%] flex items-center p-1 bg-white rounded-full">
                 <Icon v-if="isPlaying" class="text-[30px] text-text" name="raphael:arrowright" />
@@ -16,6 +16,14 @@
 </template>
 
 <script setup>
+defineProps({
+    item: {
+        required: true,
+    },
+});
+
+const myShowAndHideStore = useMyShowAndHideStore();
+
 const video = ref(null);
 const isPlaying = ref(false);
 
@@ -33,7 +41,6 @@ const handleVideoEnd = () => {
 };
 
 onMounted(() => {
-    console.log(video.value);
     const videoElement = video.value;
     videoElement.addEventListener("ended", handleVideoEnd);
 });

@@ -1,7 +1,7 @@
 <template>
     <div class="bg-[#0000007b] h-screen w-screen fixed top-0 left-0 z-[999] flex items-center justify-center pt-[27px]">
         <UIBaseCard>
-            <button type="" @click="myShowAndHideStore.closeSignup()" class="text-2xl block ms-auto">
+            <button type="" @click="myShowAndHideStore.signupHandler()" class="text-2xl block ms-auto">
                 <Icon class="text-light" name="ep:close-bold"></Icon>
             </button>
             <h3 class="text-center font-bold mb-7 text-text text-xl">انشاء حساب جديد</h3>
@@ -67,12 +67,12 @@
                         </VeeField>
                     </div>
 
-                    <button @click="myShowAndHideStore.backToLogin()" type="button" class="mainbtn w-full mb-1">انشاء حساب جديد</button>
+                    <button @click="myShowAndHideStore.signupHandler('back')" type="button" class="mainbtn w-full mb-1">انشاء حساب جديد</button>
                 </form>
             </VeeForm>
-            <div class="flex text-center items-center justify-center">
-                <p class="text-sm">ليس لديك حساب ؟</p>
-                <button @click="myShowAndHideStore.backToLogin()" class="font-bold">تسجيل الدخول</button>
+            <div class="flex gap-1 text-center items-center justify-center">
+                <p class="text-sm">لديك حساب بالفعل</p>
+                <button @click="myShowAndHideStore.signupHandler('back')" class="font-bold">تسجيل الدخول</button>
             </div>
         </UIBaseCard>
     </div>

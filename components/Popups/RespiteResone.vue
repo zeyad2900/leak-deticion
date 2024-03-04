@@ -10,27 +10,39 @@
                     <div class="space-y-2 mb-5">
                         <div class="flex items-center justify-between p-5 rounded-lg border-stroke border">
                             <h3 for="" class="block font-semibold">ليس هناك اسباب</h3>
-                            <label for="check1" class="">
-                                <input id="check1" type="checkbox" />
-                            </label>
+                            <div class="radio-wrapper">
+                                <label class="radio-button">
+                                    <input id="option1" name="radio-group" type="radio" />
+                                    <span class="radio-checkmark"></span>
+                                </label>
+                            </div>
                         </div>
                         <div class="flex items-center justify-between p-5 rounded-lg border-stroke border">
                             <h3 for="" class="block font-semibold">قمت بتغيير رايي</h3>
-                            <label for="check2" class="">
-                                <input id="check2" type="checkbox" />
-                            </label>
+                            <div class="radio-wrapper">
+                                <label class="radio-button">
+                                    <input id="option1" name="radio-group" type="radio" />
+                                    <span class="radio-checkmark"></span>
+                                </label>
+                            </div>
                         </div>
                         <div class="flex items-center justify-between p-5 rounded-lg border-stroke border">
                             <h3 for="" class="block font-semibold">لست بالمنزل الان</h3>
-                            <label for="check3" class="">
-                                <input id="check3" type="checkbox" />
-                            </label>
+                            <div class="radio-wrapper">
+                                <label class="radio-button">
+                                    <input id="option1" name="radio-group" type="radio" />
+                                    <span class="radio-checkmark"></span>
+                                </label>
+                            </div>
                         </div>
                         <div class="flex items-center justify-between p-5 rounded-lg border-stroke border">
                             <h3 for="" class="block font-semibold">سبب اخر</h3>
-                            <label for="check4" class="">
-                                <input class="checked:bg-main" id="check4" type="checkbox" />
-                            </label>
+                            <div class="radio-wrapper">
+                                <label class="radio-button">
+                                    <input id="option1" name="radio-group" type="radio" />
+                                    <span class="radio-checkmark"></span>
+                                </label>
+                            </div>
                         </div>
                     </div>
 

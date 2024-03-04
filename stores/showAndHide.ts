@@ -8,63 +8,84 @@ export const useMyShowAndHideStore = defineStore("myShowAndHideStore", {
         verify: false,
         change: false,
         notification: false,
+        video: false,
+        smallmenu: false,
     }),
 
     actions: {
-        // login
-        openLogin() {
-            this.login = true;
-            this.signup = false;
-            this.fogertPass = false;
-            this.verify = false;
-            this.change = false;
+        // smallmenu
+        smallMenueHndler(order: string) {
+            if (order === "open") {
+                this.smallmenu = true;
+            } else {
+                this.smallmenu = false;
+            }
         },
-        closeLogin() {
-            this.login = false;
+        // login
+        loginHnadler(order: string) {
+            if (order === "open") {
+                this.login = true;
+                this.signup = false;
+                this.fogertPass = false;
+                this.verify = false;
+                this.change = false;
+            } else {
+                this.login = false;
+            }
         },
         // signup
-        openSignup() {
-            this.signup = true;
-            this.login = false;
-        },
-        closeSignup() {
-            this.signup = false;
-        },
-        backToLogin() {
-            this.signup = false;
-            this.login = true;
+        signupHandler(order: string) {
+            if (order === "open") {
+                this.signup = true;
+                this.login = false;
+            } else if (order === "back") {
+                this.signup = false;
+                this.login = true;
+            } else {
+                this.signup = false;
+            }
         },
         // forgetpass
-        openForgetPass() {
-            this.fogertPass = true;
-            this.login = false;
-        },
-        closeForgetPass() {
-            this.fogertPass = false;
+        forgetPassHandler(order: string) {
+            if (order === "open") {
+                this.fogertPass = true;
+                this.login = false;
+            } else {
+                this.fogertPass = false;
+            }
         },
         // verfiy
-        openVerify() {
-            this.verify = true;
-            this.fogertPass = false;
-        },
-        closeVerify() {
-            this.verify = false;
-        },
-        backToForget() {
-            this.verify = false;
-            this.fogertPass = true;
+        verfiyHandler(order: string) {
+            if (order === "open") {
+                this.verify = true;
+                this.fogertPass = false;
+            } else if (order === "back") {
+                this.verify = false;
+                this.fogertPass = true;
+            } else {
+                this.verify = false;
+            }
         },
         // changepass
-        openChange() {
-            this.change = true;
-            this.verify = false;
-        },
-        closeChange() {
-            this.change = false;
+        changeHandler(order: string) {
+            if (order === "open") {
+                this.change = true;
+                this.verify = false;
+            } else {
+                this.change = false;
+            }
         },
         // notification
         switchNotify() {
             this.notification = !this.notification;
+        },
+        // video
+        videoHandler(order: string) {
+            if (order === "open") {
+                this.video = true;
+            } else {
+                this.video = false;
+            }
         },
     },
 });

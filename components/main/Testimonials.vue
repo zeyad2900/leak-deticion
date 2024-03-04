@@ -9,6 +9,7 @@
                         <p class="text-white !text-sm">يتمتع فريقنا بسنوات من الخبرة في المجال لضمان تقديم خدمات عالية الجودة.</p>
                     </div>
                 </div>
+
                 <div class="area-2 flex justify-center items-center gap-4">
                     <img class="" src="/assets/images/main/bluecar.png" alt="" />
                     <div>
@@ -16,7 +17,8 @@
                         <p>نحن نسعى جاهدين لتقديم خدمة ممتازة وتجربة إيجابية لكل عميل</p>
                     </div>
                 </div>
-                <div class="image"><img src="/assets/images/main/main.webp" alt="" /></div>
+
+                <!-- <div class="image"><img src="/assets/images/main/main.webp" alt="" /></div> -->
 
                 <div class="area-3 flex justify-center items-center gap-4">
                     <img class="" src="/assets/images/main/bluecar.png" alt="" />
@@ -25,6 +27,7 @@
                         <p>نحن قادرون على التعامل مع مشاكل متنوعة وتلبية احتياجات العملاء بشكل شامل.</p>
                     </div>
                 </div>
+
                 <div class="area-4 flex justify-center items-center gap-4">
                     <img class="" src="/assets/images/main/bluecar.png" alt="" />
                     <div>
@@ -59,15 +62,6 @@
     }
 }
 
-/* @media (min-width: 457) {
-    .custom-grid {
-        grid-template-areas:
-            "one one two two"
-            "three three  four four "
-            ". image image .";
-        inset-inline-end: 4rem;
-    }
-} */
 @media (min-width: 992px) {
     .custom-grid {
         grid-template-areas:

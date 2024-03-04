@@ -5,6 +5,7 @@
                 <p class="text-sm">{{ button.title }}</p>
             </button>
         </div>
+        
         <div class="flex flex-col gap-5">
             <NuxtLink to="/profile/orders/1" class="block shadow-sm p-6 rounded-[40px]">
                 <div class="flex items-start justify-between mb-3">

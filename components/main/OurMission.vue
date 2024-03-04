@@ -4,6 +4,7 @@
             <div class="flex items-center justify-center lg:justify-start col-span-2 lg:col-span-1 w-full lg:w-[400px]">
                 <img src="/assets/images/main/phone.webp" alt="" />
             </div>
+            
             <div class="col-span-2 lg:col-span-1 flex flex-col gap-8">
                 <h1 class="text-2xl lg:text-4xl max-w-[450px] lg:leading-[2.8rem] text-text font-bold leading-[2.5rem]">مهمتنا هي توفير خدمات منزلك بأقل التكاليف</h1>
                 <div>

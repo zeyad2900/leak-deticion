@@ -7,10 +7,12 @@
                 </button>
                 <img src="/assets/images/profile/profilebig.png" alt="" />
             </div>
+
             <button class="flex gap-2 mt-5">
                 <img src="/assets/images/profile/key.png" alt="" />
                 <p class="text-[#1F2B7B]">تغيير الرقم السري</p>
             </button>
+            
             <form class="mt-5">
                 <div class="flex flex-col gap-1 mb-7">
                     <label class="text-light">الاسم</label>

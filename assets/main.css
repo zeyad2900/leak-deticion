@@ -2,18 +2,14 @@
     --main-color: #3162da;
     scroll-behavior: smooth;
 }
-
 ::-webkit-scrollbar,
 ::-webkit-scrollbar {
     width: 4px;
     height: 10px;
 }
-
 ::-webkit-scrollbar-track {
-    /* border-radius: 100vh; */
     background: #fff;
 }
-
 ::-webkit-scrollbar-thumb {
     background: #fff;
 }
@@ -21,9 +17,11 @@
 a {
     cursor: pointer;
 }
-.test {
-    width: 50px;
+
+textarea {
+    resize: none;
 }
+/* /////////////////////////////////////////////// */
 .mainbtn {
     padding: 16px 24px;
     background-color: var(--main-color);
@@ -38,6 +36,7 @@ a {
     -ms-border-radius: 30px;
     -o-border-radius: 30px;
 }
+
 .secondbtn {
     padding: 16px 24px;
     background-color: white;
@@ -53,67 +52,60 @@ a {
     -ms-border-radius: 30px;
     -o-border-radius: 30px;
 }
-
-.swiper-button-prev::after,
-.swiper-button-next::after {
-    background-color: var(--main-color);
-    color: white;
-    border-radius: 50%; /* Makes it circular */
-    width: 30px;
-    padding: 10px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px !important;
-    position: absolute;
-}
-
-.swiper-button-next::after {
-    inset-inline-start: 0px;
-    inset-block-start: -130px;
-}
-.swiper-button-prev::after {
-    inset-inline-start: 300px;
-    inset-block-start: -130px;
-}
-
-@media (min-width: 768px) {
-    .swiper-button-next::after {
-        inset-inline-start: 0px;
-        inset-block-start: -130px;
-    }
-    .swiper-button-prev::after {
-        inset-inline-start: 600px;
-        inset-block-start: -130px;
-    }
-}
-@media (min-width: 992px) {
-    .swiper-button-next::after {
-        inset-inline-start: 0px;
-        inset-block-start: -130px;
-    }
-    .swiper-button-prev::after {
-        inset-inline-start: 800px;
-        inset-block-start: -130px;
-    }
-}
-@media (min-width: 1280px) {
-    .swiper-button-next::after {
-        inset-inline-start: 0px;
-        inset-block-start: -130px;
-    }
-    .swiper-button-prev::after {
-        inset-inline-start: 1000px;
-        inset-block-start: -130px;
-    }
-}
-
+/* ////////////////////////////////////////////////// */
 .swiper-thumbs .swiper-wrapper {
     display: flex !important;
     flex-direction: column !important;
     gap: 15px !important;
-    width: fit-content;
     margin: 0 !important;
     padding: 0 !important;
+}
+/* ///////////////////////////////////  */
+.radio-container {
+    margin: 0 0;
+    max-width: 300px;
+    color: white;
+}
+
+.radio-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.radio-button input[type="radio"] {
+    display: none;
+}
+
+.radio-checkmark {
+    display: inline-block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    border: 2px solid var(--main-color);
+    border-radius: 50%;
+}
+
+.radio-checkmark:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    transition: all 0.2s ease-in-out;
+}
+
+.radio-button input[type="radio"]:checked ~ .radio-checkmark:before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.radio-label {
+    font-size: 16px;
+    font-weight: 600;
 }

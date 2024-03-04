@@ -9,7 +9,7 @@
                 :slidesPerView="'auto'"
                 :centeredSlides="true"
                 :spaceBetween="30"
-                :navigation="true"
+                :navigation="false"
                 :loop="true"
                 :autoplay="{
                     delay: 3000,
@@ -18,6 +18,7 @@
                 :modules="modules"
                 class="mySwiper"
             >
+                <UISliderbtn />
                 <swiper-slide v-for="i in 4" :key="i">
                     <div class="max-w-[600px] bg-stroke p-4 rounded-md">
                         <img src="/assets/images/imgicons/quote.png" alt="" />

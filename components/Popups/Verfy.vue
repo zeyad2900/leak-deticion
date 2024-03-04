@@ -1,12 +1,12 @@
 <template>
     <div class="bg-[#0000007b] h-screen w-screen fixed top-0 left-0 z-[999] flex items-center justify-center pt-[27px]">
         <UIBaseCard>
-            <button type="" @click="myShowAndHideStore.closeVerify()" class="text-2xl block ms-auto">
+            <button type="" @click="myShowAndHideStore.verfiyHandler()" class="text-2xl block ms-auto">
                 <Icon class="text-light" name="ep:close-bold"></Icon>
             </button>
             <h3 class="text-center font-bold mb-7 text-text text-xl">تاكيد الهوية</h3>
             <p class="text-light text-center mb-7">ادخل الكود المرسل اليك من خلال رقم الهاتف</p>
-            <button @click="myShowAndHideStore.backToForget()" class="text-main font-bold mb-7">تعديل رقم الهاتف</button>
+            <button @click="myShowAndHideStore.verfiyHandler('back')" class="text-main font-bold mb-7">تعديل رقم الهاتف</button>
 
             <!-- form -->
             <VeeForm :validation-schema="schema" as="div">
@@ -40,7 +40,7 @@
                             <VeeErrorMessage v-if="meta.touched && !meta.valid" name="phone" as="span" class="!text-danger" />
                         </VeeField>
                     </div>
-                    <button @click="myShowAndHideStore.openChange()" type="button" class="mainbtn w-full mb-1">ارسال</button>
+                    <button @click="myShowAndHideStore.changeHandler('open')" type="button" class="mainbtn w-full mb-1">ارسال</button>
                 </form>
             </VeeForm>
         </UIBaseCard>

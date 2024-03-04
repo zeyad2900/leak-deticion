@@ -2,6 +2,7 @@
     <div class="col-span-12 lg:col-span-5 mb-10 lg:mb-0">
         <div class="bg-[#FFFFFF] p-10 rounded-[40px] lg:w-[80%] shadow-lg">
             <h1 class="font-bold text-2xl mb-8">الحساب الشخصي</h1>
+
             <NuxtLink to="/profile" class="flex items-center justify-start gap-4 mb-8">
                 <img src="/assets/images/profile/profilesm.png" alt="" />
                 <div>
@@ -14,6 +15,7 @@
                     </div>
                 </div>
             </NuxtLink>
+
             <NuxtLink to="/profile/orders" class="flex items-center justify-between mb-8">
                 <div class="flex items-center gap-3">
                     <div class="p-3"><Icon name="fa6-solid:box-archive" /></div>
@@ -23,9 +25,10 @@
                     <Icon name="ep:arrow-left-bold" />
                 </div>
             </NuxtLink>
+
             <div class="flex items-center justify-between mb-8 h-6">
                 <div class="flex gap-3">
-                    <img class="px-2" src="/assets/images/imgicons/bellb.png" alt="" />
+                    <nuxt-icon class="px-2 text-xl" name="notification" alt="" />
                     <p>اللاشعارات</p>
                 </div>
                 <div class="toggle-switch">
@@ -33,10 +36,12 @@
                     <label class="toggle-label" for="toggle"></label>
                 </div>
             </div>
+
             <button class="flex mb-8 gap-3 items-center">
                 <img class="bg-[#ef233b1f] p-2 rounded-full" src="/assets/images/profile/logout.png" alt="" />
                 <p>تسجبل الخروج</p>
             </button>
+
             <button class="flex gap-3 mb-8 items-center">
                 <img class="bg-[#ef233b1f] p-2 rounded-full" src="/assets/images/imgicons/trash.png" alt="" />
                 <p>حذف الحساب</p>

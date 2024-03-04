@@ -22,6 +22,7 @@ export default defineNuxtConfig({
         "nuxt-swiper",
         "nuxt-icons",
         "nuxt-icon",
+        "@nuxt/image",
         [
             "@pinia/nuxt",
             {
@@ -59,12 +60,16 @@ export default defineNuxtConfig({
     imports: {
         dirs: ["stores"],
     },
-    plugins: ["~/plugins/i18n.client.ts"],
     css: ["~/assets/main.css"],
     postcss: {
         plugins: {
             tailwindcss: {},
             autoprefixer: {},
+        },
+    },
+    runtimeConfig: {
+        public: {
+            baseURL: "https://leak-detection-v2.phpv8.aait-d.com/api/",
         },
     },
 });

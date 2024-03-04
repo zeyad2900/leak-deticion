@@ -1,9 +1,15 @@
 <template>
-    <Header />
-    <slot />
-    <Footer />
+    <Html :lang="locale">
+        <Body :dir="locale === 'en' ? 'ltr' : 'rtl'">
+            <Header />
+            <slot />
+            <Footer />
+        </Body>
+    </Html>
 </template>
 
-<script setup></script>
+<script setup>
+const { locale } = useI18n();
+</script>
 
 <style scoped></style>
