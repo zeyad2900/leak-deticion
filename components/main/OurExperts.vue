@@ -7,10 +7,16 @@
             </div>
             <NuxtLink to="/contact" class="mainbtn !w-fit">تواصل معنا</NuxtLink>
         </div>
-        <MainExpertsSlider />
+        <MainExpertsSlider :items="data" />
     </article>
 </template>
 
-<script setup></script>
+<script setup>
+const props = defineProps({
+    data: {
+        required: true,
+    },
+});
+</script>
 
 <style></style>

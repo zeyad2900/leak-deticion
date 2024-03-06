@@ -1,9 +1,9 @@
 <template>
-    <div class="bg-[#000000c8] h-screen w-screen fixed z-[2000] flex flex-col gap-2 items-center justify-center text-white">
+    <div class="bg-[#000000c8] h-screen w-screen fixed z-[2000] top-0 left-0 flex flex-col gap-2 items-center justify-center text-white">
         <button @click="myShowAndHideStore.smallMenueHndler('close')" class="absolute top-7 right-7 text-white">
             <Icon name="ep:close-bold" size="40" />
         </button>
-        <ul class="flex flex-col items-center justify-center gap-1">
+        <ul class="flex flex-col items-center justify-center gap-6">
             <NuxtLink to="/">{{ $t("nav.home") }}</NuxtLink>
             <NuxtLink to="/#services">{{ $t("nav.services") }}</NuxtLink>
             <NuxtLink to="/about">{{ $t("nav.aboutuUs") }}</NuxtLink>

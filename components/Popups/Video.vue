@@ -1,7 +1,7 @@
 <template>
     <div class="bg-[#000000c8] h-screen w-screen fixed top-0 left-0 z-[2000] flex flex-col gap-2 items-center justify-center text-white">
         <div class="rounded-xl relative">
-            <button @click="myShowAndHideStore.videoHandler()" class="text-2xl absolute top-[-20px] start-[-10px] bg-white flex p-1 rounded-full">
+            <button @click="$emit('closeVideo')" class="text-2xl absolute top-[-20px] start-[-10px] bg-white flex p-1 rounded-full">
                 <Icon class="text-light" name="ep:close-bold"></Icon>
             </button>
             <video ref="video" class="rounded-xl" autoplay>
@@ -16,13 +16,12 @@
 </template>
 
 <script setup>
+const emits = defineEmits(["closeVideo"]);
 defineProps({
     item: {
         required: true,
     },
 });
-
-const myShowAndHideStore = useMyShowAndHideStore();
 
 const video = ref(null);
 const isPlaying = ref(false);

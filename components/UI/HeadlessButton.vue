@@ -1,8 +1,9 @@
 <template>
-    <HeadlessMenu as="div" class="relative">
+    <vee-field>
+    <HeadlessMenu as="div" class="relative w-24" name="phone_code">
         <HeadlessMenuButton>
             <div class="px-1 py-3 gap-1 border-stroke items-center border flex w-full justify-center rounded-md bg-white text-sm font-medium text-text">
-                <img src="/assets/images/contact/Saudi Arabia.png" alt="" />
+                <!-- <img src="/assets/images/contact/Saudi Arabia.png" alt="" /> -->
                 <p>+966</p>
                 <Icon name="flowbite:angle-down-outline" size="20"></Icon>
             </div>
@@ -20,7 +21,7 @@
                 <HeadlessMenuItem v-slot="{ active }">
                     <button type="button" :class="[active ? 'bg-violet-500 text-white' : 'text-gray-900', 'group flex w-full items-center rounded-md text-sm']">
                         <div class="px-1 py-4 gap-1 items-center flex w-full justify-center rounded-md bg-white text-sm font-medium text-text">
-                            <img src="/assets/images/contact/Saudi Arabia.png" alt="" />
+                            <!-- <img src="/assets/images/contact/Saudi Arabia.png" alt="" /> -->
                             <p>+966</p>
                         </div>
                     </button>
@@ -29,6 +30,7 @@
         </transition>
                  </HeadlessMenu
     >
+    </vee-field>
 </template>
 
 <script setup></script>

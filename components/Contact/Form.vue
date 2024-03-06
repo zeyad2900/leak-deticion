@@ -5,66 +5,42 @@
             <VeeForm :validation-schema="schema" @submit="handleSubmit" as="div">
                 <form class="flex flex-col items-start gap-2 mb-7">
                     <vee-field name="name" v-slot="{ field, meta }">
-                        <input
-                            placeholder="الاسم بالكامل"
-                            class="focus:outline-none p-3 text-sm w-full h-12 font-bold border border-stroke rounded-xl"
-                            id="fullName"
-                            v-bind="field"
-                            type="text"
-                            :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''"
-                        />
+                        <div class="maininput">
+                            <input placeholder="الاسم بالكامل" id="fullName" v-bind="field" type="text" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" />
+                        </div>
                         <vee-error-message v-if="meta.touched && !meta.valid" name="name" as="span" class="!text-danger" />
                     </vee-field>
+
                     <vee-field name="email" v-slot="{ field, meta }">
-                        <input
-                            placeholder="بريدك الاكتروني"
-                            class="focus:outline-none p-3 text-sm w-full h-12 font-bold border border-stroke rounded-xl"
-                            id="fullName"
-                            v-bind="field"
-                            type="email"
-                            :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''"
-                        />
+                        <div class="maininput">
+                            <input placeholder="بريدك الاكتروني" id="fullName" v-bind="field" type="email" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" />
+                        </div>
                         <vee-error-message v-if="meta.touched && !meta.valid" name="email" as="span" class="!text-danger" />
                     </vee-field>
-                    <vee-field name="phone" v-slot="{ field, meta }">
-                        <div class="flex items-center justify-center w-full">
-                            <div class="h-12">
-                                <UIHeadlessButton />
-                            </div>
-                            <input
-                                placeholder="رقم الهاتف"
-                                class="focus:outline-none p-3 text-sm w-full h-12 font-bold border border-stroke rounded-xl"
-                                id="fullName"
-                                v-bind="field"
-                                type="text"
-                                :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''"
-                            />
-                        </div>
-                        <vee-error-message v-if="meta.touched && !meta.valid" name="phone" as="span" class="!text-danger" />
-                    </vee-field>
+
+                    <GlobalPhoneInput />
+
                     <vee-field name="subject" v-slot="{ field, meta }">
-                        <input
-                            placeholder="الموضوع"
-                            class="focus:outline-none p-3 text-sm w-full h-12 font-bold border border-stroke rounded-xl"
-                            id="fullName"
-                            v-bind="field"
-                            type="text"
-                            :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''"
-                        />
-                        <vee-error-message v-if="meta.touched && !meta.valid" name="message" as="span" class="!text-danger" />
+                        <div class="maininput">
+                            <input placeholder="الموضوع" id="fullName" v-bind="field" type="text" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" />
+                        </div>
+                        <vee-error-message v-if="meta.touched && !meta.valid" name="subject" as="span" class="!text-danger" />
                     </vee-field>
+
                     <vee-field name="message" v-slot="{ field, meta }">
-                        <textarea
-                            placeholder="ادخل رسالتك هنا"
-                            class="focus:outline-none p-3 text-sm w-full h-28 font-bold border-stroke border rounded-xl"
-                            id="fullName"
-                            v-bind="field"
-                            type="text"
-                            :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''"
-                        />
+                        <div class="maininput">
+                            <textarea placeholder="ادخل رسالتك هنا" id="fullName" v-bind="field" type="text" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" />
+                        </div>
                         <vee-error-message v-if="meta.touched && !meta.valid" name="message" as="span" class="!text-danger" />
                     </vee-field>
-                    <button class="mainbtn"><img src="/assets/images/contact/send-2.png" alt="" /> ارسال</button>
+
+                    <button :disabled="buttonLoading" type="submit" class="mainbtn">
+                        <div v-if="!buttonLoading" class="flex gap-2">
+                            <img src="/assets/images/contact/send-2.png" alt="" />
+                            <p>ارسال</p>
+                        </div>
+                        <UIButtonLoader v-else />
+                    </button>
                 </form>
             </VeeForm>
         </div>
@@ -78,6 +54,7 @@
 <script setup>
 import { configure } from "vee-validate";
 import * as yup from "yup";
+import { useToast } from "vue-toastification";
 
 // veefalied logic
 configure({
@@ -95,10 +72,54 @@ const schema = yup.object().shape({
         .test("email", i18n.t("ERRORS.emailInValid"), (value) => /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(value))
         .required(i18n.t("ERRORS.emailRequired")),
     name: yup.string().required(),
-    phone: yup.string().required().min(9, "Phone min length"),
+    phone: yup
+        .string()
+        .required()
+        .test("phone", (value, ctx) => {
+            if (value.length == ctx.parent.phone_code.phone_number_limit) {
+                return true;
+            } else {
+                return ctx.createError({
+                    message: ctx.parent.phone_code.phone_number_limit,
+                    path: "phone",
+                });
+            }
+        }),
     subject: yup.string().required(),
     message: yup.string().required(),
+    phone_code: yup.mixed(),
 });
+
+const toast = useToast();
+const buttonLoading = ref(false);
+const baseURL = useRuntimeConfig().public.baseURL;
+
+async function handleSubmit(values, actions) {
+    buttonLoading.value = true;
+    await $fetch(`${baseURL}website/contact-us`, {
+        method: "POST",
+        body: {
+            full_name: values.name,
+            email: values.email,
+            phone_code: values.phone_code.phone_code,
+            phone: values.phone,
+            title: values.subject,
+            content: values.message,
+        },
+        headers: {
+            "Accept-Language": i18n.locale.value,
+        },
+    })
+        .then((res) => {
+            toast.success(res.message);
+            actions.resetForm();
+            buttonLoading.value = false;
+        })
+        .catch((err) => {
+            toast.error(err.response._data.message);
+            buttonLoading.value = false;
+        });
+}
 </script>
 
 <style></style>

@@ -1,7 +1,12 @@
 <template>
-<Terms/>
+    <div v-if="pending" class="flex items-center justify-center pt-28 pb-12">
+        <UILoader />
+    </div>
+    <Terms :items="data?.data" />
 </template>
 
-<script setup></script>
+<script setup>
+const { data, pending, error } = await useApi("website/terms");
+</script>
 
 <style></style>

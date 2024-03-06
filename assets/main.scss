@@ -4,14 +4,14 @@
 }
 ::-webkit-scrollbar,
 ::-webkit-scrollbar {
-    width: 4px;
+    width: 2px;
     height: 10px;
 }
 ::-webkit-scrollbar-track {
     background: #fff;
 }
 ::-webkit-scrollbar-thumb {
-    background: #fff;
+    background: var(--main-color);
 }
 
 a {
@@ -51,6 +51,21 @@ textarea {
     -moz-border-radius: 30px;
     -ms-border-radius: 30px;
     -o-border-radius: 30px;
+}
+/* ////////////////////////////////////////////////// */
+
+.maininput {
+    @apply w-full;
+}
+.maininput input {
+    @apply focus:outline-none p-3 text-sm w-full h-12 font-bold border border-stroke rounded-xl;
+}
+.maininput textarea {
+    @apply focus:outline-none p-3 text-sm w-full h-36 font-bold border border-stroke rounded-xl;
+}
+
+.phoneinput {
+    @apply flex w-full gap-0 justify-center;
 }
 /* ////////////////////////////////////////////////// */
 .swiper-thumbs .swiper-wrapper {

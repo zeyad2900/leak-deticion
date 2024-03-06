@@ -3,18 +3,19 @@ import { defineStore } from "pinia";
 export const useMyShowAndHideStore = defineStore("myShowAndHideStore", {
     state: () => ({
         login: false,
+        loginInitialValue: null,
         signup: false,
         fogertPass: false,
         verify: false,
+        verifyLogin: false,
         change: false,
         notification: false,
-        video: false,
         smallmenu: false,
     }),
 
     actions: {
         // smallmenu
-        smallMenueHndler(order: string) {
+        smallMenueHndler(order) {
             if (order === "open") {
                 this.smallmenu = true;
             } else {
@@ -22,7 +23,7 @@ export const useMyShowAndHideStore = defineStore("myShowAndHideStore", {
             }
         },
         // login
-        loginHnadler(order: string) {
+        loginHnadler(order) {
             if (order === "open") {
                 this.login = true;
                 this.signup = false;
@@ -34,19 +35,20 @@ export const useMyShowAndHideStore = defineStore("myShowAndHideStore", {
             }
         },
         // signup
-        signupHandler(order: string) {
+        signupHandler(order, data) {
             if (order === "open") {
                 this.signup = true;
                 this.login = false;
             } else if (order === "back") {
                 this.signup = false;
                 this.login = true;
+                this.loginInitialValue = data;
             } else {
                 this.signup = false;
             }
         },
         // forgetpass
-        forgetPassHandler(order: string) {
+        forgetPassHandler(order) {
             if (order === "open") {
                 this.fogertPass = true;
                 this.login = false;
@@ -55,19 +57,22 @@ export const useMyShowAndHideStore = defineStore("myShowAndHideStore", {
             }
         },
         // verfiy
-        verfiyHandler(order: string) {
+        verfiyHandler(order, data) {
             if (order === "open") {
                 this.verify = true;
                 this.fogertPass = false;
             } else if (order === "back") {
                 this.verify = false;
                 this.fogertPass = true;
+            } else if (order === "loginOpen") {
+                this.verify = true;
+                this.verifyLogin = true;
             } else {
                 this.verify = false;
             }
         },
         // changepass
-        changeHandler(order: string) {
+        changeHandler(order) {
             if (order === "open") {
                 this.change = true;
                 this.verify = false;
@@ -78,14 +83,6 @@ export const useMyShowAndHideStore = defineStore("myShowAndHideStore", {
         // notification
         switchNotify() {
             this.notification = !this.notification;
-        },
-        // video
-        videoHandler(order: string) {
-            if (order === "open") {
-                this.video = true;
-            } else {
-                this.video = false;
-            }
         },
     },
 });

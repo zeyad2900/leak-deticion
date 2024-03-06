@@ -7,39 +7,14 @@
         }"
         class="mySwiper grid grid-cols-3 gap-16"
     >
-        <swiper-slide>
+        <swiper-slide v-for="item in items" :key="item.id">
             <div class="flex flex-col items-center gap-8 justify-center">
-                <img src="/assets/images/main/member3.webp" alt="" />
-                <div class="flex flex-col items-center gap-2">
-                    <h3 class="text-text font-medium text-lg">ندي علي</h3>
-                    <p class="text-light">خبير تسريب المياه</p>
+                <div class="w-[350px]">
+                    <NuxtImg class="w-full h-full" :src="item.image" alt="expert" placeholder="/member1.webp" />
                 </div>
-            </div>
-        </swiper-slide>
-        <swiper-slide>
-            <div class="flex flex-col items-center gap-8 justify-center">
-                <img src="/assets/images/main/member2.webp" alt="" />
                 <div class="flex flex-col items-center gap-2">
-                    <h3 class="text-text font-medium text-lg">ندي علي</h3>
-                    <p class="text-light">خبير تسريب المياه</p>
-                </div>
-            </div>
-        </swiper-slide>
-        <swiper-slide>
-            <div class="flex flex-col items-center gap-8 justify-center">
-                <img src="/assets/images/main/member1.webp" alt="" />
-                <div class="flex flex-col items-center gap-2">
-                    <h3 class="text-text font-medium text-lg">ندي علي</h3>
-                    <p class="text-light">خبير تسريب المياه</p>
-                </div>
-            </div>
-        </swiper-slide>
-        <swiper-slide>
-            <div class="flex flex-col items-center gap-8 justify-center">
-                <img src="/assets/images/main/member3.webp" alt="" />
-                <div class="flex flex-col items-center gap-2">
-                    <h3 class="text-text font-medium text-lg">ندي علي</h3>
-                    <p class="text-light">خبير تسريب المياه</p>
+                    <h3 class="text-text font-medium text-lg">{{ item.name }}</h3>
+                    <p class="text-light">{{ item.job }}</p>
                 </div>
             </div>
         </swiper-slide>
@@ -49,6 +24,12 @@
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
+
+defineProps({
+    items: {
+        required: true,
+    },
+});
 </script>
 
 <style scoped>

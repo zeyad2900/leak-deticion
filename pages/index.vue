@@ -5,11 +5,11 @@
 
     <Main :data="data?.data?.home_slider" />
     <MainServices :data="data?.data?.services" />
-    <MainAbout isAbout="true" :items="data?.data?.home_about" :advantages="data?.data?.advantages" v-if="data.data.home_about && data.data.advantages" />
+    <MainAbout :isAbout="false" :items="data?.data?.home_about" :advantages="data?.data?.advantages" v-if="data.data.home_about && data.data.advantages" />
     <MainServeice :data="data?.data?.home_services[0]" />
-    <MainOurExperts />
-    <MainSider />
-    <MainTestimonials />
+    <MainOurExperts :data="data?.data?.home_experts" />
+    <MainSlider :data="data?.data?.testimonials" />
+    <MainTestimonials :data="data?.data?.what_we_offers" />
     <MainOurMission />
 </template>
 

@@ -10,7 +10,7 @@
                 :centeredSlides="true"
                 :spaceBetween="30"
                 :navigation="false"
-                :loop="true"
+                :loop="data.length > 5 ? true : false"
                 :autoplay="{
                     delay: 3000,
                     disableOnInteraction: false,
@@ -19,18 +19,15 @@
                 class="mySwiper"
             >
                 <UISliderbtn />
-                <swiper-slide v-for="i in 4" :key="i">
+                <swiper-slide v-for="item in data" :key="item.id">
                     <div class="max-w-[600px] bg-stroke p-4 rounded-md">
                         <img src="/assets/images/imgicons/quote.png" alt="" />
-                        <p class="text-text text-sm py-3 min-h-[150px] max-h-[150px] overflow-y-auto leading-6">
-                            "لقد استدعيت فريق تسريب المياه الخاص بكم لإصلاح تسريب في منزلي، وأنا سعيد جدًا بالخدمة التي تلقيتها. كان الفريق محترفًا وودودًا، وأصلحوا المشكلة بسرعة وبأعلى جودة. أوصي
-                            بشدة بخدماتكم."
-                        </p>
-                        <div class="flex gap-5">
-                            <img src="/assets/images/main/user.png" alt="" />
+                        <div class="text-text text-sm py-3 min-h-[150px] max-h-[150px] overflow-y-auto leading-6" v-html="item.desc"></div>
+                        <div class="flex gap-5 items-center">
+                            <NuxtImg class="w-12 h-12" :src="item.image" placeholder="/user.png" alt="user" />
                             <div>
-                                <h3 class="text-base font-bold text-text">احمد عامر</h3>
-                                <p>مؤسس شركة CAS</p>
+                                <h3 class="text-base font-bold text-text">{{ item.name }}</h3>
+                                <p>{{ item.job }}</p>
                             </div>
                         </div>
                     </div>
@@ -49,6 +46,12 @@ import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
 
 let modules = [Navigation, Autoplay, EffectCoverflow];
+
+defineProps({
+    data: {
+        required: true,
+    },
+});
 </script>
 
 <style scoped>

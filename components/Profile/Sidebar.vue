@@ -10,7 +10,7 @@
                     <div class="flex gap-3">
                         <span class="text-light">+966-105685696</span>
                         <span>
-                            <img src="/assets/images/contact/Saudi Arabia.png" alt="" />
+                            <img src="/SaudiArabia.png" alt="" />
                         </span>
                     </div>
                 </div>

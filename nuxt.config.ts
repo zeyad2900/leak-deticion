@@ -60,7 +60,8 @@ export default defineNuxtConfig({
     imports: {
         dirs: ["stores"],
     },
-    css: ["~/assets/main.css"],
+    css: ["~/assets/main.scss"],
+    plugins: ["/plugins/vue-toastfiy.ts"],
     postcss: {
         plugins: {
             tailwindcss: {},

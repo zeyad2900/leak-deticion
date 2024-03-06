@@ -23,23 +23,6 @@
     </article>
 </template>
 
-<script setup>
-// import { configure } from "vee-validate";
-// import * as yup from "yup";
-
-// configure({
-//     validateOnBlur: true,
-//     validateOnChange: true,
-//     validateOnModelUpdate: true,
-//     validateOnInput: true,
-// });
-
-// const i18n = useI18n();
-
-// const schema = yup.object().shape({
-//     proplem: yup.string().required(),
-//     location: yup.string().required(),
-// });
-</script>
+<script setup></script>
 
 <style scoped></style>

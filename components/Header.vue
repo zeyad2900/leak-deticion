@@ -53,11 +53,11 @@
         </div>
     </header>
     <!-- login popups -->
-    <PopupsLogin v-if="login" />
-    <PopupsSignup v-if="signup" />
-    <PopupsForgetPass v-if="fogertPass" />
-    <PopupsVerfy v-if="verify" />
-    <PopupsChangePass v-if="change" />
+    <PopupsAuthLogin v-if="login" />
+    <PopupsAuthSignup v-if="signup" />
+    <PopupsAuthForgetPass v-if="fogertPass" />
+    <PopupsAuthVerfy v-if="verify" />
+    <PopupsAuthChangePass v-if="change" />
     <!-- pay and rate popups -->
     <!-- <PopupsPay /> -->
     <!-- <PopupsRate /> -->
@@ -102,6 +102,8 @@ const handleScroll = () => {
     } else if (route.fullPath == "/#services" && scrollY < 50) {
         white.value = false;
     } else if (route.fullPath == "/en" && scrollY < 50) {
+        white.value = false;
+    } else if (route.fullPath == "/en/#services" && scrollY < 50) {
         white.value = false;
     } else {
         white.value = true;
