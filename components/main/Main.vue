@@ -16,15 +16,15 @@
                 <PopupsVideo v-if="video" @close-video="video = false" :item="data?.video" />
                 <!-- text -->
                 <div class="flex flex-col md:flex-1 items-center lg:flex-row space-y-5 lg:space-y-0 justify-between order-2 md:order-1">
-                    <h1 class="text-white md:text-start text-center font-bold xl:text-3xl lg:max-w-[200px] xl:max-w-[350px]">{{ $t("main.welcomeToOurWebsite") }}</h1>
-                    <p class="bg-[#0A4088] animated wow fadeInRight p-5 md:text-start lg:text-base text-sm rounded-full text-white text-center lg:max-w-[450px] animated">
+                    <h1 class="text-white md:text-start text-center font-bold xl:text-3xl lg:max-w-[200px] xl:max-w-[350px] z-20">{{ $t("main.welcomeToOurWebsite") }}</h1>
+                    <p class="bg-[#0A4088] p-5 md:text-start lg:text-base text-sm rounded-full text-white text-center lg:max-w-[450px] z-20">
                         {{ $t("main.WeCareAboutMeeting") }}
                     </p>
                 </div>
             </div>
             <!-- image -->
             <div class="w-full flex items-center justify-center mt-10">
-                <NuxtImg class="xl:absolute bottom-0 xl:h-[75%] xl:w-full z-10 object-contain" :src="data.big_image" alt="bigi mage" placeholder="/main.webp" />
+                <NuxtImg class="xl:absolute bottom-0 xl:h-[75%] xl:w-full object-contain z-0" :src="data.big_image" alt="bigi image" placeholder="/main.webp" />
             </div>
             <!-- scroll to services -->
             <NuxtLink

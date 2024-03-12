@@ -54,8 +54,8 @@ const video = ref(false);
     width: 100%;
     height: 100%;
     position: absolute;
-    bottom: 30px;
-    inset-inline-start: 30px;
+    bottom: 20px;
+    inset-inline-start: 20px;
     border-radius: 50%;
     z-index: -1;
 }

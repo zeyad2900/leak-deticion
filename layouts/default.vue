@@ -12,7 +12,6 @@
 const { locale } = useI18n();
 const { data } = await useApi("general/settings");
 const generalsStore = useMyGeneralStore();
-
 generalsStore.fetchCountries();
 </script>
 

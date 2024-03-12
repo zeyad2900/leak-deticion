@@ -71,6 +71,8 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             baseURL: "https://leak-detection-v2.phpv8.aait-d.com/api/",
+            // baseURL: "https://phpv8.aait-d.com/leak_detection/public/api/",
+            // real
         },
     },
 });

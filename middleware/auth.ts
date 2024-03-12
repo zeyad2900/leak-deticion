@@ -3,9 +3,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     const login = useToggleLogin();
 
     if (!token.value) {
-        const last_page: any = useCookie("last_page");
-        last_page.value = from;
-        login.value = true;
+        login.value = false;
         return navigateTo("/");
     }
 });

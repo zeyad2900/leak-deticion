@@ -4,11 +4,13 @@
             <h1 class="font-bold text-2xl mb-8">الحساب الشخصي</h1>
 
             <NuxtLink to="/profile" class="flex items-center justify-start gap-4 mb-8">
-                <img src="/assets/images/profile/profilesm.png" alt="" />
+                <div class="w-20 h-20 rounded-full overflow-hidden">
+                    <img class="w-full h-full object-cover" :src="data?.data.image" :alt="data?.data.full_name" />
+                </div>
                 <div>
-                    <h3 class="font-bold text-text">احمد محمود</h3>
+                    <h3 class="font-bold text-text">{{ data?.data.full_name }}</h3>
                     <div class="flex gap-3">
-                        <span class="text-light">+966-105685696</span>
+                        <span class="text-light">{{ data?.data.phone_complete_form }}</span>
                         <span>
                             <img src="/SaudiArabia.png" alt="" />
                         </span>
@@ -32,20 +34,22 @@
                     <p>اللاشعارات</p>
                 </div>
                 <div class="toggle-switch">
-                    <input class="toggle-input" id="toggle" type="checkbox" />
+                    <input :disabled="notificationLoading" :value="notifiction" v-model="notifiction" class="toggle-input" id="toggle" type="checkbox" />
                     <label class="toggle-label" for="toggle"></label>
                 </div>
             </div>
 
-            <button class="flex mb-8 gap-3 items-center">
+            <button :disabled="logoutLoading" @click="Logout = true" class="flex mb-8 gap-3 items-center">
                 <img class="bg-[#ef233b1f] p-2 rounded-full" src="/assets/images/profile/logout.png" alt="" />
                 <p>تسجبل الخروج</p>
             </button>
+            <PopupsAuthLogout :loading="logoutLoading" @logout="handleLogout" @close="Logout = false" v-if="Logout" />
 
-            <button class="flex gap-3 mb-8 items-center">
+            <button @click="Delete = true" class="flex gap-3 mb-8 items-center">
                 <img class="bg-[#ef233b1f] p-2 rounded-full" src="/assets/images/imgicons/trash.png" alt="" />
                 <p>حذف الحساب</p>
             </button>
+            <PopupsAuthDelete :loading="logoutLoading" @delete="handleDelete" @close="Delete = false" v-if="Delete" />
         </div>
     </div>
 </template>
@@ -54,6 +58,99 @@
 definePageMeta({
     layout: "profileorders",
 });
+
+const props = defineProps({
+    data: {
+        required: true,
+    },
+});
+
+import { useToast } from "vue-toastification";
+const Logout = ref(false);
+const Delete = ref(false);
+
+const config = useRuntimeConfig();
+const toast = useToast();
+const i18n = useI18n();
+const token = useCookie("leakDetectionToken");
+const profileId = useCookie("profileId");
+const logoutLoading = ref(false);
+
+async function handleLogout() {
+    logoutLoading.value = true;
+
+    await $fetch(`${config.public.baseURL}website/logout`, {
+        method: "POST",
+        headers: {
+            "Accept-Language": i18n.locale.value,
+            Authorization: `Bearer ${token.value}`,
+        },
+    })
+        .then((res) => {
+            token.value = null;
+            profileId.value = null;
+            Logout.value = false;
+            toast.success(res.message);
+            location.reload();
+        })
+        .catch((err) => {
+            toast.error(err.response_data.message);
+            Delete.value = false;
+            logoutLoading.value = false;
+        });
+}
+
+async function handleDelete() {
+    logoutLoading.value = true;
+
+    await $fetch(`${config.public.baseURL}website/profile`, {
+        method: "DELETE",
+        headers: {
+            "Accept-Language": i18n.locale.value,
+            Authorization: `Bearer ${token.value}`,
+        },
+    })
+        .then((res) => {
+            token.value = null;
+            profileId.value = null;
+            Logout.value = false;
+            toast.success(res.message);
+            location.reload();
+        })
+        .catch((err) => {
+            toast.error(err.response._data.message);
+            Logout.value = false;
+            logoutLoading.value = false;
+        });
+}
+
+const notifiction = ref(props.data?.data?.allow_notification || false);
+watch(notifiction, () => {
+    handleNotifiction();
+});
+
+const notificationLoading = ref(false);
+async function handleNotifiction() {
+    notificationLoading.value = true;
+
+    await $fetch(`${config.public.baseURL}website/profile/toggle-notification`, {
+        method: "POST",
+        body: {
+            _method: "PATCH",
+        },
+        headers: {
+            "Accept-Language": i18n.locale.value,
+            Authorization: `Bearer ${token.value}`,
+        },
+    })
+        .then(() => {
+            toast.success(notifiction.value ? "تم فتح الاشعارات " : "تم غلق الاشعارات");
+        })
+        .catch((err) => toast.error(err.response._data.message))
+        .finally(() => {
+            notificationLoading.value = false;
+        });
+}
 </script>
 
 <style scoped>

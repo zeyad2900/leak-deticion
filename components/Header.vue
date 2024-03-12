@@ -25,7 +25,7 @@
             <div class="flex items-center gap-2 xl:gap-7">
                 <ul class="flex items-center gap-2">
                     <!-- notifiction -->
-                    <li>
+                    <li v-if="isLogin">
                         <button @click="myShowAndHideStore.switchNotify()" class="relative w-11 h-11 flex justify-center items-center rounded-lg bg-[#FFFFFF0D]">
                             <nuxt-icon :class="white ? 'text-text' : 'text-white'" class="text-[25px] mt-1 p-0" name="notification" />
                             <img class="absolute bottom-8 left-8" width="16" height="16" src="/assets/images/imgicons/red.png" alt="" />
@@ -34,7 +34,7 @@
                     </li>
                     <!-- login -->
                     <li>
-                        <button @click="myShowAndHideStore.loginHnadler('open')" class="relative w-11 h-11 flex justify-center items-center rounded-lg bg-[#FFFFFF0D]">
+                        <button @click="loginHandler" class="relative w-11 h-11 flex justify-center items-center rounded-lg bg-[#FFFFFF0D]">
                             <nuxt-icon :class="white ? 'text-text' : 'text-white'" class="text-[25px] mt-1 p-0" name="vector" />
                         </button>
                     </li>
@@ -58,14 +58,6 @@
     <PopupsAuthForgetPass v-if="fogertPass" />
     <PopupsAuthVerfy v-if="verify" />
     <PopupsAuthChangePass v-if="change" />
-    <!-- pay and rate popups -->
-    <!-- <PopupsPay /> -->
-    <!-- <PopupsRate /> -->
-    <!-- <PopupsRespiteResone /> -->
-    <!-- <PopupsCancelResone/> -->
-    <!-- <PopupsDelete /> -->
-    <!-- <PopupsChangePassProfile/> -->
-    <!-- <PopupsChoseNewDate/> -->
 </template>
 
 <script setup>
@@ -76,6 +68,7 @@ const myShowAndHideStore = useMyShowAndHideStore();
 const { login, signup, fogertPass, verify, change, notification, smallmenu } = storeToRefs(myShowAndHideStore);
 const white = ref(true);
 const activeLinkIndex = ref(null);
+const isLogin = useToggleLogin();
 
 const links = ref([
     { Name: "home", path: "/" },
@@ -107,6 +100,14 @@ const handleScroll = () => {
         white.value = false;
     } else {
         white.value = true;
+    }
+};
+// login button
+const loginHandler = () => {
+    if (isLogin.value === false) {
+        myShowAndHideStore.loginHnadler("open");
+    } else {
+        navigateTo("/profile");
     }
 };
 

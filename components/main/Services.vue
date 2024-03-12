@@ -11,7 +11,7 @@
             </div>
 
             <div class="col-span-3 lg:col-span-1 justify-center items-center lg:flex-col flex gap-4">
-                <GlobalServiceCard v-for="item in data" :key="item.id" :item="item" />
+                <ServicesServiceCard v-for="item in data" :key="item.id" :item="item" />
             </div>
         </div>
     </article>

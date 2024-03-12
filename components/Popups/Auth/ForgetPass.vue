@@ -8,13 +8,16 @@
             <p class="text-light text-center mb-7">قم بادخال البريد الإلكتروني او رقم الهاتف الخاص بك لتغيير كلمة المرور</p>
 
             <!-- form -->
-            <VeeForm :validation-schema="schema" as="div">
+            <VeeForm :validation-schema="schema" @submit="submitHandler" as="div">
                 <form>
                     <div class="flex flex-col mb-10">
                         <label class="text-text font-bold mb-1">رقم الهاتف</label>
                         <GlobalPhoneInput />
                     </div>
-                    <button @click="myShowAndHideStore.verfiyHandler('open')" type="button" class="mainbtn w-full mb-1">ارسال</button>
+                    <button :disabled="btnLoading" type="submit" class="mainbtn w-full mb-1">
+                        <p v-if="!btnLoading">ارسال</p>
+                        <UIButtonLoader v-else />
+                    </button>
                 </form>
             </VeeForm>
         </UIBaseCard>
@@ -23,6 +26,7 @@
 
 <script setup>
 import { configure } from "vee-validate";
+import { useToast } from "vue-toastification";
 import * as yup from "yup";
 
 configure({
@@ -32,9 +36,53 @@ configure({
     validateOnInput: true,
 });
 const schema = yup.object().shape({
-    phone: yup.string().required().min(9, "Phone min length"),
+    phone: yup
+        .string()
+        .required()
+        .test("phone", (value, ctx) => {
+            if (value.length == ctx.parent.phone_code.phone_number_limit) {
+                return true;
+            } else {
+                return ctx.createError({
+                    message: ctx.parent.phone_code.phone_number_limit,
+                    path: "phone",
+                });
+            }
+        }),
+    phone_code: yup.mixed(),
 });
 const myShowAndHideStore = useMyShowAndHideStore();
+const toast = useToast();
+const config = useRuntimeConfig();
+const i18n = useI18n();
+const btnLoading = ref(false);
+
+async function submitHandler(values, actions) {
+    btnLoading.value = true;
+    await $fetch(`${config.public.baseURL}website/send-code`, {
+        method: "POST",
+        body: {
+            phone_code: values.phone_code.phone_code,
+            phone: values.phone,
+        },
+        headers: {
+            "Accept-Language": i18n.locale.value,
+        },
+    })
+        .then((res) => {
+            myShowAndHideStore.loginHnadler();
+            toast.success(res.message);
+            myShowAndHideStore.verfiyHandler("forgetOpen", {
+                phone: values.phone,
+                phone_code: values.phone_code,
+            });
+            loginInitialValue.value = null;
+        })
+        .catch((err) => {
+            toast.error(err.response._data.message);
+            btnLoading.value = false;
+        });
+}
 </script>
 
 <style></style>

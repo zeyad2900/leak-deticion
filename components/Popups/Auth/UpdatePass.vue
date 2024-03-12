@@ -1,7 +1,7 @@
 <template>
     <div class="bg-[#0000007b] h-screen w-screen fixed top-0 left-0 z-[2000] flex items-center justify-center pt-[27px]">
         <UIBaseCard>
-            <button type="" @click="myShowAndHideStore.changeHandler()" class="text-2xl block ms-auto">
+            <button type="" @click="$emit('close')" class="text-2xl block ms-auto">
                 <Icon class="text-light" name="ep:close-bold"></Icon>
             </button>
             <h3 class="text-center font-bold mb-7 text-text text-xl">تغيير كلمة المرور</h3>
@@ -10,12 +10,21 @@
             <VeeForm :validation-schema="schema" @submit="submitHandler" as="div">
                 <form @submit.prevent="">
                     <div class="flex flex-col mb-2">
-                        <VeeField name="password" v-slot="{ field, meta }">
-                            <label class="text-text font-bold mb-1">كلمة المرور</label>
+                        <VeeField name="currntpassword" v-slot="{ field, meta }">
+                            <label class="text-text font-bold mb-1">كلمة المرور الحاليه</label>
                             <div class="maininput">
                                 <input v-bind="field" placeholder="كلمه المرور" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" type="password" />
                             </div>
-                            <VeeErrorMessage v-if="meta.touched && !meta.valid" name="password" as="span" class="!text-danger" />
+                            <VeeErrorMessage v-if="meta.touched && !meta.valid" name="currntpassword" as="span" class="!text-danger" />
+                        </VeeField>
+                    </div>
+                    <div class="flex flex-col mb-2">
+                        <VeeField name="newpassword" v-slot="{ field, meta }">
+                            <label class="text-text font-bold mb-1">كلمة المرور الجديده</label>
+                            <div class="maininput">
+                                <input v-bind="field" placeholder="كلمه المرور" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" type="password" />
+                            </div>
+                            <VeeErrorMessage v-if="meta.touched && !meta.valid" name="newpassword" as="span" class="!text-danger" />
                         </VeeField>
                     </div>
                     <div class="flex flex-col mb-10">
@@ -50,41 +59,45 @@ configure({
     validateOnInput: true,
 });
 const schema = yup.object().shape({
-    password: yup.string().required().min(9, "Password to weak"),
+    currntpassword: yup.string().required().min(9),
+    newpassword: yup.string().required().min(9, "Password to weak"),
     passwordconfirm: yup
         .string()
         .required()
-        .oneOf([yup.ref("password")], "two passwords must be matching"),
+        .oneOf([yup.ref("newpassword")], "two passwords must be matching"),
 });
 
-const myShowAndHideStore = useMyShowAndHideStore();
-const { changeInitialValue } = storeToRefs(myShowAndHideStore);
 const btnLoading = ref(false);
 const toast = useToast();
 const config = useRuntimeConfig();
 const i18n = useI18n();
+const emits = defineEmits(["close"]);
+const token = useCookie("leakDetectionToken");
+
 async function submitHandler(values) {
-    btnLoading.value = true;
-    await $fetch(`${config.public.baseURL}website/reset-password`, {
-        method: "POST",
-        body: {
-            _method: "PATCH",
-            phone_code: changeInitialValue.value.phone_code.phone_code,
-            phone: changeInitialValue.value.phone,
-            password: values.password,
-            code: changeInitialValue.value.code,
-        },
-        headers: {
-            "Accept-Language": i18n.locale.value,
-        },
-    })
-        .then((res) => {
-            toast.success(res.message);
-            myShowAndHideStore.changeHandler();
-            changeInitialValue.value = null;
+    if (values.currntpassword === values.newpassword) {
+        toast.error("password match");
+    } else {
+        btnLoading.value = true;
+        await $fetch(`${config.public.baseURL}website/profile/update-password`, {
+            method: "POST",
+            body: {
+                _method: "PATCH",
+                current_password: values.currntpassword,
+                new_password: values.newpassword,
+            },
+            headers: {
+                "Accept-Language": i18n.locale.value,
+                Authorization: `Bearer ${token.value}`,
+            },
         })
-        .catch((e) => toast.error(e.response._data.message))
-        .finally(() => (btnLoading.value = false));
+            .then((res) => {
+                toast.success(res.message);
+                emits("close");
+            })
+            .catch((e) => toast.error(e.response._data.message))
+            .finally(() => (btnLoading.value = false));
+    }
 }
 </script>
 

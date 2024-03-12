@@ -10,13 +10,18 @@
             <NuxtLink to="/contact">{{ $t("nav.contactUs") }}</NuxtLink>
         </ul>
         <button @click="changeLang" type="button" class="flex items-center gap-1">
-            <nuxt-icon :class="white ? 'text-text' : 'text-white'" class="text-[25px] mt-1 p-0" name="earth" />
+            <nuxt-icon class="text-white text-[25px] mt-1 p-0" name="earth" />
             {{ $t("nav.lang") }}
         </button>
     </div>
 </template>
 
 <script setup>
+const { locale, setLocale } = useI18n();
+const changeLang = () => {
+    const newLocale = locale.value === "en" ? "ar" : "en"; // Example toggle between 'en' and 'fr'
+    setLocale(newLocale);
+};
 const myShowAndHideStore = useMyShowAndHideStore();
 </script>
 

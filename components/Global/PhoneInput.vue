@@ -1,11 +1,11 @@
 <template>
     <div class="phoneinput">
         <vee-field name="phone_code">
-            <HeadlessMenu as="div" class="relative">
+            <HeadlessMenu as="div" class="relative h-12">
                 <HeadlessMenuButton v-slot="{ open }">
                     <div class="px-1 py-3 gap-1 border-stroke items-center border flex w-full justify-center rounded-md bg-white text-sm font-medium text-text">
-                        <NuxtImg :src="country.image" alt="country" placeholder="/SaudiArabia.png" />
-                        <p>+{{ country.phone_code }}</p>
+                        <NuxtImg :src="country?.image" alt="country" placeholder="/SaudiArabia.png" />
+                        <p>+{{ country?.phone_code }}</p>
                         <Icon :name="`flowbite:angle-${open ? 'up' : 'down'}-outline`" size="20" />
                     </div>
                 </HeadlessMenuButton>
@@ -22,8 +22,8 @@
                         <HeadlessMenuItem v-for="(item, index) in countries" :key="index" v-slot="{ active }">
                             <button @click="changeCountry(item)" type="button" :class="[active ? 'bg-violet-500 text-white' : 'text-gray-900', 'group flex w-full items-center rounded-md text-sm']">
                                 <div class="px-1 py-4 gap-1 items-center flex w-full justify-center rounded-md bg-white text-sm font-medium text-text">
-                                    <NuxtImg :src="item.image" alt="country" placeholder="/SaudiArabia.png" />
-                                    <p>+{{ item.phone_code }}</p>
+                                    <NuxtImg :src="item?.image" alt="country" placeholder="/SaudiArabia.png" />
+                                    <p>+{{ item?.phone_code }}</p>
                                 </div>
                             </button>
                         </HeadlessMenuItem>
@@ -34,7 +34,7 @@
         </vee-field>
         <vee-field name="phone" v-slot="{ field, meta }">
             <div class="maininput">
-                <input placeholder="رقم الهاتف" id="fullName" v-bind="field" type="text" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" />
+                <input placeholder="رقم الهاتف" id="phone" v-bind="field" type="text" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" />
                 <vee-error-message v-if="meta.touched && !meta.valid" name="phone" as="span" class="!text-danger" />
             </div>
         </vee-field>
@@ -44,10 +44,8 @@
 <script setup>
 const generalsStore = useMyGeneralStore();
 const { countries } = storeToRefs(generalsStore);
-console.log(countries.value)
 const country = ref(null);
 country.value = countries.value[0];
-console.log(country.value)
 import { useField } from "vee-validate";
 const phoneCodeField = useField("phone_code");
 phoneCodeField.setValue(country.value);

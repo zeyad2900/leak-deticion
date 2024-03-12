@@ -92,7 +92,6 @@ async function submitHandler(values, actions) {
         .then((res) => {
             leakDetectionToken.value = res.data.token;
             profileId.value = JSON.stringify(res.data.id);
-
             if (res.data.is_verify) {
                 location.reload();
             } else {
@@ -101,9 +100,9 @@ async function submitHandler(values, actions) {
                     phone: values.phone,
                     phone_code: values.phone_code,
                 });
-                toast.success("sucsess");
+                loginInitialValue.value = null;
             }
-            btnLoading.value = false;
+            toast.success(res.message);
         })
         .catch((e) => {
             toast.error(e.response._data.message);

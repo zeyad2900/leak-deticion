@@ -2,7 +2,7 @@
     <div v-if="pending" class="flex items-center justify-center pt-28 pb-12">
         <UILoader />
     </div>
-    <Terms :items="data?.data" />
+    <Terms v-if="data" :items="data?.data" />
 </template>
 
 <script setup>

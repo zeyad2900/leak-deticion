@@ -1,12 +1,11 @@
 <template>
     <div class="bg-[#0000007b] h-screen w-screen fixed top-0 left-0 z-[2000] flex items-center justify-center pt-[27px]">
         <UIBaseCard>
-            <button type="" @click="myShowAndHideStore.verfiyHandler()" class="text-2xl block ms-auto">
+            <button type="" @click="$emit('close')" class="text-2xl block ms-auto">
                 <Icon class="text-light" name="ep:close-bold"></Icon>
             </button>
             <h3 class="text-center font-bold mb-7 text-text text-xl">تاكيد الهوية</h3>
             <p class="text-light text-center mb-7">ادخل الكود المرسل اليك من خلال رقم الهاتف</p>
-            <button v-if="!verifyLogin" @click="myShowAndHideStore.verfiyHandler('back')" class="text-main font-bold mb-7">تعديل رقم الهاتف</button>
 
             <!-- form verfiy change -->
             <VeeForm @click.stop @submit="submitHandler" as="div">
@@ -39,6 +38,12 @@
 </template>
 
 <script setup>
+const props = defineProps({
+    data: {
+        required: true,
+    },
+});
+const emit = defineEmits(["close", "updateProfile"]);
 import { configure } from "vee-validate";
 import VOtpInput from "vue3-otp-input";
 import { useToast } from "vue-toastification";
@@ -54,8 +59,6 @@ const schema = yup.object().shape({
     code: yup.string().required(),
 });
 
-const myShowAndHideStore = useMyShowAndHideStore();
-const { verifyLogin, verfiyInitialValue } = storeToRefs(myShowAndHideStore);
 const btnLoading = ref(false);
 const toast = useToast();
 const config = useRuntimeConfig();
@@ -65,6 +68,7 @@ const validationcode = reactive({
     valid: false,
     touched: false,
 });
+const token = useCookie("leakDetectionToken");
 
 function handleOnChange() {
     validationcode.touched = true;
@@ -79,56 +83,30 @@ function handleOnComplete(value) {
 
 async function submitHandler(values) {
     btnLoading.value = true;
-    if (verifyLogin.value == true) {
-        await $fetch(`${config.public.baseURL}website/verify`, {
-            method: "POST",
-            body: {
-                phone_code: verfiyInitialValue.value.phone_code.phone_code,
-                phone: verfiyInitialValue.value.phone,
-                code: verify_code.value,
-            },
-            headers: {
-                "Accept-Language": i18n.locale.value,
-            },
+
+    await $fetch(`${config.public.baseURL}website/profile/update-phone`, {
+        method: "POST",
+        body: {
+            phone_code: props.data.phone_code,
+            phone: props.data.phone,
+            code: verify_code.value,
+            _method: "PATCH",
+        },
+        headers: {
+            "Accept-Language": i18n.locale.value,
+            Accept: "application/json",
+            Authorization: `Bearer ${token.value}`,
+        },
+    })
+        .then((res) => {
+            toast.success(res.message);
+            emit("close");
+            emit("updateProfile");
         })
-            .then((res) => {
-                myShowAndHideStore.loginHnadler("open", {
-                    phone: verfiyInitialValue.value.phone,
-                    phone_code: verfiyInitialValue.value.phone_code,
-                });
-                verfiyInitialValue.value = null;
-                toast.success(res.message);
-            })
-            .catch((err) => {
-                toast.error(err.response._data.message);
-            })
-            .finally(() => (btnLoading.value = false));
-    } else {
-        await $fetch(`${config.public.baseURL}website/check-code`, {
-            method: "POST",
-            body: {
-                phone_code: verfiyInitialValue.value.phone_code.phone_code,
-                phone: verfiyInitialValue.value.phone,
-                code: verify_code.value,
-            },
-            headers: {
-                "Accept-Language": i18n.locale.value,
-            },
+        .catch((e) => {
+            toast.error(e.response._data.message);
         })
-            .then((res) => {
-                myShowAndHideStore.changeHandler("open", {
-                    phone: verfiyInitialValue.value.phone,
-                    phone_code: verfiyInitialValue.value.phone_code,
-                    code: verify_code.value,
-                });
-                verfiyInitialValue.value = null;
-                toast.success(res.message);
-            })
-            .catch((err) => {
-                toast.error(err.response._data.message);
-            })
-            .finally(() => (btnLoading.value = false));
-    }
+        .finally(() => (btnLoading.value = false));
 }
 </script>
 

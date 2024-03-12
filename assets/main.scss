@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
     --main-color: #3162da;
     scroll-behavior: smooth;
@@ -63,7 +67,15 @@ textarea {
 .maininput textarea {
     @apply focus:outline-none p-3 text-sm w-full h-36 font-bold border border-stroke rounded-xl;
 }
-
+.otp {
+    @apply flex;
+}
+.otp input {
+    @apply focus:outline-none p-4 text-center text-sm w-full h-12 font-bold border border-light rounded-xl flex items-center;
+}
+.error input {
+    @apply focus:outline-none p-4 text-center text-sm w-full h-12 font-bold border border-danger rounded-xl flex items-center;
+}
 .phoneinput {
     @apply flex w-full gap-0 justify-center;
 }
