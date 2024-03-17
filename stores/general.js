@@ -28,7 +28,6 @@ export const useMyGeneralStore = defineStore({
                         // Extract latitude and longitude from the position object
                         const latitude = position.coords.latitude;
                         const longitude = position.coords.longitude;
-
                         // Do something with the latitude and longitude
                         this.lat = latitude;
                         this.lng = longitude;

@@ -4,7 +4,7 @@
             <HeadlessMenu as="div" class="relative h-12">
                 <HeadlessMenuButton v-slot="{ open }">
                     <div class="px-1 py-3 gap-1 border-stroke items-center border flex w-full justify-center rounded-md bg-white text-sm font-medium text-text">
-                        <NuxtImg :src="country?.image" alt="country" placeholder="/SaudiArabia.png" />
+                        <NuxtImg :src="country?.image" alt="country" class="w-7 h-5" placeholder="/SaudiArabia.png" />
                         <p>+{{ country?.phone_code }}</p>
                         <Icon :name="`flowbite:angle-${open ? 'up' : 'down'}-outline`" size="20" />
                     </div>
@@ -22,7 +22,7 @@
                         <HeadlessMenuItem v-for="(item, index) in countries" :key="index" v-slot="{ active }">
                             <button @click="changeCountry(item)" type="button" :class="[active ? 'bg-violet-500 text-white' : 'text-gray-900', 'group flex w-full items-center rounded-md text-sm']">
                                 <div class="px-1 py-4 gap-1 items-center flex w-full justify-center rounded-md bg-white text-sm font-medium text-text">
-                                    <NuxtImg :src="item?.image" alt="country" placeholder="/SaudiArabia.png" />
+                                    <NuxtImg :src="item?.image" class="w-7 h-5" alt="country" placeholder="/SaudiArabia.png" />
                                     <p>+{{ item?.phone_code }}</p>
                                 </div>
                             </button>

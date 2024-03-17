@@ -53,11 +53,13 @@
         </div>
     </header>
     <!-- login popups -->
-    <PopupsAuthLogin v-if="login" />
-    <PopupsAuthSignup v-if="signup" />
-    <PopupsAuthForgetPass v-if="fogertPass" />
-    <PopupsAuthVerfy v-if="verify" />
-    <PopupsAuthChangePass v-if="change" />
+    <Teleport to="body">
+        <PopupsAuthLogin v-if="login" />
+        <PopupsAuthSignup v-if="signup" />
+        <PopupsAuthForgetPass v-if="fogertPass" />
+        <PopupsAuthVerfy v-if="verify" />
+        <PopupsAuthChangePass v-if="change" />
+    </Teleport>
 </template>
 
 <script setup>

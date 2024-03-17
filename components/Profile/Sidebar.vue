@@ -55,10 +55,6 @@
 </template>
 
 <script setup>
-definePageMeta({
-    layout: "profileorders",
-});
-
 const props = defineProps({
     data: {
         required: true,

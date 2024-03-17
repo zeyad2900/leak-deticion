@@ -1,8 +1,8 @@
 <template>
     <article class="mt-40 pb-24">
         <div v-if="pending" class="fixed bg-white z-[500] h-screen w-screen top-0 left-0 flex items-center justify-center pt-28 pb-12">
-        <UILoader />
-    </div>
+            <UILoader />
+        </div>
 
         <div class="container" v-else-if="data?.data">
             <div class="grid grid-cols-12">
@@ -48,7 +48,7 @@
                         <div class="text-light text-lg" v-html="data?.data.desc"></div>
                     </div>
 
-                    <VeeForm :validation-schema="schema" as="div">
+                    <VeeForm :validation-schema="schema" @submit="submit" as="div">
                         <form class="mb-5">
                             <VeeField name="problem_details" v-slot="{ field }">
                                 <div class="mb-5">
@@ -78,17 +78,21 @@
                                 type="button"
                                 class="border border-stroke rounded-xl py-4 px-8 flex items-center justify-between w-[95%] mb-10"
                             >
-                                <div class="border border-stroke rounded-xl py-2 px-5 flex items-center gap-10 max-w-3/4">
-                                    <div>
-                                        <img src="/assets/images/servicesdetails/map.png" alt="" />
+                                <div class="flex items-center justify-between w-full">
+                                    <div class="border border-stroke rounded-xl py-2 px-5 flex flex-col lg:flex-row lg:items-center justify-between w-full items-center gap-10 max-w-3/4">
+                                        <div class="flex flex-col lg:flex-row gap-10 items-center">
+                                            <div>
+                                                <img src="/assets/images/servicesdetails/map.png" alt="" />
+                                            </div>
+                                            <div class="text-center lg:text-start">
+                                                <h1 class="font-bold mb-2">العنوان</h1>
+                                                <p class="text-light">{{ location }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="hidden lg:block">
+                                            <img src="/assets/images/servicesdetails/location.png" alt="" />
+                                        </div>
                                     </div>
-                                    <div class="text-center">
-                                        <h1 class="font-bold mb-2">العنوان</h1>
-                                        <p class="text-light">ادخل عنوانك هنا</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img src="/assets/images/servicesdetails/location.png" alt="" />
                                 </div>
                             </button>
 
@@ -224,12 +228,15 @@
                     </div>
                 </div>
             </div>
+            <PopupsMap v-if="showMap" @close="showMap = false" @setAddress="getlocation" />
+            <PopupsDone v-if="confirm_reservation_done" content="تم تاكيد الحجز" />
         </div>
     </article>
 </template>
 
 <script setup>
 const route = useRoute();
+const router = useRouter();
 const { data, pending } = await useApi(`website/services/${route.params.id}`);
 const { data: companies } = await useApi(`website/services/${route.params.id}/companies`);
 
@@ -253,8 +260,9 @@ configure({
     validateOnInput: true,
 });
 
-const i18n = useI18n();
+const { locale } = useI18n();
 const toast = useToast();
+const config = useRuntimeConfig();
 
 const schema = yup.object().shape({
     problem_details: yup.string().required(),
@@ -306,9 +314,61 @@ watch(search, (value) => {
         return item.full_name.toLowerCase().includes(value.toLowerCase());
     });
 });
+
+const location = ref("أدخل عنوانك هنا");
+const lng = ref(null);
+const lat = ref(null);
+const getlocation = (value) => {
+    location.value = value.location;
+    lat.value = value.lat;
+    lng.value = value.lng;
+};
+
 const token = useCookie("leakDetectionToken");
 
 const showMap = ref(false);
+const confirm_reservation_done = ref(false);
+
+const submit = async (values, actions) => {
+    const frmData = new FormData();
+    frmData.append("company_id", selectedCompany.value);
+    frmData.append("service_id", data?.value?.data.id);
+    frmData.append("address", values.address_details);
+    frmData.append("location", location.value);
+    frmData.append("lat", lat.value);
+    frmData.append("lng", lng.value);
+    frmData.append("desc", values.problem_details);
+    frmData.append("start_date", chosenDay.value.date);
+    frmData.append("start_time", chosenTime.value.key);
+    frmData.append("payment_type", chosenPayment.value.id);
+
+    await $fetch(`website/orders`, {
+        method: "POST",
+        baseURL: config.public.baseURL,
+        body: frmData,
+        headers: {
+            Accept: "application/json",
+            "Accept-Language": locale.value,
+            authorization: `Bearer ${token.value}`,
+        },
+    })
+        .then((data) => {
+            confirm_reservation_done.value = true;
+            setTimeout(() => {
+                confirm_reservation_done.value = false;
+                navigateTo("/profile/orders");
+            }, 1000);
+        })
+        .catch((err) => {
+            toast.error(err.response._data.message);
+        });
+
+    chosenDay.value = null;
+    chosenTime.value = null;
+    chosenPayment.value = null;
+    selectedCompany.value = null;
+    actions.resetForm();
+};
 </script>
 
 <style lang="scss" scoped>

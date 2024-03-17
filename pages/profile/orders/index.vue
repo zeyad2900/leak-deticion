@@ -2,41 +2,45 @@
     <div v-if="isLoading" class="bg-white z-[500] flex justify-center">
         <UILoader />
     </div>
-    <!-- <div class="flex flex-col gap-5">
-        <NuxtLink class="block shadow-sm p-6 rounded-[40px]">
-            <div class="flex items-start justify-between mb-3">
-                <div class="flex items-center justify-center gap-4">
-                    <img src="/assets/images/profile/profilesm.png" alt="" />
-                    <div>
-                        <h3 class="font-bold mb-2">احمد محمد</h3>
+    <template v-else-if="items.length">
+        <div class="w-full pe-3">
+            <NuxtLink :to="localePath(`/profile/orders/${item.id}`)" v-for="item in items" :key="item.id" class="block shadow-sm p-6 rounded-[40px]">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="flex items-center justify-center gap-4">
+                        <div class="w-[150px] h-[100px] rounded-full overflow-hidden">
+                            <img class="w-full h-full object-cover" :src="item.service.image" alt="" />
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2">{{ item.company.full_name }}</h3>
+                            <div class="flex items-center gap-1">
+                                <span><img src="/assets/images/profile/location.png" alt="" /></span>
+                                <p class="text-sm text-light">{{ item.address }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-[#12b3482b] rounded-lg">
+                        <h1 class="font-bold text-[#12B347]">{{ item.status_trans }}</h1>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <p class="font-bold text-sm"><span class="text-light">الخدمه:</span> {{ item.service.title }}</p>
+                    <div class="flex gap-4">
                         <div class="flex items-center gap-1">
-                            <span><img src="/assets/images/profile/location.png" alt="" /></span>
-                            <p class="text-sm text-light">الممكلة العربية السعودية</p>
+                            <img src="/assets/images/profile/calendar.png" alt="" />
+                            <span class="text-light text-sm">{{ item.start_date }}</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <img src="/assets/images/profile/clock.png" alt="" />
+                            <span class="text-light text-sm">{{ item.start_time }}</span>
                         </div>
                     </div>
                 </div>
-                <div class="p-3 bg-[#12b3482b] rounded-lg">
-                    <h1 class="font-bold text-[#12B347]">مقبول</h1>
-                </div>
-            </div>
-            <div class="flex justify-between">
-                <p class="font-bold text-sm"><span class="text-light">الخدمه:</span> كشف تسرب مياه</p>
-                <div class="flex gap-4">
-                    <div class="flex items-center gap-1">
-                        <img src="/assets/images/profile/calendar.png" alt="" />
-                        <span class="text-light text-sm">25 اكتوبر 2023</span>
-                    </div>
-                    <div class="flex items-center gap-1">
-                        <img src="/assets/images/profile/clock.png" alt="" />
-                        <span class="text-light text-sm">05:00 مساء</span>
-                    </div>
-                </div>
-            </div>
-        </NuxtLink>
-    </div> -->
+            </NuxtLink>
+        </div>
+    </template>
 
-    <template v-else-if="items.length">
-        <div class="max-h-[500px] overflow-auto pe-3">
+    <!-- <template v-else-if="items.length">
+        <div class="max-h-[500px] w-full overflow-auto pe-3">
             <nuxt-link :to="localePath(`/profile/orders/${item.id}`)" v-for="item in items" :key="item.id" class="order-card py-4 rounded-md px-2">
                 <div class="flex justify-between gap-2 items-center">
                     <div class="flex items-center gap-2" v-if="item.status == 'pending'">
@@ -79,16 +83,14 @@
                 </div>
             </nuxt-link>
         </div>
-    </template>
-
+    </template> -->
     <template v-else>
-        <p class="text-center text-text mt-5">لا توجد طلبات</p>
+        <p class="text-center font-bold text-lg text-text mt-5">لا توجد طلبات</p>
     </template>
 </template>
 
 <script setup>
 const localePath = useLocalePath();
-const page = ref(1);
 const token = useCookie("leakDetectionToken");
 const config = useRuntimeConfig();
 
@@ -129,13 +131,6 @@ watch(
     },
     {
         immediate: true,
-    }
-);
-
-watch(
-    () => page.value,
-    (newVal) => {
-        router.push(localePath({ query: Object.assign({}, route.query, { page: newVal }) }));
     }
 );
 </script>

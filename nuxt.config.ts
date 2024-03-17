@@ -20,6 +20,7 @@ export default defineNuxtConfig({
             },
         ],
         "nuxt-swiper",
+        "nuxt3-socket.io",
         "nuxt-icons",
         "nuxt-icon",
         "@nuxt/image",
@@ -61,16 +62,25 @@ export default defineNuxtConfig({
         dirs: ["stores"],
     },
     css: ["~/assets/main.scss"],
-    plugins: ["/plugins/vue-toastfiy.ts"],
+    plugins: ["/plugins/vue-toastfiy.ts", "/plugins/VueMaps.js"],
     postcss: {
         plugins: {
             tailwindcss: {},
             autoprefixer: {},
         },
     },
+    socket: {
+        // JSON serializable options only.
+        // options object to pass when instantiating socket server.
+        serverOptions: {},
+    },
+    build: {
+        transpile: ["@fawmi/vue-google-maps"],
+    },
     runtimeConfig: {
         public: {
             baseURL: "https://leak-detection-v2.phpv8.aait-d.com/api/",
+            socketURL: "https://leak-detection.phpv8.aait-d.com:3089",
             // baseURL: "https://phpv8.aait-d.com/leak_detection/public/api/",
             // real
         },
