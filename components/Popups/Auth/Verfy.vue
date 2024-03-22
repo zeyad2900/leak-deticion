@@ -4,9 +4,9 @@
             <button type="" @click="myShowAndHideStore.verfiyHandler()" class="text-2xl block ms-auto">
                 <Icon class="text-light" name="ep:close-bold"></Icon>
             </button>
-            <h3 class="text-center font-bold mb-7 text-text text-xl">تاكيد الهوية</h3>
-            <p class="text-light text-center mb-7">ادخل الكود المرسل اليك من خلال رقم الهاتف</p>
-            <button v-if="!verifyLogin" @click="myShowAndHideStore.verfiyHandler('back')" class="text-main font-bold mb-7">تعديل رقم الهاتف</button>
+            <h3 class="text-center font-bold mb-7 text-text text-xl">{{ $t("Confirm identity") }}</h3>
+            <p class="text-light text-center mb-7">{{ $t("Enter the code sent to you through your phone number") }}</p>
+            <button v-if="!verifyLogin" @click="myShowAndHideStore.verfiyHandler('back')" class="text-main font-bold mb-7">{{ locale == "ar" ? "تعديل رقم الهاتف" : "edit phone number" }}</button>
 
             <!-- form verfiy change -->
             <VeeForm @click.stop @submit="submitHandler" as="div">
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <button :disabled="!validationcode.valid || btnLoading" @submit="onVerify" type="submit" class="mainbtn w-full mb-1">
-                        <p v-if="!btnLoading">ارسال</p>
+                        <p v-if="!btnLoading">{{ $t("BUTTONS.submit") }}</p>
                         <UIButtonLoader v-else />
                     </button>
                 </form>
@@ -60,6 +60,7 @@ const btnLoading = ref(false);
 const toast = useToast();
 const config = useRuntimeConfig();
 const i18n = useI18n();
+const { locale } = useI18n();
 const verify_code = ref("");
 const validationcode = reactive({
     valid: false,

@@ -34,7 +34,7 @@
         </vee-field>
         <vee-field name="phone" v-slot="{ field, meta }">
             <div class="maininput">
-                <input placeholder="رقم الهاتف" id="phone" v-bind="field" type="text" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" />
+                <input :placeholder="$t('FORMS.Placeholders.yourPhone')" id="phone" v-bind="field" type="text" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" />
                 <vee-error-message v-if="meta.touched && !meta.valid" name="phone" as="span" class="!text-danger" />
             </div>
         </vee-field>

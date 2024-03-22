@@ -4,14 +4,14 @@
             <button type="" @click="$emit('close')" class="text-2xl block ms-auto">
                 <Icon class="text-light" name="ep:close-bold"></Icon>
             </button>
-            <h3 class="text-center font-bold mb-7 text-text text-xl">تغيير كلمة المرور</h3>
+            <h3 class="text-center font-bold mb-7 text-text text-xl">{{ $t("changePassword") }}</h3>
 
             <!-- form -->
             <VeeForm :validation-schema="schema" @submit="submitHandler" as="div">
                 <form @submit.prevent="">
                     <div class="flex flex-col mb-2">
                         <VeeField name="currntpassword" v-slot="{ field, meta }">
-                            <label class="text-text font-bold mb-1">كلمة المرور الحاليه</label>
+                            <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.currentPasswordLabel") }}</label>
                             <div class="maininput">
                                 <input v-bind="field" placeholder="كلمه المرور" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" type="password" />
                             </div>

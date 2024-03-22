@@ -6,7 +6,7 @@
         <div class="mb-4">
             <h1 class="font-bold text-lg text-center mb-3">{{ company.full_name }}</h1>
             <p class="text-center text-light">
-                <span>رقم السجل التجاري:</span>
+                <span>{{ locale == "ar" ? "رقم السجل التجاري :" : "Commercial Registration Number :" }}</span>
                 <span>{{ company.commercial_registration_no }}</span>
             </p>
         </div>
@@ -28,6 +28,7 @@ defineProps({
         required: true,
     },
 });
+const { locale } = useI18n();
 </script>
 
 <style></style>

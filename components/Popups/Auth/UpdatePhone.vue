@@ -4,8 +4,8 @@
             <button type="" @click="$emit('close')" class="text-2xl block ms-auto">
                 <Icon class="text-light" name="ep:close-bold"></Icon>
             </button>
-            <h3 class="text-center font-bold mb-7 text-text text-xl">تاكيد الهوية</h3>
-            <p class="text-light text-center mb-7">ادخل الكود المرسل اليك من خلال رقم الهاتف</p>
+            <h3 class="text-center font-bold mb-7 text-text text-xl">{{ $t("Confirm identity") }}</h3>
+            <p class="text-light text-center mb-7">{{ $t("Enter the code sent to you through your phone number") }}</p>
 
             <!-- form verfiy change -->
             <VeeForm @click.stop @submit="submitHandler" as="div">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <button :disabled="!validationcode.valid || btnLoading" @submit="onVerify" type="submit" class="mainbtn w-full mb-1">
-                        <p v-if="!btnLoading">ارسال</p>
+                        <p v-if="!btnLoading">{{ $t("BUTTONS.submit") }}</p>
                         <UIButtonLoader v-else />
                     </button>
                 </form>

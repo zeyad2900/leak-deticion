@@ -21,7 +21,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <button
+                        <button
+                            @click="chat = true"
                             v-if="
                                 order.data.status === 'accept' ||
                                 order.data.status === 'in_the_way' ||
@@ -30,9 +31,6 @@
                                 order.data.status === 'finished'
                             "
                         >
-                            <img src="/assets/images/profile/chat.png" alt="" />
-                        </button> -->
-                        <button @click="chat = true">
                             <img src="/assets/images/profile/chat.png" alt="" />
                         </button>
                     </div>

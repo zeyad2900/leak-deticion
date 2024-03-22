@@ -2,14 +2,21 @@
     <article id="testimonials" class="bg-dark">
         <div class="container">
             <div class="grid gap-6 pt-14 md:items-center custom-grid text-white">
-                <div v-for="(item, index) in data" :key="item.id" :class="`area-${index}`" class="flex justify-center items-center gap-4">
+                <div
+                    data-wow-duration="1.3s"
+                    data-wow-delay="150"
+                    v-for="(item, index) in data"
+                    :key="item.id"
+                    :class="`animated wow fadeInUp area-${index}`"
+                    class="flex justify-center items-center gap-4"
+                >
                     <NuxtImg width="100" :src="item.image" alt="item" placeholder="/bluecar.png" />
                     <div>
                         <h3 class="font-medium text-white mb-2">{{ item.title }}</h3>
                         <div class="text-white !text-sm" v-html="item.desc"></div>
                     </div>
                 </div>
-                <div class="image"><img src="/main.webp" alt="what we offer" /></div>
+                <div class="image"><img data-wow-duration="1.3s" data-wow-delay="0.3s" class="wow fadeInUp" src="/main.webp" alt="what we offer" /></div>
             </div>
         </div>
     </article>

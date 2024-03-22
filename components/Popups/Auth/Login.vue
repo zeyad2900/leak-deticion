@@ -4,35 +4,35 @@
             <button type="" @click="myShowAndHideStore.loginHnadler()" class="text-2xl block ms-auto">
                 <Icon class="text-light" name="ep:close-bold"></Icon>
             </button>
-            <h3 class="text-center font-bold mb-7 text-text text-xl">تسجيل دخول</h3>
+            <h3 class="text-center font-bold mb-7 text-text text-xl">{{ $t("login") }}</h3>
 
             <!-- form -->
             <VeeForm :initial-values="initaialValue" :validation-schema="schema" @submit="submitHandler" as="div">
                 <form>
                     <div class="flex flex-col mb-3">
-                        <label class="text-text font-bold mb-1">رقم الهاتف</label>
+                        <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.phoneNumber") }}</label>
                         <GlobalPhoneInput />
                     </div>
                     <div class="flex flex-col mb-2">
                         <VeeField name="password" v-slot="{ field, meta }">
-                            <label class="text-text font-bold mb-1">كلمة المرور</label>
+                            <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.password") }}</label>
                             <div class="maininput">
-                                <input v-bind="field" placeholder="كلمه المرور" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" type="password" />
+                                <input v-bind="field" :placeholder="$t('FORMS.Placeholders.password')" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" type="password" />
                             </div>
                             <VeeErrorMessage v-if="meta.touched && !meta.valid" name="password" as="span" class="!text-danger" />
                         </VeeField>
                     </div>
 
-                    <button @click="myShowAndHideStore.forgetPassHandler('open')" type="button" class="font-bold block mb-7">نسيت كلمه المرور؟</button>
+                    <button @click="myShowAndHideStore.forgetPassHandler('open')" type="button" class="font-bold block mb-7">{{ $t("forgetPassword") }}</button>
                     <button :disabled="btnLoading" type="submit" class="mainbtn w-full mb-1">
-                        <p v-if="!btnLoading">تسجيل الدخول</p>
+                        <p v-if="!btnLoading">{{ $t("login") }}</p>
                         <UIButtonLoader v-else />
                     </button>
                 </form>
             </VeeForm>
             <div class="flex text-center items-center justify-center">
-                <p class="text-sm">ليس لديك حساب ؟</p>
-                <button @click="myShowAndHideStore.signupHandler('open')" class="font-bold">انشاء حساب جديد</button>
+                <p class="text-sm">{{ $t("dontHaveAccount") }}</p>
+                <button @click="myShowAndHideStore.signupHandler('open')" class="font-bold">{{ $t("createAccount") }}</button>
             </div>
         </UIBaseCard>
     </div>
@@ -43,6 +43,15 @@ import { configure } from "vee-validate";
 import { useToast } from "vue-toastification";
 import * as yup from "yup";
 
+const toast = useToast();
+const config = useRuntimeConfig();
+const i18n = useI18n();
+const myShowAndHideStore = useMyShowAndHideStore();
+const { loginInitialValue } = storeToRefs(myShowAndHideStore);
+const btnLoading = ref(false);
+const leakDetectionToken = useCookie("leakDetectionToken");
+const profileId = useCookie("profileId");
+
 configure({
     validateOnBlur: true,
     validateOnChange: true,
@@ -52,29 +61,20 @@ configure({
 const schema = yup.object().shape({
     phone: yup
         .string()
-        .required("required")
+        .required(i18n.t("FORMS.Validation.phone"))
         .test("phone", (value, ctx) => {
             if (value.length == ctx.parent.phone_code.phone_number_limit) {
                 return true;
             } else {
                 return ctx.createError({
-                    message: ctx.parent.phone_code.phone_number_limit,
+                    message: i18n.t("FORMS.Validation.phoneLength", { num: ctx.parent.phone_code.phone_number_limit }),
                     path: "phone",
                 });
             }
         }),
-    password: yup.string().required().min(9, "Password to weak"),
+    password: yup.string().required(i18n.t("FORMS.Validation.password")),
     phone_code: yup.mixed(),
 });
-
-const toast = useToast();
-const config = useRuntimeConfig();
-const i18n = useI18n();
-const myShowAndHideStore = useMyShowAndHideStore();
-const { loginInitialValue } = storeToRefs(myShowAndHideStore);
-const btnLoading = ref(false);
-const leakDetectionToken = useCookie("leakDetectionToken");
-const profileId = useCookie("profileId");
 
 async function submitHandler(values, actions) {
     btnLoading.value = true;

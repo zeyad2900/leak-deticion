@@ -1,7 +1,7 @@
 <template>
     <div class="col-span-12 lg:col-span-5 mb-10 lg:mb-0">
         <div class="bg-[#FFFFFF] p-10 rounded-[40px] lg:w-[80%] shadow-lg">
-            <h1 class="font-bold text-2xl mb-8">الحساب الشخصي</h1>
+            <h1 class="font-bold text-2xl mb-8">{{ $t("PersonalAccount") }}</h1>
 
             <NuxtLink to="/profile" class="flex items-center justify-start gap-4 mb-8">
                 <div class="w-20 h-20 rounded-full overflow-hidden">
@@ -21,17 +21,17 @@
             <NuxtLink to="/profile/orders" class="flex items-center justify-between mb-8">
                 <div class="flex items-center gap-3">
                     <div class="p-3"><Icon name="fa6-solid:box-archive" /></div>
-                    <p>طلباتي</p>
+                    <p>{{ $t("orders") }}</p>
                 </div>
                 <div>
-                    <Icon name="ep:arrow-left-bold" />
+                    <Icon name="ep:arrow-left-bold" class="ltr:scale-[-1]" />
                 </div>
             </NuxtLink>
 
             <div class="flex items-center justify-between mb-8 h-6">
                 <div class="flex gap-3">
                     <nuxt-icon class="px-2 text-xl" name="notification" alt="" />
-                    <p>اللاشعارات</p>
+                    <p>{{ $t("notifications") }}</p>
                 </div>
                 <div class="toggle-switch">
                     <input :disabled="notificationLoading" :value="notifiction" v-model="notifiction" class="toggle-input" id="toggle" type="checkbox" />
@@ -41,13 +41,13 @@
 
             <button :disabled="logoutLoading" @click="Logout = true" class="flex mb-8 gap-3 items-center">
                 <img class="bg-[#ef233b1f] p-2 rounded-full" src="/assets/images/profile/logout.png" alt="" />
-                <p>تسجبل الخروج</p>
+                <p>{{ $t("logOutbtn") }}</p>
             </button>
             <PopupsAuthLogout :loading="logoutLoading" @logout="handleLogout" @close="Logout = false" v-if="Logout" />
 
             <button @click="Delete = true" class="flex gap-3 mb-8 items-center">
                 <img class="bg-[#ef233b1f] p-2 rounded-full" src="/assets/images/imgicons/trash.png" alt="" />
-                <p>حذف الحساب</p>
+                <p>{{ $t("Deletebtn") }}</p>
             </button>
             <PopupsAuthDelete :loading="logoutLoading" @delete="handleDelete" @close="Delete = false" v-if="Delete" />
         </div>

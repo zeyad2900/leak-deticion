@@ -1,7 +1,7 @@
 <template>
     <div class="fixed outline top-0 start-0 w-screen h-screen z-[1002] lg:p-5 p-3 overflow-auto flex justify-center items-center bg-[#0007]">
-        <div class="bg-white w-full lg:w-[750px] shadow-md rounded-[25px] relative overflow-hidden">
-            <div class="flex items-center justify-between mb-5 lg:px-8 px-4 pt-6 pb-8">
+        <div class="bg-white w-full lg:w-[750px] shadow-md rounded-[25px] h-[80vh] relative overflow-hidden">
+            <div class="flex items-center justify-between mb-5 lg:px-8 px-4 pt-6 pb-8 h-[20%]">
                 <div class="flex items-center gap-3">
                     <img src="/assets/images/profile/profilesm.png" class="w-[45px] h-[45px] object-cover rounded-full" alt="profile-image" />
                     <div class="flex items-start flex-col">
@@ -14,8 +14,8 @@
                 </button>
             </div>
 
-            <div class="bg-[#fbfbfb] px-4 py-3">
-                <div id="messagesContainer" class="w-full h-[500px] justify-end py-2 px-4 overflow-auto">
+            <div class="bg-[#fbfbfb] px-4 py-3 h-[80%]">
+                <div id="messagesContainer" class="w-full h-[80%] justify-end py-2 px-4 overflow-auto">
                     <div v-if="pending" class="flex items-center justify-center h-full">
                         <UILoader />
                     </div>
@@ -89,7 +89,8 @@ const profileData = ref(null);
 
 const route = useRoute();
 
-const { data: chats, pending, error } = useApi(`${config.public.baseURL}general/orders/${route.params.id}/chats`);
+const { data: chats, pending, error } = useApi(`general/orders/${route.params.id}/chats`);
+
 
 const chatId = ref(null);
 watch(chatId, (value) => {

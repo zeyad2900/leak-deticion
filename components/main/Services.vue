@@ -2,12 +2,16 @@
     <article id="services" class="container py-24">
         <div class="home_service grid grid-cols-3 py-8">
             <div class="col-span-3 space-y-5 px-5 py-20 lg:px-11 lg:col-span-2">
-                <UIBage class="mb-10 px-5 py-2 text-md font-medium bg-white rounded-full w-fit text-main">{{ $t("main.ourServices") }}</UIBage>
-                <h2 class="text-2xl md:text-3xl lg:text-5xl max-w-[650px] font-[25px] mb-2 lg:leading-[3.5rem] text-text leading-[2.5rem] animated wow fadeInUp">
+                <UIBage class="mb-10 px-5 py-2 text-md font-medium bg-white rounded-full w-fit text-main">{{ $t("NAV.services") }}</UIBage>
+                <h2
+                    data-wow-duration="1.3s"
+                    data-wow-delay="0s"
+                    class="text-2xl md:text-3xl lg:text-5xl max-w-[650px] font-[25px] mb-2 lg:leading-[3.5rem] text-text leading-[2.5rem] animated wow fadeInUp"
+                >
                     <template v-if="locale == 'ar'"> إختر <span class="text-main">الخدمة</span> اللتي تناسب طلبك ودع الامر لخبرائنا </template>
                     <template v-else> Choose <span class="text-primary">Service</span> That Suit Your Request And Let It's Up To Our Experts </template>
                 </h2>
-                <p class="text-light">{{ $t("main.tellUs") }}</p>
+                <p data-wow-duration="1.3s" data-wow-delay="0.2s" class="text-light animated wow fadeInUp">{{ $t("TITLES.serviceDesc") }}</p>
             </div>
 
             <div class="col-span-3 lg:col-span-1 justify-center items-center lg:flex-col flex gap-4">

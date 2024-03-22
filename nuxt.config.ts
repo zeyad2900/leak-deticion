@@ -2,6 +2,11 @@ import { acceptHMRUpdate, defineStore } from "pinia";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    app: {
+        head: {
+            script: [{ src: "/wow.js" }],
+        },
+    },
     devtools: { enabled: true },
     modules: [
         "nuxt-headlessui",
@@ -61,7 +66,7 @@ export default defineNuxtConfig({
     imports: {
         dirs: ["stores"],
     },
-    css: ["~/assets/main.scss"],
+    css: ["~/assets/style/main.scss" , "/assets/style/animation/animate.css"],
     plugins: ["/plugins/vue-toastfiy.ts", "/plugins/VueMaps.js"],
     postcss: {
         plugins: {

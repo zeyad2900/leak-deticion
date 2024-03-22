@@ -4,7 +4,6 @@
             <div class="flex flex-wrap flex-col lg:flex-row justify-center items-center lg:items-start lg:justify-between gap-6">
                 <div class="space-y-6 w-full lg:w-[30%]">
                     <NuxtLink to="/#main"><img width="108" height="56" src="/logos.svg" alt="" /></NuxtLink>
-                    <p class="max-w-[500px]">{{ $t("footer.main") }}</p>
                     <div class="social flex justify-start items-center">
                         <a :href="items.facebook" class="ml-3"><img src="/assets/images/social/Facebook.png" alt="" /></a>
                         <a :href="items.instagram" class="ml-3"><img src="/assets/images/social/Instagram.png" alt="" /></a>
@@ -12,7 +11,7 @@
                     </div>
                 </div>
                 <div class="w-full lg:w-[30%]">
-                    <h2 class="font-medium leading-7 text-lg mb-5">{{ $t("footer.doYouHaveQuestions") }}</h2>
+                    <h2 class="font-medium leading-7 text-lg mb-5">{{ $t("NAV.doYouHaveQuestions") }}</h2>
                     <div class="flex items-end gap-2 mb-4">
                         <img src="/assets/images/imgicons/mail.png" alt="" />
                         <p href="">{{ items.email }}</p>
@@ -25,30 +24,30 @@
                 <div class="flex flex-col w-full lg:w-[30%]">
                     <div class="flex lg:flex-row flex-col justify-between mb-10">
                         <div>
-                            <h2 class="font-medium leading-7 text-lg mb-5">{{ $t("footer.QuickAccess") }}</h2>
+                            <h2 class="font-medium leading-7 text-lg mb-5">{{ $t("NAV.quickAccess") }}</h2>
                             <ul>
                                 <li class="mb-3">
-                                    <NuxtLink to="/#services">{{ $t("footer.OurServices") }}</NuxtLink>
+                                    <NuxtLink to="/#services">{{ $t("NAV.ourServices") }}</NuxtLink>
                                 </li>
                                 <li class="mb-3">
-                                    <NuxtLink to="/#services">{{ $t("footer.RequestAservice") }}</NuxtLink>
+                                    <NuxtLink to="/#services">{{ $t("NAV.callService") }}</NuxtLink>
                                 </li>
                             </ul>
                         </div>
                         <div>
-                            <h2 class="font-medium leading-7 text-lg mb-5">{{ $t("footer.AboutOurSite") }}</h2>
+                            <h2 class="font-medium leading-7 text-lg mb-5">{{ $t("NAV.mainlinks") }}</h2>
                             <ul>
                                 <li class="mb-3">
-                                    <NuxtLink to="/about">{{ $t("footer.aboutuUs") }}</NuxtLink>
+                                    <NuxtLink to="/about">{{ $t("NAV.about") }}</NuxtLink>
                                 </li>
                                 <li class="mb-3">
-                                    <NuxtLink to="/contact">{{ $t("footer.contactUs") }}</NuxtLink>
+                                    <NuxtLink to="/contact">{{ $t("NAV.contact") }}</NuxtLink>
                                 </li>
                                 <li class="mb-3">
-                                    <NuxtLink to="/terms">{{ $t("footer.termsCndConditions") }}</NuxtLink>
+                                    <NuxtLink to="/terms">{{ $t("NAV.terms") }}</NuxtLink>
                                 </li>
                                 <li class="mb-3">
-                                    <NuxtLink to="/policy">{{ $t("footer.privacyPolicy") }}</NuxtLink>
+                                    <NuxtLink to="/policy">{{ $t("NAV.privacy") }}</NuxtLink>
                                 </li>
                             </ul>
                         </div>
@@ -65,7 +64,7 @@
             </div>
         </div>
         <div class="bg-[#003773] py-6 text-white">
-            <p class="text-center text-white">{{ $t("footer.end") }}</p>
+            <p class="text-center text-white">{{ $t("SectionsDescription.copyRights", { year: currentYear }) }}</p>
         </div>
     </footer>
 </template>
@@ -76,6 +75,7 @@ defineProps({
         required: true,
     },
 });
+const currentYear = new Date().getFullYear();
 </script>
 
 <style scoped></style>

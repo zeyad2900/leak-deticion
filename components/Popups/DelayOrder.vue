@@ -4,7 +4,7 @@
             <div v-if="pending" class="flex items-center justify-center h-full py-12">
                 <UILoader />
             </div>
-            <div v-else-if="times.data.length">
+            <div v-else-if="times.data.length" class="h-full">
                 <button class="text-2xl block ms-auto" @click="$emit('close')">
                     <Icon class="text-light" name="ep:close-bold"></Icon>
                 </button>
@@ -12,8 +12,8 @@
                 <VeeForm :validation-schema="schema" @submit="onSubmit">
                     <form>
                         <VeeField name="chooseTimeDate" v-slot="{ field }">
-                            <div class="mb-5">
-                                <div class="flex flex-wrap gap-3">
+                            <div class="mb-2">
+                                <div class="flex flex-wrap gap-1">
                                     <div
                                         v-for="(day, i) in times?.data"
                                         :key="day.title"
@@ -42,8 +42,8 @@
                             </div>
                         </VeeField>
                         <VeeField v-if="chosenDay" name="chooseTime" type="chooseTime" v-slot="{ field }">
-                            <div class="mb-5">
-                                <div class="flex items-center justify-start gap-5 flex-wrap">
+                            <div class="mb-2">
+                                <div class="flex items-center justify-start gap-1 flex-wrap">
                                     <div v-for="(time, i) in chosenTimes" :key="i" class="text-center border rounded-lg" :class="time.value == chosenTime?.value ? 'border-main' : 'border-light'">
                                         <label class="block cursor-pointer relative w-full h-full py-3 px-5 font-bold" :for="`time-${chosenDay?.title}-${time.value}`">
                                             <div class="whitespace-nowrap">
@@ -66,7 +66,7 @@
                             </div>
                         </VeeField>
                     </form>
-                    <div class="space-y-4">
+                    <div class="space-y-2">
                         <button type="submit" :disabled="btnLoading" class="mainbtn w-full">
                             <UIButtonLoader v-if="btnLoading" />
                             <p v-else>تأكيد</p>

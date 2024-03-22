@@ -4,32 +4,37 @@
             <button type="" @click="myShowAndHideStore.changeHandler()" class="text-2xl block ms-auto">
                 <Icon class="text-light" name="ep:close-bold"></Icon>
             </button>
-            <h3 class="text-center font-bold mb-7 text-text text-xl">تغيير كلمة المرور</h3>
+            <h3 class="text-center font-bold mb-7 text-text text-xl">{{ $t("Change password") }}</h3>
 
             <!-- form -->
             <VeeForm :validation-schema="schema" @submit="submitHandler" as="div">
                 <form @submit.prevent="">
                     <div class="flex flex-col mb-2">
                         <VeeField name="password" v-slot="{ field, meta }">
-                            <label class="text-text font-bold mb-1">كلمة المرور</label>
+                            <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.password") }}</label>
                             <div class="maininput">
-                                <input v-bind="field" placeholder="كلمه المرور" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" type="password" />
+                                <input v-bind="field" :placeholder="$t('FORMS.Placeholders.password')" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" type="password" />
                             </div>
                             <VeeErrorMessage v-if="meta.touched && !meta.valid" name="password" as="span" class="!text-danger" />
                         </VeeField>
                     </div>
                     <div class="flex flex-col mb-10">
                         <VeeField name="passwordconfirm" v-slot="{ field, meta }">
-                            <label class="text-text font-bold mb-1">تاكيد كلمه المرور</label>
+                            <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.confirmPassword") }}</label>
                             <div class="maininput">
-                                <input v-bind="field" placeholder="كلمه المرور" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" type="password" />
+                                <input
+                                    v-bind="field"
+                                    :placeholder="$t('FORMS.Placeholders.confirmPassword')"
+                                    :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''"
+                                    type="password"
+                                />
                             </div>
                             <VeeErrorMessage v-if="meta.touched && !meta.valid" name="passwordconfirm" as="span" class="!text-danger" />
                         </VeeField>
                     </div>
 
                     <button :disabled="btnLoading" type="submit" class="mainbtn w-full mb-1">
-                        <p v-if="!btnLoading">تاكيد</p>
+                        <p v-if="!btnLoading">{{ $t("BUTTONS.submit") }}</p>
                         <UIButtonLoader v-else />
                     </button>
                 </form>
@@ -43,6 +48,13 @@ import { configure } from "vee-validate";
 import { useToast } from "vue-toastification";
 import * as yup from "yup";
 
+const myShowAndHideStore = useMyShowAndHideStore();
+const { changeInitialValue } = storeToRefs(myShowAndHideStore);
+const btnLoading = ref(false);
+const toast = useToast();
+const config = useRuntimeConfig();
+const i18n = useI18n();
+
 configure({
     validateOnBlur: true,
     validateOnChange: true,
@@ -50,19 +62,13 @@ configure({
     validateOnInput: true,
 });
 const schema = yup.object().shape({
-    password: yup.string().required().min(9, "Password to weak"),
+    password: yup.string().required(i18n.t("FORMS.Validation.password")),
     passwordconfirm: yup
         .string()
-        .required()
-        .oneOf([yup.ref("password")], "two passwords must be matching"),
+        .required(i18n.t("FORMS.Validation.confirmPassword"))
+        .oneOf([yup.ref("password")], i18n.t("FORMS.Validation.notEqualPasswords")),
 });
 
-const myShowAndHideStore = useMyShowAndHideStore();
-const { changeInitialValue } = storeToRefs(myShowAndHideStore);
-const btnLoading = ref(false);
-const toast = useToast();
-const config = useRuntimeConfig();
-const i18n = useI18n();
 async function submitHandler(values) {
     btnLoading.value = true;
     await $fetch(`${config.public.baseURL}website/reset-password`, {

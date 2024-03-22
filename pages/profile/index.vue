@@ -22,33 +22,31 @@
                     <div class="w-full flex justify-center">
                         <button @click="updatePassword = true" type="button" class="flex gap-2 mt-5 items-center justify-center">
                             <img src="/assets/images/profile/key.png" alt="" />
-                            <p class="text-main">تغيير الرقم السري</p>
+                            <p class="text-main">{{ $t("Changepassword") }}</p>
                         </button>
                     </div>
                 </VeeField>
                 <VeeField type="text" name="fullName" v-slot="{ field, meta }">
                     <div class="w-full">
-                        <label class="text-light">الاسم</label>
+                        <label class="text-light"> {{ $t("FORMS.Placeholders.fullName") }}</label>
                         <div class="maininput">
-                            <input v-bind="field" type="text" :class="!meta.valid && meta.touched ? '!border-danger' : ''" />
+                            <input :placeholder="$t('FORMS.Placeholders.fullName')" v-bind="field" type="text" :class="!meta.valid && meta.touched ? '!border-danger' : ''" />
                         </div>
+                        <VeeErrorMessage name="fullName" as="span" class="text-danger" />
                     </div>
                 </VeeField>
-                <button type="submit" :disabled="btnLoading" class="mainbtn block ms-auto w-36 mt-7 disabled:cursor-not-allowed">حفظ</button>
+                <button type="submit" :disabled="btnLoading" class="mainbtn block ms-auto w-36 mt-7 disabled:cursor-not-allowed">{{ $t("BUTTONS.save") }}</button>
             </form>
         </VeeForm>
         <VeeForm :validation-schema="schema1" :initial-values="initialValue" @submit="changePhone" as="div" v-slot="{ values }">
             <form class="mt-5 w-full">
-                <lable for="phone" class="text-light">رقم الهاتف</lable>
-                <div class="relative flex items-center justify-between">
-                    <GlobalPhoneInput />
-                    <button
-                        v-if="values.phone != data.data.phone"
-                        :disabled="btnLoading1"
-                        class="text-main absolute top-[20%] end-[10px] disabled:opacity-60 disabled:cursor-not-allowed"
-                        type="submit"
-                    >
-                        تاكيد
+                <lable for="phone" class="text-light">{{ $t("FORMS.Placeholders.phoneNumber") }}</lable>
+                <div class="grid grid-cols-10">
+                    <div :class="values.phone != data.data.phone ? 'col-span-8' : 'col-span-10'">
+                        <GlobalPhoneInput />
+                    </div>
+                    <button v-if="values.phone != data.data.phone" :disabled="btnLoading1" class="col-span-2 flex items-center justify-center" type="submit">
+                        {{ $t("BUTTONS.confirm") }}
                     </button>
                 </div>
             </form>
@@ -69,7 +67,7 @@ const emits = defineEmits(["updateProfile"]);
 import * as yup from "yup";
 import { useToast } from "vue-toastification";
 
-const { locale } = useI18n();
+const { t, locale } = useI18n();
 const toast = useToast();
 const btnLoading = ref(false);
 const btnLoading1 = ref(false);
@@ -92,12 +90,12 @@ const initialValue = reactive({
 });
 
 const schema = yup.object().shape({
-    fullName: yup.string().required(),
+    fullName: yup.string().required(t("FORMS.Validation.name")),
     image: yup.mixed(),
 });
 
 const schema1 = yup.object().shape({
-    phone: yup.string().required(),
+    phone: yup.string().required(t("FORMS.Validation.phone")),
     phone_code: yup.mixed().required(),
 });
 

@@ -3,11 +3,11 @@
         <UILoader />
     </div>
     <template v-else-if="items.length">
-        <div class="w-full pe-3">
-            <NuxtLink :to="localePath(`/profile/orders/${item.id}`)" v-for="item in items" :key="item.id" class="block shadow-sm p-6 rounded-[40px]">
+        <div class="w-full">
+            <NuxtLink :to="localePath(`/profile/orders/${item.id}`)" v-for="item in items" :key="item.id" class="block shadow-sm p-6 rounded-[40px] mb-4">
                 <div class="flex items-start justify-between mb-3">
-                    <div class="flex items-center justify-center gap-4">
-                        <div class="w-[150px] h-[100px] rounded-full overflow-hidden">
+                    <div class="flex items-center justify-start gap-4">
+                        <div class="w-[70px] h-[70px] rounded-[50px] overflow-hidden">
                             <img class="w-full h-full object-cover" :src="item.service.image" alt="" />
                         </div>
                         <div>
@@ -27,11 +27,11 @@
                     <div class="flex gap-4">
                         <div class="flex items-center gap-1">
                             <img src="/assets/images/profile/calendar.png" alt="" />
-                            <span class="text-light text-sm">{{ item.start_date }}</span>
+                            <span class="text-light text-xs">{{ item.start_date }}</span>
                         </div>
                         <div class="flex items-center gap-1">
                             <img src="/assets/images/profile/clock.png" alt="" />
-                            <span class="text-light text-sm">{{ item.start_time }}</span>
+                            <span class="text-light text-xs">{{ item.start_time }}</span>
                         </div>
                     </div>
                 </div>

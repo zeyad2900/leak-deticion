@@ -1,63 +1,65 @@
 <template>
-    <div :class="position" class="z-[999] absolute sm:w-[400px] text-text">
+    <div class="top-24 rtl:left-1 rtl:sm:left-24 ltr:right-1 ltr:sm:right-24 z-[999] fixed sm:w-[400px] text-text">
         <UIBaseCard>
-            <div class="flex justify-between items-center mb-7">
-                <h1 class="font-black text-xl">الاشعارات</h1>
-                <button>
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="font-black text-xl">{{ $t("notifications") }}</h1>
+                <button :disabled="deleteLoading" class="disabled:cursor-not-allowed" v-if="notifications.length" @click="handleDeleteAllNotifications">
                     <img src="/assets/images/imgicons/trash.png" alt="" />
                 </button>
             </div>
 
-            <div class="hidden flex-col items-center gap-7">
-                <div>
+            <!-- if notifications is no empty -->
+            <div v-if="notifications.length" class="flex flex-col items-start justify-center gap-3 max-h-[500px] overflow-y-auto">
+                <GlobalNotifictionCard v-for="notify in notifications" :key="notify.id" :notify="notify" />
+            </div>
+
+            <div v-else class="flex-col items-center gap-7">
+                <div class="w-full flex justify-center items-center">
                     <img src="/assets/images/imgicons/notificationsemoty.png" alt="" />
                 </div>
                 <div class="space-y-3">
-                    <h1 class="font-bold text-center text-xl">لا توجد اشعارات لديك</h1>
-                    <p class="text-sm text-light text-center">لا توجد اشعارات لديك الأن</p>
+                    <h1 class="font-bold text-center text-xl">{{ $t("MESSAGES.noNotifications") }}</h1>
                 </div>
-            </div>
-            <!-- hf notifications is no empty -->
-            <div class="flex flex-col items-start justify-center gap-3 max-h-[500px] overflow-y-auto">
-                <button class="flex justify-center items-center gap-7 hover:bg-stroke p-4 rounded-xl">
-                    <img src="/assets/images/imgicons/notficationlogo.png" alt="" />
-                    <div>
-                        <h3 class="font-bold text-start">لقد تمت الخدمة قم بالدفع الان!</h3>
-                        <p class="text-sm text-light text-start">تم تحديد تكلفة الخدمة قم بالدفع</p>
-                    </div>
-                </button>
-                <button class="flex justify-center items-center gap-7 hover:bg-stroke p-4 rounded-xl">
-                    <img src="/assets/images/imgicons/notficationlogo.png" alt="" />
-                    <div>
-                        <h3 class="font-bold text-start">تم الدفع بنجاح قم بتقييم الفني</h3>
-                        <p class="text-sm text-light text-start">اخبرناعن رأيك في عمل الفني و هل قام باتمام مهتمته</p>
-                    </div>
-                </button>
-                <button class="flex justify-center items-center gap-7 hover:bg-stroke p-4 rounded-xl">
-                    <img src="/assets/images/imgicons/notficationlogo.png" alt="" />
-                    <div>
-                        <h3 class="font-bold text-start">اخبرنا عن تجربتك مع شركة تسريب المياه</h3>
-                        <p class="text-sm text-light text-start">تم الدفع بنجاح و اتمام الخدمة اخبرنا عن رأيك</p>
-                    </div>
-                </button>
-                <button class="flex justify-center items-center gap-7 hover:bg-stroke p-4 rounded-xl">
-                    <img src="/assets/images/imgicons/notficationlogo.png" alt="" />
-                    <div>
-                        <h3 class="font-bold text-start">تمت الموافقة علي تأجيل طلب خدمتكم!</h3>
-                        <p class="text-sm text-light text-start">سوف نقوم بارسال فني لحل المشكلة الخاصة بك في الموعد الذي قمت بتحديده</p>
-                    </div>
-                </button>
             </div>
         </UIBaseCard>
     </div>
 </template>
 
 <script setup>
-const { locale } = useI18n();
-
-const position = computed(() => {
-    return locale.value === "ar" ? "top-24 left-1 sm:left-24" : "top-24 right-1 sm:right-24";
+const props = defineProps({
+    notifications: {
+        required: true,
+    },
 });
+import { useToast } from "vue-toastification";
+const toast = useToast();
+const emits = defineEmits(["delete"]);
+const config = useRuntimeConfig();
+const token = useCookie("leakDetectionToken");
+const i18n = useI18n();
+
+const deleteLoading = ref(false);
+async function handleDeleteAllNotifications() {
+    deleteLoading.value = true;
+
+    await $fetch("website/delete_all_notifications", {
+        method: "DELETE",
+        baseURL: config.public.baseURL,
+        headers: {
+            Authorization: `Bearer ${token.value}`,
+            Accept: "application/json",
+            "Accept-Language": i18n.locale.value,
+        },
+    })
+        .then((res) => {
+            emits("delete");
+            toast.success(res.message);
+        })
+        .catch((e) => {
+            toast.error(e.response._data.message);
+        })
+        .finally(() => (deleteLoading.value = false));
+}
 </script>
 
 <style></style>

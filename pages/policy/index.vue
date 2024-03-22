@@ -1,9 +1,9 @@
 <template>
-    <div v-if="pending" class="fixed bg-white z-[500] h-screen w-screen top-0 left-0 flex items-center justify-center pt-28 pb-12">
+     <div v-if="pending" class="fixed bg-white z-[500] h-screen w-screen top-0 left-0 flex items-center justify-center pt-28 pb-12">
         <UILoader />
     </div>
 
-    <Policy v-if="data" :items="data?.data" />
+    <Policy v-else-if="data?.data" :items="data?.data" />
 </template>
 
 <script setup>

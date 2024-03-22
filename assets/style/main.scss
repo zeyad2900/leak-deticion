@@ -18,6 +18,10 @@
     background: var(--main-color);
 }
 
+body {
+    @apply font-poppins;
+}
+
 a {
     cursor: pointer;
 }

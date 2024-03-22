@@ -4,18 +4,18 @@
             <button type="" @click="myShowAndHideStore.forgetPassHandler()" class="text-2xl block ms-auto">
                 <Icon class="text-light" name="ep:close-bold"></Icon>
             </button>
-            <h3 class="text-center font-bold mb-7 text-text text-xl">هل نسيت كلمة المرور؟</h3>
-            <p class="text-light text-center mb-7">قم بادخال البريد الإلكتروني او رقم الهاتف الخاص بك لتغيير كلمة المرور</p>
+            <h3 class="text-center font-bold mb-7 text-text text-xl">{{ $t("forgetPassword") }}</h3>
+            <p class="text-light text-center mb-7">{{ $t("forgetPasswordLabel") }}</p>
 
             <!-- form -->
             <VeeForm :validation-schema="schema" @submit="submitHandler" as="div">
                 <form>
                     <div class="flex flex-col mb-10">
-                        <label class="text-text font-bold mb-1">رقم الهاتف</label>
+                        <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.phoneNumber") }}</label>
                         <GlobalPhoneInput />
                     </div>
                     <button :disabled="btnLoading" type="submit" class="mainbtn w-full mb-1">
-                        <p v-if="!btnLoading">ارسال</p>
+                        <p v-if="!btnLoading">{{ $t("BUTTONS.submit") }}</p>
                         <UIButtonLoader v-else />
                     </button>
                 </form>
@@ -29,6 +29,12 @@ import { configure } from "vee-validate";
 import { useToast } from "vue-toastification";
 import * as yup from "yup";
 
+const myShowAndHideStore = useMyShowAndHideStore();
+const toast = useToast();
+const config = useRuntimeConfig();
+const i18n = useI18n();
+const btnLoading = ref(false);
+
 configure({
     validateOnBlur: true,
     validateOnChange: true,
@@ -38,24 +44,19 @@ configure({
 const schema = yup.object().shape({
     phone: yup
         .string()
-        .required()
+        .required(i18n.t("FORMS.Validation.phone"))
         .test("phone", (value, ctx) => {
             if (value.length == ctx.parent.phone_code.phone_number_limit) {
                 return true;
             } else {
                 return ctx.createError({
-                    message: ctx.parent.phone_code.phone_number_limit,
+                    message: i18n.t("FORMS.Validation.phoneLength", { num: ctx.parent.phone_code.phone_number_limit }),
                     path: "phone",
                 });
             }
         }),
     phone_code: yup.mixed(),
 });
-const myShowAndHideStore = useMyShowAndHideStore();
-const toast = useToast();
-const config = useRuntimeConfig();
-const i18n = useI18n();
-const btnLoading = ref(false);
 
 async function submitHandler(values, actions) {
     btnLoading.value = true;

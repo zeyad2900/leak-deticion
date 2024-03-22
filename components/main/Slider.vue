@@ -2,8 +2,14 @@
     <article class="container py-20">
         <div class="w-full">
             <div class="mb-10">
-                <UIBage>تقييمنا </UIBage>
-                <h1 class="text-2xl md:text-3xl lg:text-5xl max-w-[650px] font-medium mb-2 lg:leading-[3.5rem] text-text leading-[2.5rem]">اراء عملائنا</h1>
+                <UIBage>{{ $t("TITLES.rate") }}</UIBage>
+                <h1
+                    data-wow-duration="1.3s"
+                    data-wow-delay="0.5s"
+                    class="animated wow fadeInUp text-2xl md:text-3xl lg:text-5xl max-w-[650px] font-medium mb-2 lg:leading-[3.5rem] text-text leading-[2.5rem]"
+                >
+                    {{ $t("TITLES.usersRate") }}
+                </h1>
             </div>
             <swiper
                 :slidesPerView="'auto'"

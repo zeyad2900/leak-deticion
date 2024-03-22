@@ -2,7 +2,7 @@
     <div class="fixed top-0 left-0 w-full bg-[#0000009a] flex items-center justify-center h-screen z-[1002]">
         <div class="bg-white rounded-2xl md:w-1/2 w-[90%] p-8">
             <div class="mb-5 flex justify-between items-center">
-                <h1 class="font-bold text-2xl">العنوان</h1>
+                <h1 class="font-bold text-2xl">{{ $t("TITLES.location") }}</h1>
 
                 <button @click="$emit('close')">
                     <Icon class="text-light" name="ep:close-bold"></Icon>
@@ -32,7 +32,7 @@
                     <Icon name="iconamoon:location-pin-bold" />
                 </button>
 
-                <button class="bg-main text-white py-3 block w-full font-bold mt-5 rounded-lg" @click="addAddress">حفظ</button>
+                <button class="bg-main text-white py-3 block w-full font-bold mt-5 rounded-lg" @click="addAddress">{{ $t("BUTTONS.save") }}</button>
             </div>
         </div>
     </div>

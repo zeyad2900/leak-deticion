@@ -2,7 +2,7 @@
     <article class="container pt-40 pb-24">
         <div class="flex flex-col justify-center items-start gap-9">
             <div>
-                <h1 class="font-bold text-3xl mb-10">سياسه الخصوصيه</h1>
+                <h1 class="font-bold text-3xl mb-10">{{ $t("TITLES.privacy") }}</h1>
             </div>
             <div v-for="item in items" :key="item.id">
                 <h1 class="font-bold text-2xl mb-5">{{ item.title }}</h1>

@@ -17,7 +17,7 @@
                         :to="link.path"
                         @click="active(index)"
                         :class="index === activeLinkIndex && white ? 'text-main font-bold' : index === activeLinkIndex && !white ? 'font-bold' : ''"
-                        >{{ $t("nav." + link.Name) }}</NuxtLink
+                        >{{ $t("NAV." + link.Name) }}</NuxtLink
                     >
                 </ul>
             </div>
@@ -28,9 +28,8 @@
                     <li v-if="isLogin">
                         <button @click="myShowAndHideStore.switchNotify()" class="relative w-11 h-11 flex justify-center items-center rounded-lg bg-[#FFFFFF0D]">
                             <nuxt-icon :class="white ? 'text-text' : 'text-white'" class="text-[25px] mt-1 p-0" name="notification" />
-                            <img class="absolute bottom-8 left-8" width="16" height="16" src="/assets/images/imgicons/red.png" alt="" />
+                            <img v-if="Allnotifications.length > 0" class="absolute bottom-8 left-8" width="16" height="16" src="/assets/images/imgicons/red.png" alt="" />
                         </button>
-                        <PopupsNotifications v-if="notification" />
                     </li>
                     <!-- login -->
                     <li>
@@ -39,7 +38,7 @@
                         </button>
                     </li>
                 </ul>
-                <!-- small icon button -->
+                <!-- small menu button -->
                 <button @click="myShowAndHideStore.smallMenueHndler('open')" class="xl:hidden relative w-11 h-11 flex justify-center items-center rounded-lg bg-[#FFFFFF0D]">
                     <Icon name="nimbus:menu" class="" />
                 </button>
@@ -47,13 +46,17 @@
                 <!-- lang button -->
                 <button @click="changeLang" type="button" class="hidden xl:flex items-center gap-1">
                     <nuxt-icon :class="white ? 'text-text' : 'text-white'" class="text-[25px] mt-1 p-0" name="earth" />
-                    {{ $t("nav.lang") }}
+                    {{ $t("NAV.lang") }}
                 </button>
+                <audio controls class="z-[10000] hidden" ref="notificationSound">
+                    <source src="/assets/notifications.wav" type="audio/mpeg" />
+                </audio>
             </div>
         </div>
     </header>
     <!-- login popups -->
     <Teleport to="body">
+        <PopupsNotifications v-if="notification" :notifications="Allnotifications" @delete="Allnotifications = []" />
         <PopupsAuthLogin v-if="login" />
         <PopupsAuthSignup v-if="signup" />
         <PopupsAuthForgetPass v-if="fogertPass" />
@@ -63,20 +66,27 @@
 </template>
 
 <script setup>
+import { useToast } from "vue-toastification";
+
 const { locale, setLocale } = useI18n();
+const toast = useToast();
 const route = useRoute();
+const config = useRuntimeConfig();
+const token = useCookie("leakDetectionToken");
 const myShowAndHideStore = useMyShowAndHideStore();
+const notificationSound = ref();
 
 const { login, signup, fogertPass, verify, change, notification, smallmenu } = storeToRefs(myShowAndHideStore);
 const white = ref(true);
 const activeLinkIndex = ref(null);
+const Allnotifications = ref([]);
 const isLogin = useToggleLogin();
 
 const links = ref([
     { Name: "home", path: "/" },
     { Name: "services", path: "/#services" },
-    { Name: "aboutuUs", path: "/about" },
-    { Name: "contactUs", path: "/contact" },
+    { Name: "about", path: "/about" },
+    { Name: "contact", path: "/contact" },
 ]);
 
 const active = (index) => {
@@ -113,9 +123,43 @@ const loginHandler = () => {
     }
 };
 
+if (token.value) {
+    getNotifictions();
+}
+
+async function getNotifictions() {
+    await $fetch(`${config.public.baseURL}website/notifications`, {
+        headers: {
+            Authorization: `Bearer  ${token.value}`,
+            accept: "application/json",
+            "Accept-Language": locale.value,
+        },
+    }).then((res) => {
+        Allnotifications.value = res.data;
+    });
+}
+
 // show small menu
 onMounted(() => {
     window.addEventListener("scroll", handleScroll);
+    const profileId = useCookie("profileId");
+
+    const io = useIO();
+    const socket2 = io(config.public.socketURL);
+    socket2.on("connect", (payload) => {
+        console.log("connected");
+    });
+
+    socket2.on(`notification:${profileId.value}`, (payload) => {
+        toast.success("اشعار جديد");
+        Allnotifications.value.unshift(payload);
+        notificationSound.value.play();
+    });
+
+    socket2.on("error", (error) => {
+        toast.error(error);
+        console.error("Socket error:", error);
+    });
 });
 </script>
 

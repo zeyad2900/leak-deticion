@@ -4,7 +4,7 @@
             <UILoader />
         </div>
 
-        <div class="container" v-else-if="data?.data">
+        <div class="container" v-if="data?.data">
             <div class="grid grid-cols-12">
                 <div class="lg:col-span-8 col-span-12">
                     <h1 class="text-4xl font-bold mb-10">{{ data?.data.title }}</h1>
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="mb-5">
-                        <h1 class="text-2xl font-bold mb-3">تفاصيل الخدمه</h1>
+                        <h1 class="text-2xl font-bold mb-3">{{ $t("TITLES.service_details") }}</h1>
                         <div class="text-light text-lg" v-html="data?.data.desc"></div>
                     </div>
 
@@ -52,9 +52,9 @@
                         <form class="mb-5">
                             <VeeField name="problem_details" v-slot="{ field }">
                                 <div class="mb-5">
-                                    <label class="md:text-2xl text-xl mb-3 block">تفاصيل المشكلة</label>
+                                    <label class="md:text-2xl text-xl mb-3 block">{{ $t("TITLES.problem_details") }}</label>
                                     <div class="maininput">
-                                        <textarea name="" id="" cols="30" rows="10" placeholder="قم بادخال تفاصيل المشكله" v-bind="field"></textarea>
+                                        <textarea name="" id="" cols="30" rows="10" :placeholder="$t('TITLES.problem_details_value')" v-bind="field"></textarea>
                                     </div>
                                     <vee-error-message name="problem_details" as="span" class="!text-danger" />
                                 </div>
@@ -62,9 +62,9 @@
 
                             <VeeField name="address_details" v-slot="{ field }">
                                 <div class="mb-5">
-                                    <label class="md:text-2xl text-xl mb-3 block">تفاصيل العنوان</label>
+                                    <label class="md:text-2xl text-xl mb-3 block">{{ $t("TITLES.address_details") }}</label>
                                     <div class="maininput">
-                                        <textarea name="" id="" cols="30" rows="10" placeholder="قم بادخال تفاصيل العنوان" v-bind="field"></textarea>
+                                        <textarea name="" id="" cols="30" rows="10" :placeholder="$t('TITLES.address_details_value')" v-bind="field"></textarea>
                                     </div>
                                     <vee-error-message name="address_details" as="span" class="!text-danger" />
                                 </div>
@@ -85,7 +85,7 @@
                                                 <img src="/assets/images/servicesdetails/map.png" alt="" />
                                             </div>
                                             <div class="text-center lg:text-start">
-                                                <h1 class="font-bold mb-2">العنوان</h1>
+                                                <h1 class="font-bold mb-2">{{ $t("FORMS.Placeholders.Adress_Name") }}</h1>
                                                 <p class="text-light">{{ location }}</p>
                                             </div>
                                         </div>
@@ -99,7 +99,7 @@
                             <div>
                                 <VeeField name="chooseTimeDate" v-slot="{ field }">
                                     <div class="mb-5">
-                                        <label class="text-lg font-bold mb-5 block">قم باختيار التاريخ والوقت</label>
+                                        <label class="text-lg font-bold mb-5 block">{{ $t("FORMS.Placeholders.chooseTimeDate") }}</label>
                                         <div class="flex flex-wrap gap-3">
                                             <div
                                                 v-for="(day, i) in data?.work_times"
@@ -194,7 +194,7 @@
                                         <VeeErrorMessage class="text-danger text-sm" name="payment" />
                                     </div>
                                 </VeeField>
-                                <button class="mainbtn w-52">تاكيد الحجز</button>
+                                <button class="mainbtn w-52">{{ $t("BUTTONS.confirm_reservation") }}</button>
                             </div>
                         </form>
                     </VeeForm>
@@ -207,14 +207,12 @@
                                 <img src="/assets/images/servicesdetails/search-normal.png" alt="" />
                             </label>
                             <input
-                                placeholder="ابحث عن شركه"
+                                :placeholder="$t('FORMS.Placeholders.search_for_company')"
                                 type="text"
                                 v-model="search"
                                 class="py-4 ps-10 w-full rounded-2xl focus:outline-none text-xl placeholder:text-xl placeholder:text-light"
                             />
                         </div>
-
-                        <p class="text-forth mb-5 font-bold">قم بأختيار شركة لأتمام الطلب</p>
 
                         <div>
                             <ServicesDetailsSearchCard
@@ -229,7 +227,7 @@
                 </div>
             </div>
             <PopupsMap v-if="showMap" @close="showMap = false" @setAddress="getlocation" />
-            <PopupsDone v-if="confirm_reservation_done" content="تم تاكيد الحجز" />
+            <PopupsDone v-if="confirm_reservation_done" :content="locale == 'ar' ? 'تم تاكيد الحجز' : 'Done'" />
         </div>
     </article>
 </template>
@@ -260,27 +258,27 @@ configure({
     validateOnInput: true,
 });
 
-const { locale } = useI18n();
+const { t, locale } = useI18n();
 const toast = useToast();
 const config = useRuntimeConfig();
 
 const schema = yup.object().shape({
-    problem_details: yup.string().required(),
-    address_details: yup.string().required(),
-    payment: yup.object().required(),
-    chooseTime: yup.object().required(),
-    chooseTimeDate: yup.object().required(),
+    problem_details: yup.string().required(t("ERRORS.problem_details_error")),
+    address_details: yup.string().required(t("ERRORS.address_details_error")),
+    payment: yup.object().required(t("ERRORS.payment_error")),
+    chooseTime: yup.object().required(t("ERRORS.chooseTime_error")),
+    chooseTimeDate: yup.object().required(t("ERRORS.chooseTimeDate_error")),
 });
 
 const payments = ref([
     {
         id: "cash",
-        name: "نقدي",
+        name: t("TITLES.cash"),
         img: new URL("~/assets/images/servicesdetails/money.png", import.meta.url),
     },
     {
         id: "online",
-        name: "اونلاين",
+        name: t("TITLES.online"),
         img: new URL("~/assets/images/servicesdetails/onlinepay.png", import.meta.url),
     },
 ]);
@@ -315,7 +313,7 @@ watch(search, (value) => {
     });
 });
 
-const location = ref("أدخل عنوانك هنا");
+const location = ref(locale.value == "ar" ? "ادخل عنوانك هنا" : "set location here");
 const lng = ref(null);
 const lat = ref(null);
 const getlocation = (value) => {
