@@ -8,7 +8,7 @@
                 <button class="text-2xl block ms-auto" @click="$emit('close')">
                     <Icon class="text-light" name="ep:close-bold"></Icon>
                 </button>
-                <h1 class="text-2xl block me-auto mb-5 font-bold">اختار الوقت والتاريخ</h1>
+                <h1 class="text-2xl block me-auto mb-5 font-bold">{{ $t("FORMS.Placeholders.chooseTimeDate") }}</h1>
                 <VeeForm :validation-schema="schema" @submit="onSubmit">
                     <form>
                         <VeeField name="chooseTimeDate" v-slot="{ field }">
@@ -69,13 +69,13 @@
                     <div class="space-y-2">
                         <button type="submit" :disabled="btnLoading" class="mainbtn w-full">
                             <UIButtonLoader v-if="btnLoading" />
-                            <p v-else>تأكيد</p>
+                            <p v-else>{{ $t("BUTTONS.confirm") }}</p>
                         </button>
-                        <button type="button" @click="$emit('close')" class="secondbtn w-full">تخطي</button>
+                        <button type="button" @click="$emit('close')" class="secondbtn w-full">{{ $t("BUTTONS.skip") }}</button>
                     </div>
                 </VeeForm>
             </div>
-            <p v-else class="text-center text-light w-full">لا توجد مواعيد متاحه</p>
+            <p v-else class="text-center text-light w-full">{{ $t("MESSAGES.noAvailableTimes") }}</p>
         </UIBaseCard>
     </div>
 </template>
@@ -104,8 +104,8 @@ configure({
     validateOnModelUpdate: true, // controls if `update:modelValue` events should trigger validation with `handleChange` handler
 });
 const schema = yup.object().shape({
-    chooseTime: yup.object().required().label(),
-    chooseTimeDate: yup.object().required().label(),
+    chooseTime: yup.object().required(i18n.t("ERRORS.chooseTime_error")).label(),
+    chooseTimeDate: yup.object().required(i18n.t("ERRORS.chooseTimeDate_error")).label(),
 });
 
 watch(chosenDay, (newValue) => {

@@ -23,7 +23,9 @@
                     </div>
                 </div>
                 <div class="flex justify-between">
-                    <p class="font-bold text-sm"><span class="text-light">الخدمه:</span> {{ item.service.title }}</p>
+                    <p class="font-bold text-sm">
+                        <span class="text-light">{{ $t("TITLES.service") }}:</span> {{ item.service.title }}
+                    </p>
                     <div class="flex gap-4">
                         <div class="flex items-center gap-1">
                             <img src="/assets/images/profile/calendar.png" alt="" />
@@ -38,54 +40,8 @@
             </NuxtLink>
         </div>
     </template>
-
-    <!-- <template v-else-if="items.length">
-        <div class="max-h-[500px] w-full overflow-auto pe-3">
-            <nuxt-link :to="localePath(`/profile/orders/${item.id}`)" v-for="item in items" :key="item.id" class="order-card py-4 rounded-md px-2">
-                <div class="flex justify-between gap-2 items-center">
-                    <div class="flex items-center gap-2" v-if="item.status == 'pending'">
-                        <div>
-                            <h5>{{ "طلب رقم" + item.id }}</h5>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2" v-else>
-                        <img class="rounded-lg" src="/assets/images/profile/profilesm.png" alt="order-profile" />
-                        <div>
-                            <h5>{{ item.agent?.full_name }}</h5>
-                            <div class="flex items-center gap-1">
-                                <img src="/assets/images/profile/location.png" alt="Location" />
-                                <h6 class="text-light">{{ item.address }}</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="bg-[#3162da] text-white block p-2 rounded-2xl capitalize" v-if="item.order_id"> طلب صيانة </span>
-                        <span :class="item.status" class="bg-white status inline-block p-2 rounded-2xl capitalize">
-                            {{ item.status_trans }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="flex justify-between gap-2">
-                    <nuxt-link :to="localePath('/orders/1')" class="text-light text-small"
-                        >الخدمة: <span class="text-text text-small font-[400]"> {{ item.service?.title }}</span></nuxt-link
-                    >
-                    <div class="flex items-center gap-2 text-light text-xs">
-                        <div class="flex items-center gap-1">
-                            <img src="/assets/images/profile/calendar.png" alt="" />
-                            <p>{{ item.start_date }}</p>
-                        </div>
-                        <div class="flex items-center gap-1">
-                            <img src="/assets/images/profile/clock.png" alt="" />
-                            <p>{{ item.start_time }}</p>
-                        </div>
-                    </div>
-                </div>
-            </nuxt-link>
-        </div>
-    </template> -->
     <template v-else>
-        <p class="text-center font-bold text-lg text-text mt-5">لا توجد طلبات</p>
+        <p class="text-center font-bold text-lg text-text mt-5">{{ $t("MESSAGES.noOrders") }}</p>
     </template>
 </template>
 

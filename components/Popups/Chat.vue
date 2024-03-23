@@ -5,7 +5,7 @@
                 <div class="flex items-center gap-3">
                     <img src="/assets/images/profile/profilesm.png" class="w-[45px] h-[45px] object-cover rounded-full" alt="profile-image" />
                     <div class="flex items-start flex-col">
-                        <h5 class="font-medium text-lg">name</h5>
+                        <h5 class="font-medium text-lg">{{ profileData?.full_name || "_" }}</h5>
                     </div>
                 </div>
 
@@ -40,7 +40,7 @@
                         </div>
                     </div>
 
-                    <p v-else class="text-center text-forth w-full">لا توجد رسائل</p>
+                    <p v-else class="text-center text-forth w-full">{{ $t("MESSAGES.noMessages") }}</p>
                 </div>
 
                 <div v-if="!finished" class="flex items-center justify-between bg-[#F4F4F8] rounded-[25px] mb-7 lg:px-8 px-4 gap-5">
@@ -90,7 +90,6 @@ const profileData = ref(null);
 const route = useRoute();
 
 const { data: chats, pending, error } = useApi(`general/orders/${route.params.id}/chats`);
-
 
 const chatId = ref(null);
 watch(chatId, (value) => {

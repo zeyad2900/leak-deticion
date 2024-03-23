@@ -3,10 +3,10 @@
         <div class="container">
             <div class="col-span-2 lg:col-span-1 mb-7 lg:mb-0">
                 <div class="flex items-center justify-between mb-8">
-                    <h1 class="font-bold text-2xl">تفاصيل الطلب</h1>
+                    <h1 class="font-bold text-2xl">{{ $t("OrderDetails") }}</h1>
                     <div v-if="order.data.status == 'pending'" class="flex items-start justify-center gap-5">
-                        <button class="mainbtn" @click="delay = true">تاجيل الطلب</button>
-                        <button class="secondbtn !border-danger !text-danger" @click="cansel = true">الغاء الطلب</button>
+                        <button class="mainbtn" @click="delay = true">{{ $t("delayOrder") }}</button>
+                        <button class="secondbtn !border-danger !text-danger" @click="cansel = true">{{ $t("cancelOrder") }}</button>
                     </div>
                 </div>
                 <div class="shadow-sm p-6 rounded-[40px] mb-6 w-full">
@@ -35,7 +35,9 @@
                         </button>
                     </div>
                     <div class="flex justify-between">
-                        <p class="font-bold text-sm"><span class="text-light">الخدمه: </span>{{ order?.data?.service.title }}</p>
+                        <p class="font-bold text-sm">
+                            <span class="text-light">{{ $t("TITLES.service") }}: </span>{{ order?.data?.service.title }}
+                        </p>
                         <div class="flex gap-4">
                             <div class="flex items-center gap-1">
                                 <img src="/assets/images/profile/calendar.png" alt="" />
@@ -51,14 +53,14 @@
 
                 <div class="shadow-sm p-6 rounded-[40px]">
                     <div class="flex flex-col items-start gap-4 mb-3">
-                        <h3 class="font-bold mb-2 text-light">تفاصيل المشكلة:</h3>
+                        <h3 class="font-bold mb-2 text-light">{{ $t("ProblemOrderDetails") }}:</h3>
                         <p class="font-bold">{{ order?.data?.desc }}</p>
                     </div>
                 </div>
 
                 <div class="shadow-sm p-6 rounded-[40px]">
                     <div class="flex flex-col items-start gap-4 mb-3">
-                        <h3 class="font-bold mb-2 text-light">طريقه الدفع</h3>
+                        <h3 class="font-bold mb-2 text-light">{{ $t("PaymentMethod") }}</h3>
                         <div class="flex gap-1 items-center">
                             <img class="p-2 bg-stroke rounded-full" src="/assets/images/servicesdetails/money.png" alt="" />
                             <p>{{ order?.data?.payment_type }}</p>
@@ -67,7 +69,7 @@
                 </div>
 
                 <div class="mt-6">
-                    <h6 class="font-bold mb-2 text-light">الموقع</h6>
+                    <h6 class="font-bold mb-2 text-light">{{ $t("Location") }}</h6>
 
                     <div>
                         <div class="pb-4" v-if="center">

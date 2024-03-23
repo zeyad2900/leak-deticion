@@ -7,7 +7,7 @@
             <div v-if="loading" class="flex items-center justify-center h-full py-12">
                 <UILoader />
             </div>
-            <h1 v-if="!loading" class="text-2xl block me-auto mb-5 font-bold">اخبرنا سبب إلغاء الطلب</h1>
+            <h1 v-if="!loading" class="text-2xl block me-auto mb-5 font-bold">{{ $t("TITLES.tellUsCancelReason") }}</h1>
             <VeeForm v-if="!loading" :initial-values="initialValues" :validation-schema="schema" as="div" @submit="onSubmit">
                 <form>
                     <div class="px-7">
@@ -28,7 +28,7 @@
                             </VeeField>
                             <VeeField type="radio" name="reason" value="other" v-slot="{ field }">
                                 <label for="reason-otherReathon" class="flex w-full border border-stroke p-3 rounded-xl justify-between cursor-pointer"
-                                    >سبب اخر
+                                    >{{ $t("TITLES.otherReason") }}
                                     <input
                                         name="reason"
                                         type="radio"
@@ -44,7 +44,7 @@
                         <div v-if="showOnterReason">
                             <VeeField type="text" v-slot="{ field }" name="otherReason">
                                 <div class="maininput">
-                                    <textarea name="otherReason" type="text" v-bind="field" placeholder="قم بكتابة السبب هنا" />
+                                    <textarea name="otherReason" type="text" v-bind="field" :placeholder="$t('TITLES.otherReason')" />
                                 </div>
                             </VeeField>
                         </div>
@@ -52,7 +52,7 @@
 
                     <button :disabled="btnLoading" class="mainbtn w-full">
                         <UIButtonLoader v-if="btnLoading" />
-                        <p v-else>تأكيد</p>
+                        <p v-else>{{ $t("BUTTONS.confirm") }}</p>
                     </button>
                 </form>
             </VeeForm>

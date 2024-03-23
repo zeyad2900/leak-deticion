@@ -13,32 +13,37 @@
                         <VeeField name="currntpassword" v-slot="{ field, meta }">
                             <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.currentPasswordLabel") }}</label>
                             <div class="maininput">
-                                <input v-bind="field" placeholder="كلمه المرور" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" type="password" />
+                                <input v-bind="field" :placeholder="$t('FORMS.Placeholders.password')" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" type="password" />
                             </div>
                             <VeeErrorMessage v-if="meta.touched && !meta.valid" name="currntpassword" as="span" class="!text-danger" />
-                        </VeeField> 
+                        </VeeField>
                     </div>
                     <div class="flex flex-col mb-2">
                         <VeeField name="newpassword" v-slot="{ field, meta }">
-                            <label class="text-text font-bold mb-1">كلمة المرور الجديده</label>
+                            <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.newPasswordLabel") }}</label>
                             <div class="maininput">
-                                <input v-bind="field" placeholder="كلمه المرور" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" type="password" />
+                                <input v-bind="field" :placeholder="$t('FORMS.Placeholders.password')" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" type="password" />
                             </div>
                             <VeeErrorMessage v-if="meta.touched && !meta.valid" name="newpassword" as="span" class="!text-danger" />
                         </VeeField>
                     </div>
                     <div class="flex flex-col mb-10">
                         <VeeField name="passwordconfirm" v-slot="{ field, meta }">
-                            <label class="text-text font-bold mb-1">تاكيد كلمه المرور</label>
+                            <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.confirmPassword") }}</label>
                             <div class="maininput">
-                                <input v-bind="field" placeholder="كلمه المرور" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" type="password" />
+                                <input
+                                    v-bind="field"
+                                    :placeholder="$t('FORMS.Placeholders.confirmPassword')"
+                                    :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''"
+                                    type="password"
+                                />
                             </div>
                             <VeeErrorMessage v-if="meta.touched && !meta.valid" name="passwordconfirm" as="span" class="!text-danger" />
                         </VeeField>
                     </div>
 
                     <button :disabled="btnLoading" type="submit" class="mainbtn w-full mb-1">
-                        <p v-if="!btnLoading">تاكيد</p>
+                        <p v-if="!btnLoading">{{ $t("confirm") }}</p>
                         <UIButtonLoader v-else />
                     </button>
                 </form>
@@ -52,6 +57,8 @@ import { configure } from "vee-validate";
 import { useToast } from "vue-toastification";
 import * as yup from "yup";
 
+const i18n = useI18n();
+
 configure({
     validateOnBlur: true,
     validateOnChange: true,
@@ -59,24 +66,23 @@ configure({
     validateOnInput: true,
 });
 const schema = yup.object().shape({
-    currntpassword: yup.string().required().min(9),
-    newpassword: yup.string().required().min(9, "Password to weak"),
+    currntpassword: yup.string().required(i18n.t("FORMS.Validation.currentPassword")),
+    newpassword: yup.string().required(i18n.t("FORMS.Validation.password")),
     passwordconfirm: yup
         .string()
-        .required()
-        .oneOf([yup.ref("newpassword")], "two passwords must be matching"),
+        .required(i18n.t("FORMS.Validation.confirmPassword"))
+        .oneOf([yup.ref("newpassword")], i18n.t("FORMS.Validation.notEqualPasswords")),
 });
 
 const btnLoading = ref(false);
 const toast = useToast();
 const config = useRuntimeConfig();
-const i18n = useI18n();
 const emits = defineEmits(["close"]);
 const token = useCookie("leakDetectionToken");
 
 async function submitHandler(values) {
     if (values.currntpassword === values.newpassword) {
-        toast.error("password match");
+        toast.error(i18n.t("FORMS.Validation.passwordsMatch"));
     } else {
         btnLoading.value = true;
         await $fetch(`${config.public.baseURL}website/profile/update-password`, {

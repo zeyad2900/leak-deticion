@@ -2,7 +2,7 @@
     <div class="flex flex-col items-center lg:block">
         <div class="grid grid-cols-4 gap-1 md:gap-2 lg:gap-4 mb-12 links">
             <NuxtLink
-                class="secondbtn flex items-center justify-center text-center"
+                class=" text-sm secondbtn flex items-center justify-center text-center"
                 :to="
                     localePath({
                         path: '/profile/orders',
@@ -13,10 +13,10 @@
                     })
                 "
                 :class="{ active: $route.query.status == 'current' }"
-                >الطلبات الحاليه</NuxtLink
+                >{{ $t("Currentorders") }}</NuxtLink
             >
             <NuxtLink
-                class="secondbtn flex items-center justify-center text-center"
+                class=" text-sm secondbtn flex items-center justify-center text-center"
                 :to="
                     localePath({
                         path: '/profile/orders',
@@ -27,10 +27,10 @@
                     })
                 "
                 :class="{ active: $route.query.status == 'finished' }"
-                >الطلبات المنتهيه</NuxtLink
+                >{{ $t("Completedorders") }}</NuxtLink
             >
             <NuxtLink
-                class="secondbtn flex items-center justify-center text-center"
+                class=" text-sm secondbtn flex items-center justify-center text-center"
                 :to="
                     localePath({
                         path: '/profile/orders',
@@ -41,10 +41,10 @@
                     })
                 "
                 :class="{ active: $route.query.status == 'delayed' }"
-                >الطلبات المؤجله</NuxtLink
+                >{{ $t("Delayedorders") }}</NuxtLink
             >
             <NuxtLink
-                class="secondbtn flex items-center justify-center text-center"
+                class=" text-sm secondbtn flex items-center justify-center text-center"
                 :to="
                     localePath({
                         path: '/profile/orders',
@@ -55,7 +55,7 @@
                     })
                 "
                 :class="{ active: $route.query.status == 'canceled' }"
-                >الطلبات الملغيه</NuxtLink
+                >{{ $t("Canceledorders") }}</NuxtLink
             >
         </div>
         <NuxtPage />
