@@ -1,5 +1,5 @@
 <template>
-    <div :class="styles" class="bg-white p-5 mb-5 last:mb-0 rounded-2xl block border border-light transition-all cursor-pointer">
+    <div :class="styles" class="bg-white p-5 mb-5 last:mb-0 rounded-2xl block border border-stroke transition-all cursor-pointer">
         <div class="w-fit mx-auto mb-4">
             <img :src="company.image" alt="company" />
         </div>

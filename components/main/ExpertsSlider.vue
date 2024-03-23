@@ -2,6 +2,7 @@
     <swiper
         :slidesPerView="3"
         :spaceBetween="30"
+        :breakpoints="{ '30': { slidesPerView: 1, spaceBetween: 20 }, '768': { slidesPerView: 2, spaceBetween: 40 }, '1024': { slidesPerView: 3, spaceBetween: 20 } }"
         :pagination="{
             clickable: true,
         }"
@@ -47,19 +48,8 @@ defineProps({
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100% !important;
 }
 
-@media (min-width: 992px) {
-    .swiper-slide {
-        width: calc(100% / 2) !important;
-    }
-}
-@media (min-width: 1200px) {
-    .swiper-slide {
-        width: calc(100% / 3) !important;
-    }
-}
 
 .swiper-slide img {
     display: block;

@@ -27,7 +27,7 @@
                     </div>
                 </VeeField>
                 <VeeField type="text" name="fullName" v-slot="{ field, meta }">
-                    <div class="w-full">
+                    <div class="w-full space-y-1">
                         <label class="text-light"> {{ $t("FORMS.Placeholders.fullName") }}</label>
                         <div class="maininput">
                             <input :placeholder="$t('FORMS.Placeholders.fullName')" v-bind="field" type="text" :class="!meta.valid && meta.touched ? '!border-danger' : ''" />
@@ -39,16 +39,12 @@
             </form>
         </VeeForm>
         <VeeForm :validation-schema="schema1" :initial-values="initialValue" @submit="changePhone" as="div" v-slot="{ values }">
-            <form class="mt-5 w-full">
-                <lable for="phone" class="text-light">{{ $t("FORMS.Placeholders.phoneNumber") }}</lable>
-                <div class="grid grid-cols-10">
-                    <div :class="values.phone != data.data.phone ? 'col-span-8' : 'col-span-10'">
-                        <GlobalPhoneInput />
-                    </div>
-                    <button v-if="values.phone != data.data.phone" :disabled="btnLoading1" class="col-span-2 flex items-center justify-center" type="submit">
-                        {{ $t("BUTTONS.confirm") }}
-                    </button>
-                </div>
+            <form class="mt-5 w-full space-y-1 relative">
+                <label for="phone" class="text-light">{{ $t("FORMS.Placeholders.phoneNumber") }}</label>
+                <GlobalPhoneInput />
+                <button v-if="values.phone != data.data.phone" :disabled="btnLoading1" class="absolute top-9 end-2 text-main flex items-center justify-center" type="submit">
+                    {{ $t("BUTTONS.confirm") }}
+                </button>
             </form>
         </VeeForm>
         <PopupsAuthUpdatePass v-if="updatePassword" @close="updatePassword = false" />

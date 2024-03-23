@@ -50,7 +50,7 @@
             </div>
             <!-- scroll to services -->
             <NuxtLink
-                to="/#services"
+                :to="localePath('/#services')"
                 type="button"
                 data-wow-duration="1.3s"
                 data-wow-delay="0.3s"

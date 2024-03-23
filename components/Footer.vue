@@ -3,11 +3,11 @@
         <div class="container py-14">
             <div class="flex flex-wrap flex-col lg:flex-row justify-center items-center lg:items-start lg:justify-between gap-6">
                 <div class="space-y-6 w-full lg:w-[30%]">
-                    <NuxtLink to="/#main"><img width="108" height="56" src="/logos.svg" alt="" /></NuxtLink>
-                    <div class="social flex justify-start items-center">
-                        <a :href="items.facebook" class="ml-3"><img src="/assets/images/social/Facebook.png" alt="" /></a>
-                        <a :href="items.instagram" class="ml-3"><img src="/assets/images/social/Instagram.png" alt="" /></a>
-                        <a :href="items.youtube" class="ml-3"><img src="/assets/images/social/youtube.png" alt="" /></a>
+                    <NuxtLink :to="localePath('/#main')"><img width="108" height="56" src="/logos.svg" alt="" /></NuxtLink>
+                    <div class="social flex justify-start items-center gap-5">
+                        <a :href="items.facebook"><img src="/assets/images/social/Facebook.png" alt="" /></a>
+                        <a :href="items.instagram"><img src="/assets/images/social/Instagram.png" alt="" /></a>
+                        <a :href="items.youtube"><img src="/assets/images/social/youtube.png" alt="" /></a>
                     </div>
                 </div>
                 <div class="w-full lg:w-[30%]">
@@ -27,10 +27,10 @@
                             <h2 class="font-medium leading-7 text-lg mb-5">{{ $t("NAV.quickAccess") }}</h2>
                             <ul>
                                 <li class="mb-3">
-                                    <NuxtLink to="/#services">{{ $t("NAV.ourServices") }}</NuxtLink>
+                                    <NuxtLink :to="localePath('/#services')">{{ $t("NAV.ourServices") }}</NuxtLink>
                                 </li>
                                 <li class="mb-3">
-                                    <NuxtLink to="/#services">{{ $t("NAV.callService") }}</NuxtLink>
+                                    <NuxtLink :to="localePath('/#services')">{{ $t("NAV.callService") }}</NuxtLink>
                                 </li>
                             </ul>
                         </div>
@@ -38,16 +38,16 @@
                             <h2 class="font-medium leading-7 text-lg mb-5">{{ $t("NAV.mainlinks") }}</h2>
                             <ul>
                                 <li class="mb-3">
-                                    <NuxtLink to="/about">{{ $t("NAV.about") }}</NuxtLink>
+                                    <NuxtLink :to="localePath('/about')">{{ $t("NAV.about") }}</NuxtLink>
                                 </li>
                                 <li class="mb-3">
-                                    <NuxtLink to="/contact">{{ $t("NAV.contact") }}</NuxtLink>
+                                    <NuxtLink :to="localePath('/contact')">{{ $t("NAV.contact") }}</NuxtLink>
                                 </li>
                                 <li class="mb-3">
-                                    <NuxtLink to="/terms">{{ $t("NAV.terms") }}</NuxtLink>
+                                    <NuxtLink :to="localePath('/terms')">{{ $t("NAV.terms") }}</NuxtLink>
                                 </li>
                                 <li class="mb-3">
-                                    <NuxtLink to="/policy">{{ $t("NAV.privacy") }}</NuxtLink>
+                                    <NuxtLink :to="localePath('/policy')">{{ $t("NAV.privacy") }}</NuxtLink>
                                 </li>
                             </ul>
                         </div>

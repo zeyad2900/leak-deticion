@@ -1,9 +1,9 @@
 <template>
     <div class="col-span-12 lg:col-span-5 mb-10 lg:mb-0">
-        <div class="bg-[#FFFFFF] p-10 rounded-[40px] lg:w-[80%] shadow-lg">
+        <div class="bg-[#FFFFFF] p-10 rounded-[40px] lg:w-[80%] drop-shadow">
             <h1 class="font-bold text-2xl mb-8">{{ $t("PersonalAccount") }}</h1>
 
-            <NuxtLink to="/profile" class="flex items-center justify-start gap-4 mb-8">
+            <NuxtLink  :to="localePath('/profile')" class="flex items-center justify-start gap-4 mb-8">
                 <div class="w-20 h-20 rounded-full overflow-hidden">
                     <img class="w-full h-full object-cover" :src="data?.data.image" :alt="data?.data.full_name" />
                 </div>
@@ -18,7 +18,7 @@
                 </div>
             </NuxtLink>
 
-            <NuxtLink to="/profile/orders" class="flex items-center justify-between mb-8">
+            <NuxtLink :to="localePath('/profile/orders')" class="flex items-center justify-between mb-8">
                 <div class="flex items-center gap-3">
                     <div class="p-3"><Icon name="fa6-solid:box-archive" /></div>
                     <p>{{ $t("orders") }}</p>
@@ -43,13 +43,16 @@
                 <img class="bg-[#ef233b1f] p-2 rounded-full" src="/assets/images/profile/logout.png" alt="" />
                 <p>{{ $t("logOutbtn") }}</p>
             </button>
-            <PopupsAuthLogout :loading="logoutLoading" @logout="handleLogout" @close="Logout = false" v-if="Logout" />
-
+            <Teleport to="body">
+                <PopupsAuthLogout :loading="logoutLoading" @logout="handleLogout" @close="Logout = false" v-if="Logout" />
+            </Teleport>
             <button @click="Delete = true" class="flex gap-3 mb-8 items-center">
                 <img class="bg-[#ef233b1f] p-2 rounded-full" src="/assets/images/imgicons/trash.png" alt="" />
                 <p>{{ $t("Deletebtn") }}</p>
             </button>
-            <PopupsAuthDelete :loading="logoutLoading" @delete="handleDelete" @close="Delete = false" v-if="Delete" />
+            <Teleport to="body">
+                <PopupsAuthDelete :loading="logoutLoading" @delete="handleDelete" @close="Delete = false" v-if="Delete" />
+            </Teleport>
         </div>
     </div>
 </template>

@@ -98,7 +98,7 @@ async function submitHandler(values) {
                     phone_code: verfiyInitialValue.value.phone_code,
                 });
                 verfiyInitialValue.value = null;
-                toast.success(res.message);
+                toast.success(i18n.locale.value == "ar" ? "تم التحقق" : "verfiy success");
             })
             .catch((err) => {
                 toast.error(err.response._data.message);

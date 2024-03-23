@@ -5,7 +5,7 @@
     <header :class="white ? 'text-text bg-white border-b' : 'text-white bg-dark'" class="fixed top-0 flex items-center justify-center start-0 w-full z-[1000] h-[85px] border-light border-opacity-35">
         <div class="container flex items-center justify-between">
             <!-- logo -->
-            <NuxtLink to="/">
+            <NuxtLink :to="localePath('/')">
                 <nuxt-icon :class="white ? 'text-main' : 'text-white'" class="text-[70px] m-0" name="logo" />
             </NuxtLink>
             <!-- llinks -->
@@ -14,7 +14,7 @@
                     <NuxtLink
                         v-for="(link, index) in links"
                         :key="index"
-                        :to="link.path"
+                        :to="localePath(link.path)"
                         @click="active(index)"
                         :class="index === activeLinkIndex && white ? 'text-main font-bold' : index === activeLinkIndex && !white ? 'font-bold' : ''"
                         >{{ $t("NAV." + link.Name) }}</NuxtLink
@@ -69,8 +69,10 @@
 import { useToast } from "vue-toastification";
 
 const { locale, setLocale } = useI18n();
+const localePath = useLocalePath();
 const toast = useToast();
 const route = useRoute();
+const router = useRouter();
 const config = useRuntimeConfig();
 const token = useCookie("leakDetectionToken");
 const myShowAndHideStore = useMyShowAndHideStore();
@@ -119,7 +121,7 @@ const loginHandler = () => {
     if (isLogin.value === false) {
         myShowAndHideStore.loginHnadler("open");
     } else {
-        navigateTo("/profile");
+        router.push(localePath("/profile"));
     }
 };
 

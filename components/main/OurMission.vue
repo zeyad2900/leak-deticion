@@ -9,7 +9,7 @@
                 <h1 data-wow-duration="1.3s" data-wow-delay="0.5s" class="animated wow fadeInUp text-2xl lg:text-4xl max-w-[450px] lg:leading-[2.8rem] text-text font-bold leading-[2.5rem]">
                     {{ $t("TITLES.mission") }}
                 </h1>
-                <div data-wow-duration="1.3s" data-wow-delay="0.5s" class="animated wow fadeInUp space-y-4">
+                <div data-wow-duration="1.3s" data-wow-delay="0.5s" class="animated wow fadeInUp space-y-10">
                     <div>
                         <p class="text-light">{{ $t("TITLES.downloadApp") }}</p>
                         <p class="text-light">{{ $t("TITLES.enjoy") }}</p>

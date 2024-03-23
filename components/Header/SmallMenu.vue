@@ -4,10 +4,10 @@
             <Icon name="ep:close-bold" size="40" />
         </button>
         <ul class="flex flex-col items-center justify-center gap-6">
-            <NuxtLink to="/">{{ $t("NAV.home") }}</NuxtLink>
-            <NuxtLink to="/#services">{{ $t("NAV.services") }}</NuxtLink>
-            <NuxtLink to="/about">{{ $t("NAV.about") }}</NuxtLink>
-            <NuxtLink to="/contact">{{ $t("NAV.contact") }}</NuxtLink>
+            <NuxtLink :to="localePath('/')">{{ $t("NAV.home") }}</NuxtLink>
+            <NuxtLink :to="localePath('/#services')">{{ $t("NAV.services") }}</NuxtLink>
+            <NuxtLink :to="localePath('/about')">{{ $t("NAV.about") }}</NuxtLink>
+            <NuxtLink :to="localePath('/contact')">{{ $t("NAV.contact") }}</NuxtLink>
         </ul>
         <button @click="changeLang" type="button" class="flex items-center gap-1">
             <nuxt-icon class="text-white text-[25px] mt-1 p-0" name="earth" />

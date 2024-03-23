@@ -2,7 +2,7 @@
     <div class="min-h-screen relative">
         <div class="container">
             <div class="col-span-2 lg:col-span-1 mb-7 lg:mb-0">
-                <div class="flex items-center justify-between mb-8">
+                <div class="flex flex-col md:flex-row gap-6 md:items-center justify-between mb-8">
                     <h1 class="font-bold text-2xl">{{ $t("OrderDetails") }}</h1>
                     <div v-if="order.data.status == 'pending'" class="flex items-start justify-center gap-5">
                         <button class="mainbtn" @click="delay = true">{{ $t("delayOrder") }}</button>
@@ -107,7 +107,7 @@
             @close="cansel = false"
             @refresh="
                 refresh;
-                navigateTo('/profile/orders');
+                navigateTo(localePath('/profile/orders'));
             "
         />
     </Teleport>
@@ -117,7 +117,7 @@
             @close="delay = false"
             @refresh="
                 refresh;
-                navigateTo('/profile/orders');
+                navigateTo(localePath('/profile/orders'));
             "
         />
     </Teleport>

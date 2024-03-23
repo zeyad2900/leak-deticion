@@ -1,7 +1,7 @@
 <template>
     <article id="about" class="container py-20">
         <div class="grid grid-cols-3 gap-9">
-            <div class="col-span-3 space-y-5 lg:col-span-2 order-2 lg:order-1">
+            <div class="col-span-3 space-y-10 lg:col-span-2 order-2 lg:order-1">
                 <UIBage>{{ $t("NAV.about") }}</UIBage>
                 <h2
                     data-wow-duration="1.3s"
@@ -11,12 +11,14 @@
                     {{ items.title }}
                 </h2>
 
-                <div class="grid sm:grid-cols-2 gap-4">
+                <div class="grid sm:grid-cols-2 gap-x-[24px] gap-y-[50px]">
                     <div v-for="advantage in advantages" :key="advantage.id" data-wow-duration="1.3s" data-wow-delay="150" class="animated wow fadeInUp flex gap-3 items-center">
-                        <nuxt-img :src="advantage.image" placeholder="/car.png" width="50" height="50" alt="truck fast" class="mt-2" />
+                        <div class="w-16 h-16 rounded-full bg-stroke flex items-center justify-center">
+                            <nuxt-img :src="advantage.image" placeholder="/car.png" width="30" height="30" alt="truck fast" />
+                        </div>
                         <div>
                             <h3 class="font-medium">{{ advantage.title }}</h3>
-                            <div class="text-text-light text-sm" v-html="advantage.desc"></div>
+                            <div class="text-light text-sm" v-html="advantage.desc"></div>
                         </div>
                     </div>
                 </div>
@@ -27,7 +29,7 @@
             <div
                 data-wow-duration="1.3s"
                 data-wow-delay="0.3s"
-                class="animated wow zoomIn col-span-3 lg:col-span-1 order-1 lg:order-2 w-[280px] h-[280px] md:w-[400px] md:h-[400px] mx-auto mb-11 lg:mb-0 relative"
+                class="animated wow zoomIn flex items-center col-span-3 lg:col-span-1 order-1 lg:order-2 w-[280px] h-[280px] md:w-[400px] md:h-full mx-auto mb-11 lg:mb-0 relative"
             >
                 <button @click="video = true" class="round relative">
                     <span class="absolute top-[40%] end-[40%] w-16 h-16 rounded-full border flex justify-center items-center z-20">

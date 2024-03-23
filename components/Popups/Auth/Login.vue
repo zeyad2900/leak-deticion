@@ -102,7 +102,7 @@ async function submitHandler(values, actions) {
                 });
                 loginInitialValue.value = null;
             }
-            toast.success(res.message);
+            toast.success(i18n.locale.value == "ar" ? "تم تسجبل الدخول بنجاح" : "login success");
         })
         .catch((e) => {
             toast.error(e.response._data.message);

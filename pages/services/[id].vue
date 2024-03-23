@@ -104,8 +104,8 @@
                                             <div
                                                 v-for="(day, i) in data?.work_times"
                                                 :key="day.title"
-                                                class="text-center border-2 rounded-lg w-fit flex-wrap"
-                                                :class="day.title == chosenDay?.title ? 'border-main' : 'border-light'"
+                                                class="text-center border rounded-lg w-fit flex-wrap"
+                                                :class="day.title == chosenDay?.title ? 'border-main' : 'border-stroke'"
                                             >
                                                 <label class="block cursor-pointer relative w-full h-full p-2" :for="`day${i}`">
                                                     <div class="font-bold whitespace-nowrap">
@@ -135,8 +135,8 @@
                                             <div
                                                 v-for="(time, i) in currentTimes"
                                                 :key="i"
-                                                class="text-center border-2 rounded-lg"
-                                                :class="time.value == chosenTime?.value ? 'border-main' : 'border-light'"
+                                                class="text-center border rounded-lg"
+                                                :class="time.value == chosenTime?.value ? 'border-main' : 'border-stroke'"
                                             >
                                                 <label class="block cursor-pointer relative w-full h-full py-3 px-5 font-bold" :for="`time-${chosenDay?.title}-${time.value}`">
                                                     <div class="whitespace-nowrap">
@@ -170,7 +170,7 @@
                                 <VeeField name="payment" type="payment" v-slot="{ field }">
                                     <div class="mb-7">
                                         <div class="flex items-center justify-start gap-5">
-                                            <div v-for="(payment, i) in payments" :key="i" class="text-center border-2 rounded-lg" :class="payment == chosenPayment ? 'border-main' : 'border-light'">
+                                            <div v-for="(payment, i) in payments" :key="i" class="text-center border rounded-lg" :class="payment == chosenPayment ? 'border-main' : 'border-stroke'">
                                                 <label class="cursor-pointer relative h-full py-2 px-5 w-fit min-h-[45px] flex items-center justify-center" :for="`payment${i}`">
                                                     <div class="flex items-center gap-3">
                                                         <img :src="payment.img" alt="payment-image" />
@@ -194,7 +194,7 @@
                                         <VeeErrorMessage class="text-danger text-sm" name="payment" />
                                     </div>
                                 </VeeField>
-                                <button class="mainbtn w-52">{{ $t("BUTTONS.confirm_reservation") }}</button>
+                                <button :disabled="btnLoading" class="mainbtn w-52 disabled:cursor-not-allowed">{{ $t("BUTTONS.confirm_reservation") }}</button>
                             </div>
                         </form>
                     </VeeForm>
@@ -235,6 +235,7 @@
 <script setup>
 const route = useRoute();
 const router = useRouter();
+const localePath = useLocalePath();
 const { data, pending } = await useApi(`website/services/${route.params.id}`);
 const { data: companies } = await useApi(`website/services/${route.params.id}/companies`);
 
@@ -326,8 +327,10 @@ const token = useCookie("leakDetectionToken");
 
 const showMap = ref(false);
 const confirm_reservation_done = ref(false);
+const btnLoading = ref(false);
 
 const submit = async (values, actions) => {
+    btnLoading.value = true;
     const frmData = new FormData();
     frmData.append("company_id", selectedCompany.value);
     frmData.append("service_id", data?.value?.data.id);
@@ -354,13 +357,13 @@ const submit = async (values, actions) => {
             confirm_reservation_done.value = true;
             setTimeout(() => {
                 confirm_reservation_done.value = false;
-                navigateTo("/profile/orders");
+                router.push(localePath("/profile/orders"));
             }, 1000);
         })
         .catch((err) => {
             toast.error(err.response._data.message);
         });
-
+    btnLoading.value = true;
     chosenDay.value = null;
     chosenTime.value = null;
     chosenPayment.value = null;

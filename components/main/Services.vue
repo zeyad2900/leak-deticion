@@ -1,7 +1,7 @@
 <template>
     <article id="services" class="container py-24">
         <div class="home_service grid grid-cols-3 py-8">
-            <div class="col-span-3 space-y-5 px-5 py-20 lg:px-11 lg:col-span-2">
+            <div class="col-span-3 space-y-14 px-5 py-20 lg:px-11 lg:col-span-2">
                 <UIBage class="mb-10 px-5 py-2 text-md font-medium bg-white rounded-full w-fit text-main">{{ $t("NAV.services") }}</UIBage>
                 <h2
                     data-wow-duration="1.3s"
@@ -14,7 +14,7 @@
                 <p data-wow-duration="1.3s" data-wow-delay="0.2s" class="text-light animated wow fadeInUp">{{ $t("TITLES.serviceDesc") }}</p>
             </div>
 
-            <div class="col-span-3 lg:col-span-1 justify-center items-center lg:flex-col flex gap-4">
+            <div class="drop-shadow col-span-3 lg:col-span-1 justify-center items-center lg:flex-col flex gap-4">
                 <ServicesServiceCard v-for="item in data" :key="item.id" :item="item" />
             </div>
         </div>

@@ -11,7 +11,7 @@
                     {{ $t("TITLES.bestExperts") }}
                 </h1>
             </div>
-            <NuxtLink to="/contact" class="mainbtn !w-fit">{{ $t("BUTTONS.contactUs") }}</NuxtLink>
+            <NuxtLink :to="localePath('/contact')" class="mainbtn !w-fit">{{ $t("BUTTONS.contactUs") }}</NuxtLink>
         </div>
         <MainExpertsSlider :items="data" />
     </article>
