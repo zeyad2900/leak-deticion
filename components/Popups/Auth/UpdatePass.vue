@@ -16,7 +16,7 @@
                                 <input v-bind="field" placeholder="كلمه المرور" :class="meta.touched && !meta.valid ? '!border-danger !text-danger' : ''" type="password" />
                             </div>
                             <VeeErrorMessage v-if="meta.touched && !meta.valid" name="currntpassword" as="span" class="!text-danger" />
-                        </VeeField>
+                        </VeeField> 
                     </div>
                     <div class="flex flex-col mb-2">
                         <VeeField name="newpassword" v-slot="{ field, meta }">
