@@ -18,6 +18,7 @@
                             <VeeErrorMessage v-if="meta.touched && !meta.valid" name="currntpassword" as="span" class="!text-danger" />
                         </VeeField>
                     </div>
+
                     <div class="flex flex-col mb-2">
                         <VeeField name="newpassword" v-slot="{ field, meta }">
                             <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.newPasswordLabel") }}</label>
@@ -27,6 +28,7 @@
                             <VeeErrorMessage v-if="meta.touched && !meta.valid" name="newpassword" as="span" class="!text-danger" />
                         </VeeField>
                     </div>
+
                     <div class="flex flex-col mb-10">
                         <VeeField name="passwordconfirm" v-slot="{ field, meta }">
                             <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.confirmPassword") }}</label>
@@ -106,5 +108,3 @@ async function submitHandler(values) {
     }
 }
 </script>
-
-<style></style>

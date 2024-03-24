@@ -7,7 +7,7 @@
             <div v-if="loading" class="flex items-center justify-center h-full py-12">
                 <UILoader />
             </div>
-            <h1 v-if="!loading" class="text-2xl block me-auto mb-5 font-bold">{{ $t("TITLES.tellUsCancelReason") }}</h1>
+            <h2 v-if="!loading" class="text-2xl block me-auto mb-5 font-bold">{{ $t("TITLES.tellUsCancelReason") }}</h2>
             <VeeForm v-if="!loading" :initial-values="initialValues" :validation-schema="schema" as="div" @submit="onSubmit">
                 <form>
                     <div class="px-7">
@@ -147,4 +147,3 @@ onMounted(() => {
 });
 </script>
 
-<style scoped></style>

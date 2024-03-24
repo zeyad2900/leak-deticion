@@ -35,26 +35,14 @@ defineProps({
 
 <style scoped>
 .swiper {
-    width: 100%;
-    height: 100%;
+    @apply w-full h-full;
 }
 
 .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-
-    /* Center slide text vertically */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @apply flex justify-center items-center text-[18px] bg-[#fff];
 }
 
-
 .swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    @apply block w-full h-full object-cover;
 }
 </style>

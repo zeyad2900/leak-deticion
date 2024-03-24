@@ -1,7 +1,7 @@
 <template>
     <div class="col-span-12 lg:col-span-5 mb-10 lg:mb-0">
         <div class="bg-[#FFFFFF] p-10 rounded-[40px] lg:w-[80%] drop-shadow">
-            <h1 class="font-bold text-2xl mb-8">{{ $t("PersonalAccount") }}</h1>
+            <h2 class="font-bold text-2xl mb-8">{{ $t("PersonalAccount") }}</h2>
 
             <NuxtLink  :to="localePath('/profile')" class="flex items-center justify-start gap-4 mb-8">
                 <div class="w-20 h-20 rounded-full overflow-hidden">

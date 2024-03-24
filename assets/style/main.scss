@@ -3,19 +3,17 @@
 @tailwind utilities;
 
 :root {
-    --main-color: #3162da;
     scroll-behavior: smooth;
 }
 ::-webkit-scrollbar,
 ::-webkit-scrollbar {
-    width: 2px;
-    height: 10px;
+    @apply w-[2px] h-[10px];
 }
 ::-webkit-scrollbar-track {
-    background: #fff;
+    @apply bg-[#fff];
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--main-color);
+    @apply bg-main;
 }
 
 body {
@@ -23,42 +21,19 @@ body {
 }
 
 a {
-    cursor: pointer;
+    @apply cursor-pointer;
 }
 
 textarea {
-    resize: none;
+    @apply resize-none;
 }
 /* /////////////////////////////////////////////// */
 .mainbtn {
-    padding: 16px 24px;
-    background-color: var(--main-color);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
+    @apply px-[24px] py-[16px] bg-main text-white flex justify-center items-center gap-[10px] rounded-[30px];
 }
 
 .secondbtn {
-    padding: 16px 24px;
-    background-color: white;
-    color: #adb3da;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border: 1px solid #adb3da;
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
+    @apply px-[24px] py-[16px] bg-white text-[#adb3da] flex justify-center items-center gap-[10px] border border-[#adb3da] rounded-[30px];
 }
 /* ////////////////////////////////////////////////// */
 
@@ -85,10 +60,6 @@ textarea {
 }
 /* ////////////////////////////////////////////////// */
 .swiper-thumbs .swiper-wrapper {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 15px !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    @apply flex flex-col gap-[15px] m-0 p-0;
 }
 /* ///////////////////////////////////  */

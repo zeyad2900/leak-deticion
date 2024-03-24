@@ -3,14 +3,15 @@
         <div class="w-full">
             <div class="mb-10">
                 <UIBage>{{ $t("TITLES.rate") }}</UIBage>
-                <h1
+                <h2
                     data-wow-duration="1.3s"
                     data-wow-delay="0.5s"
                     class="animated wow fadeInUp text-2xl md:text-3xl lg:text-5xl max-w-[650px] font-medium mb-2 lg:leading-[3.5rem] text-text leading-[2.5rem]"
                 >
                     {{ $t("TITLES.usersRate") }}
-                </h1>
+                </h2>
             </div>
+
             <swiper
                 :slidesPerView="'auto'"
                 :centeredSlides="true"
@@ -53,21 +54,19 @@ defineProps({
 
 <style scoped>
 .mySwiper {
-    padding-top: 100px;
+    @apply pt-[100px]
 }
 .swiper {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    @apply relative w-full h-full
 }
 
 .swiper-slide {
-    width: 100%;
+    @apply w-full
 }
 
 @media (min-width: 800px) {
     .swiper-slide {
-        width: 50%;
+        @apply w-[50%]
     }
 }
 </style>

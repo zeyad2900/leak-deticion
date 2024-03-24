@@ -18,10 +18,12 @@
                             <VeeErrorMessage v-if="meta.touched && !meta.valid" name="name" as="span" class="!text-danger" />
                         </VeeField>
                     </div>
+
                     <div class="flex flex-col mb-3">
                         <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.phoneNumber") }}</label>
                         <GlobalPhoneInput />
                     </div>
+
                     <div class="flex flex-col mb-2">
                         <VeeField name="password" v-slot="{ field, meta }">
                             <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.password") }}</label>
@@ -31,6 +33,7 @@
                             <VeeErrorMessage v-if="meta.touched && !meta.valid" name="password" as="span" class="!text-danger" />
                         </VeeField>
                     </div>
+
                     <div class="flex flex-col mb-10">
                         <VeeField name="passwordconfirm" v-slot="{ field, meta }">
                             <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.confirmPassword") }}</label>
@@ -52,6 +55,7 @@
                     </button>
                 </form>
             </VeeForm>
+
             <div class="flex gap-1 text-center items-center justify-center">
                 <p class="text-sm">{{ $t("haveAccount") }}</p>
                 <button @click="myShowAndHideStore.signupHandler('back')" class="font-bold">{{ $t("login") }}</button>
@@ -130,5 +134,3 @@ async function submitHandler(values, actions) {
         });
 }
 </script>
-
-<style></style>

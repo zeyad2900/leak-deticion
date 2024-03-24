@@ -4,6 +4,7 @@
             <button type="" @click="myShowAndHideStore.changeHandler()" class="text-2xl block ms-auto">
                 <Icon class="text-light" name="ep:close-bold"></Icon>
             </button>
+
             <h3 class="text-center font-bold mb-7 text-text text-xl">{{ $t("Change password") }}</h3>
 
             <!-- form -->
@@ -18,6 +19,7 @@
                             <VeeErrorMessage v-if="meta.touched && !meta.valid" name="password" as="span" class="!text-danger" />
                         </VeeField>
                     </div>
+
                     <div class="flex flex-col mb-10">
                         <VeeField name="passwordconfirm" v-slot="{ field, meta }">
                             <label class="text-text font-bold mb-1">{{ $t("FORMS.Placeholders.confirmPassword") }}</label>
@@ -94,4 +96,3 @@ async function submitHandler(values) {
 }
 </script>
 
-<style></style>

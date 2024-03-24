@@ -2,7 +2,7 @@
     <div class="top-24 rtl:left-1 rtl:sm:left-24 ltr:right-1 ltr:sm:right-24 z-[999] fixed sm:w-[400px] text-text">
         <UIBaseCard>
             <div class="flex justify-between items-center mb-4">
-                <h1 class="font-black text-xl">{{ $t("notifications") }}</h1>
+                <h2 class="font-black text-xl">{{ $t("notifications") }}</h2>
                 <button :disabled="deleteLoading" class="disabled:cursor-not-allowed" v-if="notifications.length" @click="handleDeleteAllNotifications">
                     <img src="/assets/images/imgicons/trash.png" alt="" />
                 </button>
@@ -18,7 +18,7 @@
                     <img src="/assets/images/imgicons/notificationsemoty.png" alt="" />
                 </div>
                 <div class="space-y-3">
-                    <h1 class="font-bold text-center text-xl">{{ $t("MESSAGES.noNotifications") }}</h1>
+                    <h3 class="font-bold text-center text-xl">{{ $t("MESSAGES.noNotifications") }}</h3>
                 </div>
             </div>
         </UIBaseCard>
@@ -62,4 +62,3 @@ async function handleDeleteAllNotifications() {
 }
 </script>
 
-<style></style>

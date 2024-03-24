@@ -78,4 +78,3 @@ defineProps({
 const currentYear = new Date().getFullYear();
 </script>
 
-<style scoped></style>

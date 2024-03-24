@@ -8,7 +8,7 @@
                 <button class="text-2xl block ms-auto" @click="$emit('close')">
                     <Icon class="text-light" name="ep:close-bold"></Icon>
                 </button>
-                <h1 class="text-2xl block me-auto mb-5 font-bold">{{ $t("FORMS.Placeholders.chooseTimeDate") }}</h1>
+                <h2 class="text-2xl block me-auto mb-5 font-bold">{{ $t("FORMS.Placeholders.chooseTimeDate") }}</h2>
                 <VeeForm :validation-schema="schema" @submit="onSubmit">
                     <form>
                         <VeeField name="chooseTimeDate" v-slot="{ field }">
@@ -150,4 +150,3 @@ const onSubmit = async (values, actions) => {
 };
 </script>
 
-<style scoped></style>

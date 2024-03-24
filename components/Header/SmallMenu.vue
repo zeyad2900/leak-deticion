@@ -24,5 +24,3 @@ const changeLang = () => {
 };
 const myShowAndHideStore = useMyShowAndHideStore();
 </script>
-
-<style></style>

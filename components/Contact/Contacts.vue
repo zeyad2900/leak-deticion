@@ -8,6 +8,7 @@
                     <h3 class="text-sm lg:text-lg">{{ items.phone }}</h3>
                 </div>
             </div>
+
             <div class="items-center col-span-3 md:col-span-1 flex flex-col text-center lg:text-start lg:items-start gap-4 p-6 rounded-2xl shadow-md">
                 <img src="/assets/images/contact/mail.webp" alt="" />
                 <div class="space-y-2">
@@ -15,6 +16,7 @@
                     <h3 class="text-sm lg:text-lg">{{ items.email }}</h3>
                 </div>
             </div>
+            
             <div class="items-center col-span-3 md:col-span-1 flex flex-col text-center lg:text-start lg:items-start gap-4 p-6 rounded-2xl shadow-md">
                 <img src="/assets/images/contact/location.webp" alt="" />
                 <div class="space-y-2">
@@ -33,5 +35,3 @@ const props = defineProps({
     },
 });
 </script>
-
-<style scoped></style>

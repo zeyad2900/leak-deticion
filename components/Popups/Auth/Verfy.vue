@@ -27,6 +27,7 @@
                             />
                         </div>
                     </div>
+
                     <button :disabled="!validationcode.valid || btnLoading" @submit="onVerify" type="submit" class="mainbtn w-full mb-1">
                         <p v-if="!btnLoading">{{ $t("BUTTONS.submit") }}</p>
                         <UIButtonLoader v-else />
@@ -132,5 +133,3 @@ async function submitHandler(values) {
     }
 }
 </script>
-
-<style scoped></style>

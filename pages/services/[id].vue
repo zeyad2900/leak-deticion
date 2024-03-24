@@ -1,14 +1,18 @@
 <template>
     <article class="mt-40 pb-24">
+        <div v-if="error">{{ error }}</div>
+
         <div v-if="pending" class="fixed bg-white z-[500] h-screen w-screen top-0 left-0 flex items-center justify-center pt-28 pb-12">
             <UILoader />
         </div>
 
         <div class="container" v-if="data?.data">
             <div class="grid grid-cols-12">
+                <!-- details -->
                 <div class="lg:col-span-8 col-span-12">
                     <h1 class="text-4xl font-bold mb-10">{{ data?.data.title }}</h1>
 
+                    <!-- swiper -->
                     <div class="grid grid-cols-12 lg:gap-x-5 gap-y-5 md:p-0 py-3 px-0 md:px-3 mb-5">
                         <div class="lg:col-span-10 col-span-12 h-fit">
                             <Swiper
@@ -42,12 +46,12 @@
                             </Swiper>
                         </div>
                     </div>
-
+                    <!-- titel -->
                     <div class="mb-5">
-                        <h1 class="text-2xl font-bold mb-3">{{ $t("TITLES.service_details") }}</h1>
+                        <h3 class="text-2xl font-bold mb-3">{{ $t("TITLES.service_details") }}</h3>
                         <div class="text-light text-lg" v-html="data?.data.desc"></div>
                     </div>
-
+                    <!-- form -->
                     <VeeForm :validation-schema="schema" @submit="submit" as="div">
                         <form class="mb-5">
                             <VeeField name="problem_details" v-slot="{ field }">
@@ -200,8 +204,10 @@
                     </VeeForm>
                 </div>
 
+                <!-- search -->
                 <div class="lg:col-span-4 col-span-12">
                     <div class="bg-stroke mx-auto md:w-[90%] w-full p-4 rounded-3xl">
+
                         <div class="flex items-center relative mb-10">
                             <label class="absolute ps-3">
                                 <img src="/assets/images/servicesdetails/search-normal.png" alt="" />
@@ -226,9 +232,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <Teleport to="body">
             <PopupsMap v-if="showMap" @close="showMap = false" @setAddress="getlocation" />
             <PopupsDone v-if="confirm_reservation_done" :content="locale == 'ar' ? 'تم تاكيد الحجز' : 'Done'" />
-        </div>
+        </Teleport>
     </article>
 </template>
 

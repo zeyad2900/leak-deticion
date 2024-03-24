@@ -38,7 +38,10 @@
                     <NuxtImg width="320px" :src="items.image" placeholder="/video.webp" alt="video2" />
                 </button>
             </div>
-            <PopupsVideo v-if="video" @close-video="video = false" :item="items?.video" />
+
+            <Teleport to="body">
+                <PopupsVideo v-if="video" @close-video="video = false" :item="items?.video" />
+            </Teleport>
         </div>
     </article>
 </template>

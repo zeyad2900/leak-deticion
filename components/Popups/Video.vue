@@ -45,4 +45,3 @@ onMounted(() => {
 });
 </script>
 
-<style></style>

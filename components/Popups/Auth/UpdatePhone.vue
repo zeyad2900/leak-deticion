@@ -109,5 +109,3 @@ async function submitHandler(values) {
         .finally(() => (btnLoading.value = false));
 }
 </script>
-
-<style scoped></style>

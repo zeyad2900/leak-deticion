@@ -69,7 +69,7 @@
     a {
         @apply uppercase text-light px-4 py-2 rounded-2xl border transition duration-300;
         &.active {
-            @apply bg-[#3162da] text-white;
+            @apply bg-main text-white;
         }
     }
 }

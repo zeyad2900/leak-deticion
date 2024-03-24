@@ -100,8 +100,6 @@
     </div>
     <Teleport to="body">
         <PopupsChat v-if="chat" @close="chat = false" :finished="order.data.status === 'finished'" />
-    </Teleport>
-    <Teleport to="body">
         <PopupsCanselResone
             v-if="cansel"
             @close="cansel = false"
@@ -110,8 +108,6 @@
                 navigateTo(localePath('/profile/orders'));
             "
         />
-    </Teleport>
-    <Teleport to="body">
         <PopupsDelayOrder
             v-if="delay"
             @close="delay = false"
@@ -140,4 +136,3 @@ if (order.value) {
 }
 </script>
 
-<style></style>

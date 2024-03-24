@@ -2,7 +2,7 @@
     <div class="fixed top-0 left-0 w-full bg-[#0000009a] flex items-center justify-center h-screen z-[1002]">
         <div class="bg-white rounded-2xl md:w-1/2 w-[90%] p-8">
             <div class="mb-5 flex justify-between items-center">
-                <h1 class="font-bold text-2xl">{{ $t("TITLES.location") }}</h1>
+                <h2 class="font-bold text-2xl">{{ $t("TITLES.location") }}</h2>
 
                 <button @click="$emit('close')">
                     <Icon class="text-light" name="ep:close-bold"></Icon>
@@ -90,5 +90,3 @@ const addAddress = () => {
 };
 const emit = defineEmits(["close", "setAddress"]);
 </script>
-
-<style lang="scss" scoped></style>

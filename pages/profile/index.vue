@@ -38,6 +38,7 @@
                 <button type="submit" :disabled="btnLoading" class="mainbtn block ms-auto w-36 mt-7 disabled:cursor-not-allowed">{{ $t("BUTTONS.save") }}</button>
             </form>
         </VeeForm>
+
         <VeeForm :validation-schema="schema1" :initial-values="initialValue" @submit="changePhone" as="div" v-slot="{ values }">
             <form class="mt-5 w-full space-y-1 relative">
                 <label for="phone" class="text-light">{{ $t("FORMS.Placeholders.phoneNumber") }}</label>
@@ -47,8 +48,11 @@
                 </button>
             </form>
         </VeeForm>
-        <PopupsAuthUpdatePass v-if="updatePassword" @close="updatePassword = false" />
-        <PopupsAuthUpdatePhone v-if="verify" @close="verify = false" :data="verifyData" @updateProfile="$emit('updateProfile')" />
+
+        <Teleport to="body">
+            <PopupsAuthUpdatePass v-if="updatePassword" @close="updatePassword = false" />
+            <PopupsAuthUpdatePhone v-if="verify" @close="verify = false" :data="verifyData" @updateProfile="$emit('updateProfile')" />
+        </Teleport>
     </div>
 </template>
 
@@ -192,4 +196,3 @@ const verifyData = ref({
 });
 </script>
 
-<style></style>

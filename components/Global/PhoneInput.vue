@@ -61,5 +61,3 @@ function changeCountry(item) {
     phoneCodeField.setValue(item);
 }
 </script>
-
-<style></style>

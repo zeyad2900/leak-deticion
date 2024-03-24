@@ -3,11 +3,3 @@
         <slot></slot>
     </p>
 </template>
-
-<script setup>
-
-</script>
-
-<style>
-
-</style>

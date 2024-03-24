@@ -6,9 +6,9 @@
             </div>
 
             <div class="col-span-2 lg:col-span-1 flex flex-col gap-8">
-                <h1 data-wow-duration="1.3s" data-wow-delay="0.5s" class="animated wow fadeInUp text-2xl lg:text-4xl max-w-[450px] lg:leading-[2.8rem] text-text font-bold leading-[2.5rem]">
+                <h2 data-wow-duration="1.3s" data-wow-delay="0.5s" class="animated wow fadeInUp text-2xl lg:text-4xl max-w-[450px] lg:leading-[2.8rem] text-text font-bold leading-[2.5rem]">
                     {{ $t("TITLES.mission") }}
-                </h1>
+                </h2>
                 <div data-wow-duration="1.3s" data-wow-delay="0.5s" class="animated wow fadeInUp space-y-10">
                     <div>
                         <p class="text-light">{{ $t("TITLES.downloadApp") }}</p>
@@ -23,7 +23,3 @@
         </div>
     </article>
 </template>
-
-<script setup></script>
-
-<style></style>

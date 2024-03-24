@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="p-3 bg-[#12b3482b] rounded-lg">
-                        <h1 class="font-bold text-[#12B347]">{{ item.status_trans }}</h1>
+                        <h2 class="font-bold text-[#12B347]">{{ item.status_trans }}</h2>
                     </div>
                 </div>
                 <div class="flex justify-between">
@@ -91,4 +91,3 @@ watch(
 );
 </script>
 
-<style lang="scss"></style>
