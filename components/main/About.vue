@@ -1,7 +1,7 @@
 <template>
-    <article id="about" class="container py-20">
-        <div class="grid grid-cols-3 gap-9">
-            <div class="col-span-3 space-y-10 lg:col-span-2 order-2 lg:order-1">
+    <article id="about" class="py-20">
+        <div class="flex flex-col lg:flex-row justify-between items-center gap-9 w-full container">
+            <div class="space-y-10">
                 <UIBage>{{ $t("NAV.about") }}</UIBage>
                 <h2
                     data-wow-duration="1.3s"
@@ -26,11 +26,7 @@
                 <NuxtLink v-if="!isAbout" class="mainbtn !w-fit" :to="localePath('/about')">{{ $t("BUTTONS.showMore") }}</NuxtLink>
             </div>
 
-            <div
-                data-wow-duration="1.3s"
-                data-wow-delay="0.3s"
-                class="animated wow zoomIn flex items-center col-span-3 lg:col-span-1 order-1 lg:order-2 w-[280px] h-[280px] md:w-[400px] md:h-full mx-auto mb-11 lg:mb-0 relative"
-            >
+            <div data-wow-duration="1.3s" data-wow-delay="0.3s" class="animated wow zoomIn flex items-center w-[280px] h-[280px] md:w-[400px] md:h-full mb-11 lg:mb-0">
                 <button @click="video = true" class="round relative">
                     <span class="absolute top-[40%] end-[40%] w-16 h-16 rounded-full border flex justify-center items-center z-20">
                         <img src="/assets/images/main/next.webp" alt="next" />
@@ -38,11 +34,10 @@
                     <NuxtImg width="320px" :src="items.image" placeholder="/video.webp" alt="video2" />
                 </button>
             </div>
-
-            <Teleport to="body">
-                <PopupsVideo v-if="video" @close-video="video = false" :item="items?.video" />
-            </Teleport>
         </div>
+        <Teleport to="body">
+            <PopupsVideo v-if="video" @close-video="video = false" :item="items?.video" />
+        </Teleport>
     </article>
 </template>
 

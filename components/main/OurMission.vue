@@ -1,5 +1,5 @@
 <template>
-    <article id="Our-mission" class="container py-12">
+    <article id="Our-mission" class="py-12">
         <div class="container grid gap-8 mb-20 grid-cols-2 items-center">
             <div class="flex items-center justify-center lg:justify-start col-span-2 lg:col-span-1 w-full lg:w-[400px]">
                 <img data-wow-duration="1.3s" data-wow-delay="0.5s" class="animated wow zoomIn" src="/assets/images/main/phone.webp" alt="" />
