@@ -80,7 +80,7 @@ export default defineNuxtConfig({
         serverOptions: {},
     },
     build: {
-        transpile: ["@fawmi/vue-google-maps"],
+        transpile: ['vue-toastification', "@fawmi/vue-google-maps", "swiper"]
     },
     runtimeConfig: {
         public: {
