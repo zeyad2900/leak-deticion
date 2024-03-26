@@ -4,12 +4,19 @@
             <Icon name="ep:close-bold" size="40" />
         </button>
         <ul class="flex flex-col items-center justify-center gap-6">
-            <NuxtLink :to="localePath('/')">{{ $t("NAV.home") }}</NuxtLink>
-            <NuxtLink :to="localePath('/#services')">{{ $t("NAV.services") }}</NuxtLink>
-            <NuxtLink :to="localePath('/about')">{{ $t("NAV.about") }}</NuxtLink>
-            <NuxtLink :to="localePath('/contact')">{{ $t("NAV.contact") }}</NuxtLink>
+            <NuxtLink @click="myShowAndHideStore.smallMenueHndler('close')" :to="localePath('/')">{{ $t("NAV.home") }}</NuxtLink>
+            <NuxtLink @click="myShowAndHideStore.smallMenueHndler('close')" :to="localePath('/#services')">{{ $t("NAV.services") }}</NuxtLink>
+            <NuxtLink @click="myShowAndHideStore.smallMenueHndler('close')" :to="localePath('/about')">{{ $t("NAV.about") }}</NuxtLink>
+            <NuxtLink @click="myShowAndHideStore.smallMenueHndler('close')" :to="localePath('/contact')">{{ $t("NAV.contact") }}</NuxtLink>
         </ul>
-        <button @click="changeLang" type="button" class="flex items-center gap-1">
+        <button
+            @click="
+                changeLang();
+                myShowAndHideStore.smallMenueHndler('close');
+            "
+            type="button"
+            class="flex items-center gap-1"
+        >
             <nuxt-icon class="text-white text-[25px] mt-1 p-0" name="earth" />
             {{ $t("NAV.lang") }}
         </button>
