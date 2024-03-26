@@ -4,7 +4,7 @@
     </div>
     <template v-else-if="items.length">
         <div class="w-full">
-            <NuxtLink :to="localePath(`/profile/orders/${item.id}`)" v-for="item in items" :key="item.id" class="block shadow-sm p-6 rounded-[40px] mb-4">
+            <NuxtLink :to="localePath(`/orders/${item.id}`)" v-for="item in items" :key="item.id" class="block shadow-sm p-6 rounded-[40px] mb-4">
                 <div class="flex items-start justify-between mb-3">
                     <div class="flex items-center justify-start gap-4">
                         <div class="w-[70px] h-[70px] rounded-[50px] overflow-hidden">
@@ -90,4 +90,3 @@ watch(
     }
 );
 </script>
-
