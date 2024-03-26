@@ -1,24 +1,13 @@
-# Nuxt dev/build outputs
-.output
-.data
+node_modules
+*.log*
 .nuxt
 .nitro
 .cache
-dist
 
-# Node dependencies
-node_modules
-
-# Logs
-logs
-*.log
-
-# Misc
-.DS_Store
-.fleet
-.idea
-
-# Local env files
 .env
-.env.*
-!.env.example
+dist
+.DS_Store
+.htaccess
+package-lock.json
+.output
+.output.zip
