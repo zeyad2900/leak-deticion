@@ -7,6 +7,6 @@ export default defineNuxtPlugin((nuxtApp) => {
             key: "AIzaSyA8qi0TK3EDod0LlTXbQFf_DyEptiGgPFU",
             libraries: "places", // This is required if you use the Autocomplete plugin
         },
-        autobindAllEvents: true,
+        // autobindAllEvents: true,
     });
 });

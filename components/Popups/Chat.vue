@@ -8,7 +8,7 @@
                         <h5 class="font-medium text-lg">{{ profileData?.full_name || "_" }}</h5>
                     </div>
                 </div>
-
+                
                 <button type="button" class="bg-[#F3F3F3] rounded-xl w-[45px] h-[45px] flex items-center justify-center" @click="$emit('close')">
                     <Icon class="text-light" name="ep:close-bold"></Icon>
                 </button>

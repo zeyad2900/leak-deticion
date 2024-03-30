@@ -1,7 +1,5 @@
 <template>
     <article class="mt-40 pb-24">
-        <div v-if="error">{{ error }}</div>
-
         <div v-if="pending" class="fixed bg-white z-[500] h-screen w-screen top-0 left-0 flex items-center justify-center pt-28 pb-12">
             <UILoader />
         </div>
@@ -207,7 +205,6 @@
                 <!-- search -->
                 <div class="lg:col-span-4 col-span-12">
                     <div class="bg-stroke mx-auto md:w-[90%] w-full p-4 rounded-3xl">
-
                         <div class="flex items-center relative mb-10">
                             <label class="absolute ps-3">
                                 <img src="/assets/images/servicesdetails/search-normal.png" alt="" />
@@ -233,7 +230,7 @@
                 </div>
             </div>
         </div>
-        
+
         <Teleport to="body">
             <PopupsMap v-if="showMap" @close="showMap = false" @setAddress="getlocation" />
             <PopupsDone v-if="confirm_reservation_done" :content="locale == 'ar' ? 'تم تاكيد الحجز' : 'Done'" />

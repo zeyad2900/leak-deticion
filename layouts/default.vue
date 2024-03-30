@@ -9,6 +9,7 @@
 </template>
 
 <script setup>
+ 
 const { locale } = useI18n();
 const { data } = await useApi("general/settings");
 const generalsStore = useMyGeneralStore();
